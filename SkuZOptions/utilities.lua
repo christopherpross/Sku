@@ -9,6 +9,83 @@ local band, bor, bxor, bnot = bit.band, bit.bor, bit.bxor, bit.bnot
 local lshift, rshift, arshift = bit.lshift, bit.rshift, bit.arshift
 
 ---------------------------------------------------------------------------------------------------------------------------------------
+function SkuGetItemIdFromItemLink(aLink)
+	if not aLink then return end
+	local tr = 0
+	local a, b, c, d, e = strsplit("%:", aLink)
+	return b
+end
+
+---------------------------------------------------------------------------------------------------------------------------------------
+function SkuTableToString(aTable, aCallback)
+	local tStr = "{"
+	local tPartString = ""
+	local tcounterold = 1
+	local tcounter = 1	
+	local co = coroutine.create(function()	
+		local tLocalCounter = 0
+		local function tf(ttable, tTab)
+			for k, v in pairs(ttable) do
+				--print(tLocalCounter, k, v)
+				if type(v) == 'table' then
+					--print(tTab.."["..k.."] = {")
+					tPartString = tPartString.."["..k.."] = {"
+					tf(v, tTab.."  ")
+					--print(tTab.."},")
+					tPartString = tPartString.."},"
+				elseif type(v) == "boolean" then
+					--print(tTab.."["..k.."] = "..tostring(v)..",")
+					tPartString = tPartString.."["..k.."] = "..tostring(v)..","
+				elseif type(v) == "string" then
+					--print(tTab.."["..k.."] = \""..tostring(v).."\",")
+					tPartString = tPartString.."["..k.."] = \""..tostring(v).."\","
+				else
+					--print(tTab.."["..k.."] = "..v..",")
+					tPartString = tPartString.."["..k.."] = "..v..","
+				end
+			end
+			if tLocalCounter > 500 then
+				tLocalCounter = 0
+				tStr = tStr..tPartString
+				tPartString = ""
+				--print("part", tcounterold)
+				tcounterold = tcounterold + 1
+				coroutine.yield()
+			end
+			--print(tLocalCounter)
+			tLocalCounter = tLocalCounter + 1
+		end
+		tf(aTable, "")
+	end)
+
+	local tCoCompleted = false
+	local tSkuCoroutineControlFrameOnUpdateTimer = 0
+	local tSkuCoroutineControlFrame = _G["SkuCoroutineControlFrame"] or CreateFrame("Frame", "SkuCoroutineControlFrame", UIParent)
+	tSkuCoroutineControlFrame:SetPoint("CENTER")
+	tSkuCoroutineControlFrame:SetSize(50, 50)
+	tSkuCoroutineControlFrame:SetScript("OnUpdate", function(self, time)
+		tSkuCoroutineControlFrameOnUpdateTimer = tSkuCoroutineControlFrameOnUpdateTimer + time
+		if tSkuCoroutineControlFrameOnUpdateTimer < 0.001 then return end
+		if coroutine.status(co) == "suspended" then
+			coroutine.resume(co)
+			--SkuOptions.Voice:OutputStringBTtts("sound-notification24", false, true)--24
+		else
+			if tCoCompleted == false then
+				tCoCompleted = true
+				--print("completed")
+				tStr = tStr..tPartString
+				aCallback("return "..tStr.."}")
+			end
+		end
+	end)	
+end
+
+---------------------------------------------------------------------------------------------------------------------------------------
+function SkuStringToTable(aString)
+	return assert(loadstring(aString))()
+end
+
+---------------------------------------------------------------------------------------------------------------------------------------
 function SkuU64join(hi, lo)
 	local rshift, band = rshift, band
 	hi = rshift(hi, 1) * 2 + band(hi, 1)
@@ -51,10 +128,15 @@ end
 function TooltipLines_helper(...)
    local tQualityString = nil
 
-	local itemName, ItemLink = _G["SkuScanningTooltip"]:GetItem()
+	local itemName, ItemLink
+	itemName, ItemLink = _G["SkuScanningTooltip"]:GetItem()
+
+	local tEffectiveILvl
+
 	if not ItemLink then
-		itemName, ItemLink = GameTooltip:GetItem()
+		itemName, ItemLink = _G["GameTooltip"]:GetItem()
 	end
+
 	if ItemLink then
       for x = 0, #ITEM_QUALITY_COLORS do
          local tItemCol = ITEM_QUALITY_COLORS[x].color:GenerateHexColor()
@@ -67,8 +149,10 @@ function TooltipLines_helper(...)
             end
          end
       end
+		tEffectiveILvl = GetDetailedItemLevelInfo(ItemLink)
    end
 
+	local tCounter = 1
 	local tHasTextFlag = false
 	local rText = ""
    for i = 1, select("#", ...) do
@@ -76,15 +160,22 @@ function TooltipLines_helper(...)
 		if region and region:GetObjectType() == "FontString" then
 			local text = region:GetText() -- string or nil
 			if text then
+				if tCounter == 2 and tEffectiveILvl then
+					rText = rText..L["Item Level"]..": "..tEffectiveILvl.."\r\n"
+				end
+
             if tHasTextFlag == false and tQualityString and SkuOptions.db.profile["SkuCore"].itemSettings.ShowItemQality == true then
                rText = rText..text.." ("..tQualityString..")\r\n"
             else
 				   rText = rText..text.."\r\n"
             end
 				tHasTextFlag = true
+				tCounter = tCounter + 1
 			end
 		end
 	end
+
+	--_G["SkuScanningTooltip"]:ClearLines()
 	return rText
 end
 
@@ -1057,8 +1148,8 @@ end
 local tSkuCoroutineControlFrameOnUpdateTimer = 0
 local tCounter = 0
 function SkuRtWpDataDeToEnNEW()--Tal!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	SkuOptions.db.global["SkuNav"].Waypoints = {}
-	SkuOptions.db.global["SkuNav"].Links = {}
+	SkuDB.SessionRouteData.Waypoints = {}
+	SkuDB.SessionRouteData.Links = {}
 	SkuNav:CreateWaypointCache({"enUS"})
 
 	tCounter = 0
@@ -1158,8 +1249,8 @@ end
 local tSkuCoroutineControlFrameOnUpdateTimer = 0
 local tCounter = 0
 function SkutmpTrans()--Tal!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	--SkuOptions.db.global["SkuNav"].Waypoints = {}
-	--SkuOptions.db.global["SkuNav"].Links = {}
+	--SkuDB.SessionRouteData.Waypoints = {}
+	--SkuDB.SessionRouteData.Links = {}
 
 	SkuOptions.db.global["SkuNav"].IdWaypoints = {}
 
@@ -1167,21 +1258,21 @@ function SkutmpTrans()--Tal!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 	local co = coroutine.create(function ()
 		local tNumberDone = 0
-		for i, v in ipairs(SkuOptions.db.global["SkuNav"].Waypoints) do
-			--print(i, v, SkuOptions.db.global["SkuNav"].Waypoints[v], SkuOptions.db.global["SkuNav"].Waypoints[v].names["deDE"])
+		for i, v in ipairs(SkuDB.SessionRouteData.Waypoints) do
+			--print(i, v, SkuDB.SessionRouteData.Waypoints[v], SkuDB.SessionRouteData.Waypoints[v].names["deDE"])
 			--if type(v) == "table" then
 			
-				if SkuOptions.db.global["SkuNav"].Waypoints[v].names["deDE"] ~= "" then
-					--print(SkuOptions.db.global["SkuNav"].Waypoints[v].names["deDE"])
-					SkuOptions.db.global["SkuNav"].Waypoints[v].names["enUS"] = SkuTranslateStringDeToEn(SkuOptions.db.global["SkuNav"].Waypoints[v].names["deDE"])
-					SkuOptions.db.global["SkuNav"].Waypoints[v].lComments = {
+				if SkuDB.SessionRouteData.Waypoints[v].names["deDE"] ~= "" then
+					--print(SkuDB.SessionRouteData.Waypoints[v].names["deDE"])
+					SkuDB.SessionRouteData.Waypoints[v].names["enUS"] = SkuTranslateStringDeToEn(SkuDB.SessionRouteData.Waypoints[v].names["deDE"])
+					SkuDB.SessionRouteData.Waypoints[v].lComments = {
 						["deDE"] = {},
 						["enUS"] = {},
 					}
-					if SkuOptions.db.global["SkuNav"].Waypoints[v].comments then
-						for x = 1, #SkuOptions.db.global["SkuNav"].Waypoints[v].comments do
-							SkuOptions.db.global["SkuNav"].Waypoints[v].lComments["deDE"][#SkuOptions.db.global["SkuNav"].Waypoints[v].lComments["deDE"] + 1] = SkuOptions.db.global["SkuNav"].Waypoints[v].comments[x]
-							SkuOptions.db.global["SkuNav"].Waypoints[v].lComments["enUS"][#SkuOptions.db.global["SkuNav"].Waypoints[v].lComments["enUS"] + 1] = SkuTranslateStringDeToEn(SkuOptions.db.global["SkuNav"].Waypoints[v].comments[x])
+					if SkuDB.SessionRouteData.Waypoints[v].comments then
+						for x = 1, #SkuDB.SessionRouteData.Waypoints[v].comments do
+							SkuDB.SessionRouteData.Waypoints[v].lComments["deDE"][#SkuDB.SessionRouteData.Waypoints[v].lComments["deDE"] + 1] = SkuDB.SessionRouteData.Waypoints[v].comments[x]
+							SkuDB.SessionRouteData.Waypoints[v].lComments["enUS"][#SkuDB.SessionRouteData.Waypoints[v].lComments["enUS"] + 1] = SkuTranslateStringDeToEn(SkuDB.SessionRouteData.Waypoints[v].comments[x])
 			
 						end
 					end
@@ -1191,7 +1282,7 @@ function SkutmpTrans()--Tal!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				end
 			--end
 
-			local t = SkuOptions.db.global["SkuNav"].Waypoints[v]
+			local t = SkuDB.SessionRouteData.Waypoints[v]
 			SkuOptions.db.global["SkuNav"].IdWaypoints[#SkuOptions.db.global["SkuNav"].IdWaypoints + 1] = t
 
 			tCounter = tCounter + 1
@@ -1242,17 +1333,17 @@ end
 local tSkuCoroutineControlFrameOnUpdateTimer = 0
 local tCounter = 0
 function SkutmpLinks()--Tal!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	--SkuOptions.db.global["SkuNav"].Waypoints = {}
-	--SkuOptions.db.global["SkuNav"].Links = {}
+	--SkuDB.SessionRouteData.Waypoints = {}
+	--SkuDB.SessionRouteData.Links = {}
 
-	SkuOptions.db.global["SkuNav"].IdLinks = {}
+	SkuDB.SessionRouteData.IdLinks = {}
 
 	tCounter = 0
 
 	local co = coroutine.create(function ()
 		local tNumberDone = 0
 
-		for tSourceWpName, tSourceWpLinks in pairs(SkuOptions.db.global["SkuNav"].Links) do
+		for tSourceWpName, tSourceWpLinks in pairs(SkuDB.SessionRouteData.Links) do
 			local tSourceWpId = tGet(tSourceWpName)
 			if not tSourceWpId then
 				if WaypointCache[WaypointCacheLookupAll[tSourceWpName]].typeId == 2 then
@@ -1283,7 +1374,7 @@ function SkutmpLinks()--Tal!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 						tLinksIds[tTargetWpId] = v
 					end
 				end
-				SkuOptions.db.global["SkuNav"].IdLinks[tSourceWpId] = tLinksIds
+				SkuDB.SessionRouteData.IdLinks[tSourceWpId] = tLinksIds
 			end
 
 			tCounter = tCounter + 1
@@ -1341,17 +1432,7 @@ end
 
 --/script SkuSwitchDataToLK()
 function SkuSwitchDataToLK()
-
-
-	local tcount = 0
-	for i, v in pairs(SkuDB.WotLK.NpcData.Data) do
-		if not SkuDB.NpcData.Data[i]	then
-			--print(i, v, v[1])
-			SkuDB.NpcData.Data[i] = v
-			tcount = tcount + 1
-		end
-	end
-	print("NpcData", tcount)
+	
 	local tcount = 0
 	for i, v in pairs(SkuDB.WotLK.itemDataTBC) do
 		if not SkuDB.itemDataTBC[i]	then
@@ -1596,8 +1677,8 @@ end
 function comparenames()
 	GameTooltip_SetDefaultAnchor(GameTooltip, UIParent) 
 	GameTooltip:Show()
-	for i,v in pairs(SkuDB.WotLK.NpcData.Names["enUS"]) do
-		if not SkuDB.WotLK.NpcData.Names["deDE"][i] and not SkuOptions.db.profile["SkuNav"].tNames["deDE"][i] then
+	for i,v in pairs(SkuDB.NpcData.Names["enUS"]) do
+		if not SkuDB.WotLK.Names["deDE"][i] and not SkuOptions.db.profile["SkuNav"].tNames["deDE"][i] then
 			print("look", i, v[1])
 			GameTooltip:ClearLines()
 			GameTooltip:SetHyperlink("unit:Creature-0-0-0-0-"..i) 
@@ -1630,6 +1711,4 @@ function comparenames()
 
 
 end
-
-
 

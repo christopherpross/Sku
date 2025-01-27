@@ -43,6 +43,45 @@
 		{
 			"name": "Libs",
 			"path": "Libs"
+		},
+		{
+			"path": "SkuDispatcher"
+		},
+		{
+			"path": "SkuAudioData"
+		},
+		{
+			"path": "debug"
 		}
-	]
+	],
+	"settings": {
+		"Lua.diagnostics.globals": [
+			"SkuNav",
+			"SkuCore",
+			"SkuOptions",
+			"SkuQuest",
+			"SkuDB",
+			"SkuAudiodata",
+			"SkuMob",
+			"SPELL_PERIODIC_HEAL_COMBATLOG_TOOLTIP"
+		],
+		"Lua.diagnostics.disable": [
+			"param-type-mismatch"
+		],
+		"Lua.runtime.version": "Lua 5.1",
+		"Lua.runtime.builtin": {
+			"basic": "disable",
+			"debug": "disable",
+			"io": "disable",
+			"math": "disable",
+			"os": "disable",
+			"package": "disable",
+			"string": "disable",
+			"table": "disable",
+			"utf8": "disable"
+		},
+		"Lua.workspace.library": [
+			"~\\.vscode\\extensions\\ketho.wow-api-0.18.2\\Annotations"
+		]
+	}
 }

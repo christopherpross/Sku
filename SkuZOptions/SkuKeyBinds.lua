@@ -5,12 +5,16 @@ local L = Sku.L
 SkuOptions = SkuOptions or LibStub("AceAddon-3.0"):NewAddon("SkuOptions", "AceConsole-3.0", "AceEvent-3.0")
 
 SkuOptions.skuDefaultKeyBindings = {
+   
+   ["SKU_KEY_SELECTNEXTBASEWAYPOINT"] = {key = "", object = "SkuNav", func = "CreateSkuNavMain",},
+   
+   ["SKU_KEY_TARGETDISTANCE"] = {key = "", object = "SkuCoreControlOption1", script = "OnHide",},
    ["SKU_KEY_PANICMODE"] = {key = "CTRL-SHIFT-Y", object = "SkuCoreControlOption1", script = "OnHide",},
    ["SKU_KEY_MMSCANWIDE"] = {key = "CTRL-SHIFT-F", object = "SkuCoreControlOption1", script = "OnHide",},
    ["SKU_KEY_MMSCANNARROW"] = {key = "CTRL-SHIFT-R", object = "SkuCoreControlOption1", script = "OnHide",},
    ["SKU_KEY_STARTRRFOLLOW"] = {key = "CTRL-SHIFT-Z", object = "SkuNav", func = "CreateSkuNavMain",},
-   ["SKU_KEY_SKUMMOPEN"] = {key = "ALT-K", object = "SkuNav", func = "CreateSkuNavMain",},
-   ["SKU_KEY_SKURTMMDISPLAY"] = {key = "ALT-L", object = "SkuNav", func = "CreateSkuNavMain",},
+   --["SKU_KEY_SKUMMOPEN"] = {key = "ALT-K", object = "SkuNav", func = "CreateSkuNavMain",},
+   --["SKU_KEY_SKURTMMDISPLAY"] = {key = "ALT-L", object = "SkuNav", func = "CreateSkuNavMain",},
    ["SKU_KEY_MOVETONEXTWP"] = {key = "CTRL-SHIFT-W", object = "SkuNav", func = "CreateSkuNavMain",},
    ["SKU_KEY_MOVETOPREVWP"] = {key = "CTRL-SHIFT-S", object = "SkuNav", func = "CreateSkuNavMain",},
    ["SKU_KEY_ADDLARGEWP"] = {key = "ALT-O", object = "SkuNav", func = "CreateSkuNavMain",},
@@ -43,13 +47,13 @@ SkuOptions.skuDefaultKeyBindings = {
    ["SKU_KEY_STOPTTSOUTPUT"] = {key = "CTRL-V", object = "SkuOptions", func = "CreateMainFrame",},
    ["SKU_KEY_QUESTABANDON"] = {key = "CTRL-SHIFT-D", object = "OnSkuOptionsMainOption1", script = "OnShow",},
    ["SKU_KEY_CHATOPEN"] = {key = "SHIFT-F2", object = "SkuChat", func = "OnEnable",},
-   ["SKU_KEY_TOGGLEREACHRANGE"] = {key = "CTRL-SHIFT-Q", object = "SkuNav", func = "CreateSkuNavMain",},
+   ["SKU_KEY_TOGGLEREACHRANGE"] = {key = "", object = "SkuNav", func = "CreateSkuNavMain",},
 
    ["SKU_KEY_SCANCONTINUE"] = {key = "SHIFT-L", object = "SkuCoreControlOption1", script = "OnHide",},
-   ["SKU_KEY_SCAN1"] = {key = "SHIFT-U", object = "SkuCoreControlOption1", script = "OnHide",},
-   ["SKU_KEY_SCAN2"] = {key = "SHIFT-I", object = "SkuCoreControlOption1", script = "OnHide",},
-   ["SKU_KEY_SCAN3"] = {key = "SHIFT-O", object = "SkuCoreControlOption1", script = "OnHide",},
-   ["SKU_KEY_SCAN4"] = {key = "SHIFT-P", object = "SkuCoreControlOption1", script = "OnHide",},
+   ["SKU_KEY_SCAN1"] = {key = "", object = "SkuCoreControlOption1", script = "OnHide",},
+   ["SKU_KEY_SCAN2"] = {key = "", object = "SkuCoreControlOption1", script = "OnHide",},
+   ["SKU_KEY_SCAN3"] = {key = "", object = "SkuCoreControlOption1", script = "OnHide",},
+   ["SKU_KEY_SCAN4"] = {key = "", object = "SkuCoreControlOption1", script = "OnHide",},
    ["SKU_KEY_SCAN5"] = {key = "CTRL-SHIFT-U", object = "SkuCoreControlOption1", script = "OnHide",},
    ["SKU_KEY_SCAN6"] = {key = "CTRL-SHIFT-O", object = "SkuCoreControlOption1", script = "OnHide",},
    ["SKU_KEY_SCAN7"] = {key = "CTRL-SHIFT-P", object = "SkuCoreControlOption1", script = "OnHide",},
@@ -57,6 +61,63 @@ SkuOptions.skuDefaultKeyBindings = {
 
    ["SKU_KEY_TURNTOBEACON"] = {key = "I", object = "SkuNav", func = "CreateSkuNavMain",},
 
+   ["SKU_KEY_STOPROUTEORWAYPOINT"] = {key = "", object = "SkuNav", func = "CreateSkuNavMain",},
+
+   ["SKU_KEY_MENUQUICK5"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+   ["SKU_KEY_MENUQUICK5SET"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+   ["SKU_KEY_MENUQUICK6"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+   ["SKU_KEY_MENUQUICK6SET"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+   ["SKU_KEY_MENUQUICK7"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+   ["SKU_KEY_MENUQUICK7SET"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+   ["SKU_KEY_MENUQUICK8"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+   ["SKU_KEY_MENUQUICK8SET"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+   ["SKU_KEY_MENUQUICK9"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+   ["SKU_KEY_MENUQUICK9SET"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+   ["SKU_KEY_MENUQUICK10"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+   ["SKU_KEY_MENUQUICK10SET"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+   
+   ["SKU_KEY_NOTIFYONRESOURCES"] = {key = "", object = "SkuCoreControlOption1", func = "OnHide",},
+
+   ["SKU_KEY_DOMONITORPARTYHEALTH2CONTI"] = {key = "", object = "SkuCoreControlOption1", func = "OnHide",},
+
+   ["SKU_KEY_ENABLESOFTTARGETINGENEMY"] = {key = "SHIFT-I", object = "SkuOptions", func = "CreateMainFrame",},
+   ["SKU_KEY_ENABLESOFTTARGETINGFRIENDLY"] = {key = "SHIFT-P", object = "SkuOptions", func = "CreateMainFrame",},
+   ["SKU_KEY_ENABLESOFTTARGETINGINTERACT"] = {key = "SHIFT-O", object = "SkuOptions", func = "CreateMainFrame",},
+   ["SKU_KEY_OUTPUTHARDTARGET"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+   ["SKU_KEY_OUTPUTSOFTTARGET"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+
+   ["SKU_KEY_TUTORIALSTEPBACK"] = {key = "ALT-H", object = "SkuOptions", func = "CreateMainFrame",},
+   ["SKU_KEY_TUTORIALSTEPREPEAT"] = {key = "ALT-K", object = "SkuOptions", func = "CreateMainFrame",},
+   ["SKU_KEY_TUTORIALSTEPFORWARD"] = {key = "ALT-J", object = "SkuOptions", func = "CreateMainFrame",},
+
+   ["SKU_KEY_ENABLEPARTYRAIDHEALTHMONITOR"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+
+   ["SKU_KEY_GROUPMEMBERSRANGECHECK"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+
+   ["SKU_KEY_SKUMARKERSET1WHITE"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+   ["SKU_KEY_SKUMARKERSET2RED"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+   ["SKU_KEY_SKUMARKERSET3BLUE"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+   ["SKU_KEY_SKUMARKERSET4GREEN"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+   ["SKU_KEY_SKUMARKERSET5PURPLE"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+   ["SKU_KEY_SKUMARKERSET6YELLOW"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+   ["SKU_KEY_SKUMARKERSET7ORANGE"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+   ["SKU_KEY_SKUMARKERSET8GREY"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+   ["SKU_KEY_SKUMARKERCLEARALL"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+
+   ["SKU_KEY_TURNTOUNIT1"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+   ["SKU_KEY_TURNTOUNIT2"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+   ["SKU_KEY_TURNTOUNIT3"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+   ["SKU_KEY_TURNTOUNIT4"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+   ["SKU_KEY_TURNTOUNIT5"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+   ["SKU_KEY_TURNTOUNIT6"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+
+   ["SKU_KEY_TURNTOUNITTURN180"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+
+   ["SKU_KEY_COMBATMONSETFOLLOWTARGET"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+   ["SKU_KEY_COMBATMONOUTPUTNUMBERINCOMBAT"] = {key = "", object = "SkuOptions", func = "CreateMainFrame",},
+
+   ["SKU_KEY_TARGETHEALTH"] = {key = "", object = "SkuCoreControlOption1", script = "OnHide",},
+   
    --["SKU_KEY_CHAT_LINEPREV"] = {key = "UP", object = "SkuChat", func = "OnEnable",},
    --["SKU_KEY_CHAT_LINENEXT"] = {key = "DOWN", object = "SkuChat", func = "OnEnable",},
    --["SKU_KEY_CHAT_TABPREV"] = {key = "LEFT", object = "SkuChat", func = "OnEnable",},
@@ -64,6 +125,11 @@ SkuOptions.skuDefaultKeyBindings = {
    --["SKU_KEY_CHAT_LINEMENU"] = {key = "CTRL-ENTER", object = "SkuChat", func = "OnEnable",},
    
 }
+for x = 1, 8 do
+   SkuOptions.skuDefaultKeyBindings["SKU_KEY_FOCUSGET"..x] = {key = "", object = "SkuCoreSkuFocusControl", script = "OnHide",}
+   SkuOptions.skuDefaultKeyBindings["SKU_KEY_FOCUSSET"..x] = {key = "", object = "SkuCoreSkuFocusControl", script = "OnHide",}
+end
+
 
 ---------------------------------------------------------------------------------------------------------------------------------------
 function SkuOptions:SkuKeyBindsResetBindings()

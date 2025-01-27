@@ -48,6 +48,25 @@ SkuCore.ScanTypes = {
 		vStepsMax = 11,
 		hStart = 0.65,
 	},		
+	[6] = {
+		name = L["360 10 very fast"],
+		desc = L["360 degrees 0-10 meters 2 second"],
+		hStepSizeDeg = 150,
+		hStepsMax = 2,
+		vMoveSpeed = 6.0,
+		vStepsMax = 8,
+		hStart = 0.50,
+	},
+	[7] = {
+		name = L["360+180 3-10 fast"],
+		desc = L["360 degrees from top to bottom 3-10 meters 15 seconds"],
+		hStepSizeDeg = 50,
+		hStepsMax = 6,
+		vMoveSpeed = 1.0,
+		vStepsMax = 18,
+		hStart = 0.8,
+	},
+
 }
 
 SkuCore.ScanObjects = {
@@ -67,6 +86,44 @@ SkuCore.ScanObjects = {
 
 SkuCore.Keys = {}
 SkuCore.Keys.SkuDefaultBindings = {
+	["BINDING_HEADER_MULTICASTFUNCTIONS"] = {
+		["MULTICASTACTIONBUTTON1"] = {
+			["index"] = 112,
+		},
+		["MULTICASTACTIONBUTTON2"] = {
+			["index"] = 113,
+		},
+		["MULTICASTACTIONBUTTON3"] = {
+			["index"] = 114,
+		},
+		["MULTICASTACTIONBUTTON4"] = {
+			["index"] = 115,
+		},
+		["MULTICASTACTIONBUTTON5"] = {
+			["index"] = 116,
+		},
+		["MULTICASTACTIONBUTTON6"] = {
+			["index"] = 117,
+		},
+		["MULTICASTACTIONBUTTON7"] = {
+			["index"] = 118,
+		},
+		["MULTICASTACTIONBUTTON8"] = {
+			["index"] = 119,
+		},
+		["MULTICASTACTIONBUTTON9"] = {
+			["index"] = 120,
+		},
+		["MULTICASTACTIONBUTTON10"] = {
+			["index"] = 121,
+		},
+		["MULTICASTACTIONBUTTON11"] = {
+			["index"] = 122,
+		},
+		["MULTICASTACTIONBUTTON12"] = {
+			["index"] = 123,
+		},
+	},		
 	["BINDING_HEADER_RAID_TARGET"] = {
 		["RAIDTARGET1"] = {
 			["index"] = 236,
@@ -102,7 +159,6 @@ SkuCore.Keys.SkuDefaultBindings = {
 			["index"] = 237,
 		},
 	},
-
 	["BINDING_HEADER_CAMERA"] = {
 		["SAVEVIEW5"] = {
 			["index"] = 222,
@@ -602,6 +658,29 @@ SkuCore.Keys.SkuDefaultBindings = {
 			["index"] = 39,
 		},
 	},
+	["BINDING_HEADER_VEHICLE"] = {
+		["VEHICLEEXIT"] = {
+			["index"] = 258,
+		},
+		["VEHICLEPREVSEAT"] = {
+			["index"] = 259,
+		},
+		["VEHICLENEXTSEAT"] = {
+			["index"] = 260,
+		},
+		["VEHICLEAIMUP"] = {
+			["index"] = 261,
+		},
+		["VEHICLEAIMDOWN"] = {
+			["index"] = 262,
+		},
+		["VEHICLEAIMINCREMENT"] = {
+			["index"] = 263,
+		},
+		["VEHICLEAIMDECREMENT"] = {
+			["index"] = 264,
+		},
+	},	
 	["BINDING_HEADER_INTERFACE"] = {
 		["TOGGLEBAG1"] = {
 			["index"] = 160,
@@ -718,6 +797,20 @@ SkuCore.Keys.SkuDefaultBindings = {
 		},
 		["TOGGLECHARACTER0"] = {
 			["index"] = 166,
+		},
+		--[[
+		["TOGGLELFGPARENT"] = {
+			["index"] = 268,
+		},
+		["TOGGLELFGLISTINGTAB"] = {
+			["index"] = 269,
+		},
+		]]
+		["TOGGLEACHIEVEMENT"] = {
+			["index"] = 202,
+		},
+		["TOGGLESTATISTICS"] = {
+			["index"] = 203,
 		},
 	},
 	["BINDING_HEADER_TARGETING"] = {

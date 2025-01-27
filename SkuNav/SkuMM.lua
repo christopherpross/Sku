@@ -453,7 +453,7 @@ local SkuNavMMShowDefaultWo = false
 local tWpFrames = {}
 function SkuNavDrawWaypointsMM(aFrame)
 	--dprint("SkuNavDrawWaypointsMM")
-	local beginTime = debugprofilestop()
+	--local beginTime = debugprofilestop()
 
 	if SkuOptions.db.profile[MODULE_NAME].showRoutesOnMinimap ~= true then
 		--return
@@ -701,9 +701,8 @@ function SkuNav:SkuNavMMOpen()
 
 			-- Resizable
 			MainFrameObj:SetResizable(true)
-			MainFrameObj:SetMinResize(200, 200)
 			local tW, tH = _G["UIParent"]:GetSize()
-			MainFrameObj:SetMaxResize(tW - 100, tH - 100)
+			MainFrameObj:SetResizeBounds(200, 200 , tW - 100, tH - 100)
 			local rb = CreateFrame("Button", "SkuNavMMMainFrameResizeButton", _G["SkuNavMMMainFrame"])
 			rb:SetPoint("BOTTOMRIGHT", 0, 0)
 			rb:SetSize(16, 16)

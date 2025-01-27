@@ -90,8 +90,6 @@ end
 ------------------------------------------------------------------------------------------------------------
 function SkuCore:MAIL_FAILED(...)
    --dprint("MAIL_FAILED", ...)
-   SkuOptions.Voice:OutputStringBTtts(L["Send failed"], false, true, 0.2)
-   SkuOptions.Voice:OutputStringBTtts(gLastError, false, true, 0.2)
 end
 
 ---------------------------------------------------------------------------------------------------------------------------------------
@@ -105,11 +103,11 @@ function SkuCore:MailEditor(aTargetValue)
       local tText = SkuOptionsEditBoxEditBox:GetText()
       SkuOptions.currentMenuPosition[aTargetValue] = tText
       if not SkuOptions.currentMenuPosition.TmpTo then
-         SkuOptions.Voice:OutputStringBTtts(L["No recepient"], false, true, 0.2)
-      end
-      if not SkuOptions.currentMenuPosition.TmpSubject then
+         SkuOptions.Voice:OutputStringBTtts(L["Recepient missing"], false, true, 0.2)
+      elseif not SkuOptions.currentMenuPosition.TmpSubject then
          SkuOptions.Voice:OutputStringBTtts(L["Topic missing"], false, true, 0.2)
+      else
+         SkuOptions.Voice:OutputStringBTtts(SkuOptions.currentMenuPosition.name, false, true, 0.2)
       end
-
 	end)
 end

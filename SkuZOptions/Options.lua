@@ -1,6 +1,38 @@
 local MODULE_NAME = "SkuOptions"
 local L = Sku.L
 
+
+SkuCore.SoftTargetingArcValues = {
+	[0] = L["Only directly in front"],
+	[1] = L["15 degrees in front"],
+	[2] = L["180 degrees in front"],
+}
+SkuCore.SofttargetingForceValues  = {
+	[0] = L["Off"],
+	[1] = L["Enemies"],
+	[2] = L["Friends"],
+}
+SkuCore.SofttargetingMatchLockedValues  = {
+	[0] = L["Always"],
+	[1] = L["If no hard target locked"],
+	[2] = L["No attackable hard target locked"],
+	--[2] = L["Targets you attack"],
+}
+SkuCore.SofttargetingInteractNameForValues  = {
+	[1] = L["Nothing"],
+	[2] = L["Objects"],
+	[3] = L["Objects and lootable/skinnable"],
+	[4] = L["Objects and lootable/skinnable and units"],
+}
+do
+	SkuCore.SofttargetingSoundsValue = {}
+	SkuCore.SofttargetingSoundsValue[" "] = L["silent"]
+	for i, v in pairs (SkuAuras.outputSoundFiles) do
+		SkuCore.SofttargetingSoundsValue[i] = v
+	end
+end
+
+--------------------------------------------------------------------------------------------------------------------------------------
 SkuOptions.options = {
 	name = MODULE_NAME,
 	handler = SkuOptions,
@@ -166,10 +198,139 @@ SkuOptions.options = {
 					},
 				},
 			},
+		soundSettings={
+			name = L["Sound Settings"],
+			type = "group",
+			order = 7,
+			args= {
+				Sound_EnableReverb = {
+					order = 1,
+					name = L["Reverb"],
+					desc = "",
+					type = "toggle",
+					OnAction = function(self, info, val)
+						if val == true then
+							C_CVar.SetCVar("Sound_EnableReverb", 1)
+						else
+							C_CVar.SetCVar("Sound_EnableReverb", 0)
+						end
+					end,
+					set = function(info,val)
+						SkuOptions.db.profile[MODULE_NAME].soundSettings.Sound_EnableReverb = val
+						if val == true then
+							C_CVar.SetCVar("Sound_EnableReverb", 1)
+						else
+							C_CVar.SetCVar("Sound_EnableReverb", 0)
+						end
+					end,
+					get = function(info)
+						return SkuOptions.db.profile[MODULE_NAME].soundSettings.Sound_EnableReverb
+					end
+				},
+				Sound_EnablePositionalLowPassFilter = {
+					order = 2,
+					name = L["Positional Low Pass Filter"],
+					desc = "",
+					type = "toggle",
+					OnAction = function(self, info, val)
+						if val == true then
+							C_CVar.SetCVar("Sound_EnablePositionalLowPassFilter", 1)
+						else
+							C_CVar.SetCVar("Sound_EnablePositionalLowPassFilter", 0)
+						end
+					end,
+					set = function(info,val)
+						SkuOptions.db.profile[MODULE_NAME].soundSettings.Sound_EnablePositionalLowPassFilter = val
+						if val == true then
+							C_CVar.SetCVar("Sound_EnablePositionalLowPassFilter", 1)
+						else
+							C_CVar.SetCVar("Sound_EnablePositionalLowPassFilter", 0)
+						end
+					end,
+					get = function(info)
+						return SkuOptions.db.profile[MODULE_NAME].soundSettings.Sound_EnablePositionalLowPassFilter
+					end
+				},
+				Sound_EnableDSPEffects = {
+					order = 3,
+					name = L["DSP Effects"],
+					desc = "",
+					type = "toggle",
+					OnAction = function(self, info, val)
+						if val == true then
+							C_CVar.SetCVar("Sound_EnableDSPEffects", 1)
+						else
+							C_CVar.SetCVar("Sound_EnableDSPEffects", 0)
+						end
+					end,
+					set = function(info,val)
+						SkuOptions.db.profile[MODULE_NAME].soundSettings.Sound_EnableDSPEffects = val
+						if val == true then
+							C_CVar.SetCVar("Sound_EnableDSPEffects", 1)
+						else
+							C_CVar.SetCVar("Sound_EnableDSPEffects", 0)
+						end
+					end,
+					get = function(info)
+						return SkuOptions.db.profile[MODULE_NAME].soundSettings.Sound_EnableDSPEffects
+					end
+				},
+				Sound_EnableSoundWhenGameIsInBG = {
+					order = 4,
+					name = L["Sound When Game Is In Background"],
+					desc = "",
+					type = "toggle",
+					OnAction = function(self, info, val)
+						if val == true then
+							C_CVar.SetCVar("Sound_EnableSoundWhenGameIsInBG", 1)
+						else
+							C_CVar.SetCVar("Sound_EnableSoundWhenGameIsInBG", 0)
+						end
+					end,
+					set = function(info,val)
+						SkuOptions.db.profile[MODULE_NAME].soundSettings.Sound_EnableSoundWhenGameIsInBG = val
+						if val == true then
+							C_CVar.SetCVar("Sound_EnableSoundWhenGameIsInBG", 1)
+						else
+							C_CVar.SetCVar("Sound_EnableSoundWhenGameIsInBG", 0)
+						end
+					end,
+					get = function(info)
+						return SkuOptions.db.profile[MODULE_NAME].soundSettings.Sound_EnableSoundWhenGameIsInBG
+					end
+				},
+				Sound_ZoneMusicNoDelay = {
+					order = 5,
+					name = L["Zone Music No Delay"],
+					desc = "",
+					type = "toggle",
+					OnAction = function(self, info, val)
+						if val == true then
+							C_CVar.SetCVar("Sound_ZoneMusicNoDelay", 1)
+						else
+							C_CVar.SetCVar("Sound_ZoneMusicNoDelay", 0)
+						end
+					end,
+					set = function(info,val)
+						SkuOptions.db.profile[MODULE_NAME].soundSettings.Sound_ZoneMusicNoDelay = val
+						if val == true then
+							C_CVar.SetCVar("Sound_ZoneMusicNoDelay", 1)
+						else
+							C_CVar.SetCVar("Sound_ZoneMusicNoDelay", 0)
+						end
+					end,
+					get = function(info)
+						return SkuOptions.db.profile[MODULE_NAME].soundSettings.Sound_ZoneMusicNoDelay
+					end
+				},
+			},
+		},
+
+						
 		debugOptions={
 			name = L["Debug Optionen"],
 			type = "group",
-			order = 7,
+			order = 8,
 			args= {
 				soundOnError = {
 					order = 2,
@@ -183,6 +344,7 @@ SkuOptions.options = {
 						return SkuOptions.db.profile[MODULE_NAME].debugOptions.soundOnError
 					end
 				},
+				--[[
 				showError = {
 					order = 3,
 					name = L["Fehler anzeigen"] ,
@@ -195,16 +357,68 @@ SkuOptions.options = {
 						--return SkuOptions.db.profile[MODULE_NAME].debugOptions.showError
 					end,
 					func = function(info,val)
-						SkuOpenSack()
+						if SkuOpenSack then
+							SkuOpenSack()
+						else
+							print("bugsack addon not installed")
+						end
 					end,
 				},
+				]]
 			},
 		},
 	
+		debugModule={
+			name = L["Debug Module"],
+			type = "group",
+			order = 30,
+			args= {
+				chatNotification = {
+					order = 1,
+					name = L["Output errors in chat"] ,
+					desc = "",
+					type = "toggle",
+					set = function(info,val)
+						SkuOptions.db.profile[MODULE_NAME].debugModule.chatNotification = val
+						Sku.debugModule:SetErrorNotifications()
+					end,
+					get = function(info)
+						return SkuOptions.db.profile[MODULE_NAME].debugModule.chatNotification
+					end
+				},
+				audioNotification = {
+					order = 2,
+					name = L["Sku audio notification on errors"] ,
+					desc = "",
+					type = "toggle",
+					set = function(info,val)
+						SkuOptions.db.profile[MODULE_NAME].debugModule.audioNotification = val
+						Sku.debugModule:SetErrorNotifications()
+					end,
+					get = function(info)
+						return SkuOptions.db.profile[MODULE_NAME].debugModule.audioNotification
+					end
+				},
+				bugsackAudioNotificationEnabled = {
+					order = 3,
+					name = L["Bugsack audio notification enabled"] ,
+					desc = "",
+					type = "toggle",
+					set = function(info,val)
+						SkuOptions.db.profile[MODULE_NAME].debugModule.bugsackAudioNotificationEnabled = val
+						Sku.debugModule:SetErrorNotifications()
+					end,
+					get = function(info)
+						return SkuOptions.db.profile[MODULE_NAME].debugModule.bugsackAudioNotificationEnabled
+					end
+				},
+			},
+		},
+
 		allModules={
 			name = L["Schnellwahl"],
 			type = "group",
-			order = 8,
+			order = 9,
 			args={
 					MenuQuickSelect1 = {
 						order = 1,
@@ -256,7 +470,494 @@ SkuOptions.options = {
 					},
 				},
 			},
+		softTargeting={
+			name = L["Soft targeting"],
+			type = "group",
+			order = 10,
+			args= {
+				enemy={
+					name = L["Enemies"],
+					type = "group",
+					order = 1,
+					args= {
+						enabled = {
+							order = 1,
+							name = L["Enabled"] ,
+							desc = "",
+							type = "toggle",
+							OnAction = function(self, info, val)
+								SkuOptions:UpdateSoftTargetingSettings("all")
+							end,
+							set = function(info,val)
+								SkuOptions.db.profile[MODULE_NAME].softTargeting.enemy.enabled = val
+							end,
+							get = function(info)
+								return SkuOptions.db.profile[MODULE_NAME].softTargeting.enemy.enabled
+							end
+						},
+						arc = {
+							order = 2,
+							name = L["Arc"] ,
+							desc = "",
+							type = "select",
+							OnAction = function(self, info, val)
+								SkuOptions:UpdateSoftTargetingSettings("all")
+							end,
+							values = SkuCore.SoftTargetingArcValues,
+							set = function(info,val)
+								SkuOptions.db.profile[MODULE_NAME].softTargeting.enemy.arc = val
+							end,
+							get = function(info)
+								return SkuOptions.db.profile[MODULE_NAME].softTargeting.enemy.arc
+							end
+						},							
+						range = {
+							order = 3,
+							name = L["Range"] ,
+							desc = "",
+							type = "range",
+							OnAction = function(self, info, val)
+								SkuOptions:UpdateSoftTargetingSettings("all")
+							end,
+							min = 1,
+							max = 60,
+							set = function(info,val)
+								SkuOptions.db.profile[MODULE_NAME].softTargeting.enemy.range = val
+							end,
+							get = function(info)
+								return SkuOptions.db.profile[MODULE_NAME].softTargeting.enemy.range
+							end
+						},		
+						forPlayers = {
+							order = 4,
+							name = L["Include players"] ,
+							desc = "",
+							type = "toggle",
+							OnAction = function(self, info, val)
+								SkuOptions:UpdateSoftTargetingSettings("all")
+							end,
+							set = function(info,val)
+								SkuOptions.db.profile[MODULE_NAME].softTargeting.enemy.forPlayers = val
+							end,
+							get = function(info)
+								return SkuOptions.db.profile[MODULE_NAME].softTargeting.enemy.forPlayers
+							end
+						},
+						forPets = {
+							order = 5,
+							name = L["Include pets"] ,
+							desc = "",
+							type = "toggle",
+							OnAction = function(self, info, val)
+								SkuOptions:UpdateSoftTargetingSettings("all")
+							end,
+							set = function(info,val)
+								SkuOptions.db.profile[MODULE_NAME].softTargeting.enemy.forPets = val
+							end,
+							get = function(info)
+								return SkuOptions.db.profile[MODULE_NAME].softTargeting.enemy.forPets
+							end
+						},							
+						forPassive = {
+							order = 5,
+							name = L["Include passive units"] ,
+							desc = "",
+							type = "toggle",
+							OnAction = function(self, info, val)
+								SkuOptions:UpdateSoftTargetingSettings("all")
+							end,
+							set = function(info,val)
+								SkuOptions.db.profile[MODULE_NAME].softTargeting.enemy.forPassive = val
+							end,
+							get = function(info)
+								return SkuOptions.db.profile[MODULE_NAME].softTargeting.enemy.forPassive
+							end
+						},
+						sound = {
+							order = 6,
+							name = L["sound on enemy soft target"] ,
+							desc = "",
+							type = "select",
+							OnAction = function(self, info, val)
+								SkuOptions:UpdateSoftTargetingSettings("all")
+							end,
+							values = SkuCore.SofttargetingSoundsValue,
+							set = function(info,val)
+								SkuOptions.db.profile[MODULE_NAME].softTargeting.enemy.sound = val
+							end,
+							get = function(info)
+								return SkuOptions.db.profile[MODULE_NAME].softTargeting.enemy.sound
+							end
+						},									
+						soundNoTarget = {
+							order = 6.5,
+							name = L["Sound on empty enemy soft target"],
+							desc = "",
+							type = "select",
+							OnAction = function(self, info, val)
+								SkuOptions:UpdateSoftTargetingSettings("all")
+							end,
+							values = SkuCore.SofttargetingSoundsValue,
+							set = function(info,val)
+								SkuOptions.db.profile[MODULE_NAME].softTargeting.enemy.soundNoTarget = val
+							end,
+							get = function(info)
+								return SkuOptions.db.profile[MODULE_NAME].softTargeting.enemy.soundNoTarget
+							end
+						},									
+
+						outputName = {
+							order = 7,
+							name = L["Output unit name"] ,
+							desc = "",
+							type = "toggle",
+							OnAction = function(self, info, val)
+								SkuOptions:UpdateSoftTargetingSettings("all")
+							end,
+							set = function(info,val)
+								SkuOptions.db.profile[MODULE_NAME].softTargeting.enemy.outputName = val
+							end,
+							get = function(info)
+								return SkuOptions.db.profile[MODULE_NAME].softTargeting.enemy.outputName
+							end
+						},
+						muteInCombat = {
+							order = 8,
+							name = L["Mute in Combat"],
+							desc = "",
+							type = "toggle",
+							OnAction = function(self, info, val)
+								SkuOptions:UpdateSoftTargetingSettings("all")
+							end,
+							set = function(info,val)
+								SkuOptions.db.profile[MODULE_NAME].softTargeting.enemy.muteInCombat = val
+							end,
+							get = function(info)
+								return SkuOptions.db.profile[MODULE_NAME].softTargeting.enemy.muteInCombat
+							end
+						},
+					},
+				},
+				friend={
+					name = L["Friends"],
+					type = "group",
+					order = 2,
+					args= {
+						enabled = {
+							order = 1,
+							name = L["Enabled"] ,
+							desc = "",
+							type = "toggle",
+							OnAction = function(self, info, val)
+								SkuOptions:UpdateSoftTargetingSettings("all")
+							end,
+							set = function(info,val)
+								SkuOptions.db.profile[MODULE_NAME].softTargeting.friend.enabled = val
+							end,
+							get = function(info)
+								return SkuOptions.db.profile[MODULE_NAME].softTargeting.friend.enabled
+							end
+						},
+						arc = {
+							order = 2,
+							name = L["Arc"] ,
+							desc = "",
+							type = "select",
+							OnAction = function(self, info, val)
+								SkuOptions:UpdateSoftTargetingSettings("all")
+							end,
+							values = SkuCore.SoftTargetingArcValues,
+							set = function(info,val)
+								SkuOptions.db.profile[MODULE_NAME].softTargeting.friend.arc = val
+							end,
+							get = function(info)
+								return SkuOptions.db.profile[MODULE_NAME].softTargeting.friend.arc
+							end
+						},							
+						range = {
+							order = 3,
+							name = L["Range"] ,
+							desc = "",
+							type = "range",
+							OnAction = function(self, info, val)
+								SkuOptions:UpdateSoftTargetingSettings("all")
+							end,
+							min = 1,
+							max = 60,
+							set = function(info,val)
+								SkuOptions.db.profile[MODULE_NAME].softTargeting.friend.range = val
+							end,
+							get = function(info)
+								return SkuOptions.db.profile[MODULE_NAME].softTargeting.friend.range
+							end
+						},		
+						forPlayers = {
+							order = 4,
+							name = L["Include players"] ,
+							desc = "",
+							type = "toggle",
+							OnAction = function(self, info, val)
+								SkuOptions:UpdateSoftTargetingSettings("all")
+							end,
+							set = function(info,val)
+								SkuOptions.db.profile[MODULE_NAME].softTargeting.friend.forPlayers = val
+							end,
+							get = function(info)
+								return SkuOptions.db.profile[MODULE_NAME].softTargeting.friend.forPlayers
+							end
+						},
+						forPets = {
+							order = 5,
+							name = L["Include pets"] ,
+							desc = "",
+							type = "toggle",
+							OnAction = function(self, info, val)
+								SkuOptions:UpdateSoftTargetingSettings("all")
+							end,
+							set = function(info,val)
+								SkuOptions.db.profile[MODULE_NAME].softTargeting.friend.forPets = val
+							end,
+							get = function(info)
+								return SkuOptions.db.profile[MODULE_NAME].softTargeting.friend.forPets
+							end
+						},
+						sound = {
+							order = 6,
+							name = L["sound on friendly soft target"],
+							desc = "",
+							type = "select",
+							OnAction = function(self, info, val)
+								SkuOptions:UpdateSoftTargetingSettings("all")
+							end,
+							values = SkuCore.SofttargetingSoundsValue,
+							set = function(info,val)
+								SkuOptions.db.profile[MODULE_NAME].softTargeting.friend.sound = val
+							end,
+							get = function(info)
+								return SkuOptions.db.profile[MODULE_NAME].softTargeting.friend.sound
+							end
+						},			
+						soundNoTarget = {
+							order = 6.5,
+							name = L["Sound on empty friendly soft target"],
+							desc = "",
+							type = "select",
+							OnAction = function(self, info, val)
+								SkuOptions:UpdateSoftTargetingSettings("all")
+							end,
+							values = SkuCore.SofttargetingSoundsValue,
+							set = function(info,val)
+								SkuOptions.db.profile[MODULE_NAME].softTargeting.friend.soundNoTarget = val
+							end,
+							get = function(info)
+								return SkuOptions.db.profile[MODULE_NAME].softTargeting.friend.soundNoTarget
+							end
+						},									
+
+						outputName = {
+							order = 7,
+							name = L["Output unit name"] ,
+							desc = "",
+							type = "toggle",
+							OnAction = function(self, info, val)
+								SkuOptions:UpdateSoftTargetingSettings("all")
+							end,
+							set = function(info,val)
+								SkuOptions.db.profile[MODULE_NAME].softTargeting.friend.outputName = val
+							end,
+							get = function(info)
+								return SkuOptions.db.profile[MODULE_NAME].softTargeting.friend.outputName
+							end
+						},													
+					},
+				},
+				interact={
+					name = L["Interact"],
+					type = "group",
+					order = 3,
+					args= {
+						enabled = {
+							order = 1,
+							name = L["Enabled"] ,
+							desc = "",
+							type = "toggle",
+							OnAction = function(self, info, val)
+								SkuOptions:UpdateSoftTargetingSettings("all")
+							end,
+							set = function(info,val)
+								SkuOptions.db.profile[MODULE_NAME].softTargeting.interact.enabled = val
+							end,
+							get = function(info)
+								return SkuOptions.db.profile[MODULE_NAME].softTargeting.interact.enabled
+							end
+						},
+						arc = {
+							order = 2,
+							name = L["Arc"] ,
+							desc = "",
+							type = "select",
+							OnAction = function(self, info, val)
+								SkuOptions:UpdateSoftTargetingSettings("all")
+							end,
+							values = SkuCore.SoftTargetingArcValues,
+							set = function(info,val)
+								SkuOptions.db.profile[MODULE_NAME].softTargeting.interact.arc = val
+							end,
+							get = function(info)
+								return SkuOptions.db.profile[MODULE_NAME].softTargeting.interact.arc
+							end
+						},							
+						range = {
+							order = 3,
+							name = L["Range"] ,
+							desc = "",
+							type = "range",
+							OnAction = function(self, info, val)
+								SkuOptions:UpdateSoftTargetingSettings("all")
+							end,
+							min = 1,
+							max = 15,
+							set = function(info,val)
+								SkuOptions.db.profile[MODULE_NAME].softTargeting.interact.range = val
+							end,
+							get = function(info)
+								return SkuOptions.db.profile[MODULE_NAME].softTargeting.interact.range
+							end
+						},		
+						soundfor = {
+							order = 4,
+							name = L["Output sound for"],
+							desc = "",
+							type = "select",
+							OnAction = function(self, info, val)
+								SkuOptions:UpdateSoftTargetingSettings("all")
+							end,
+							values = SkuCore.SofttargetingInteractNameForValues,
+							set = function(info,val)
+								SkuOptions.db.profile[MODULE_NAME].softTargeting.interact.soundfor = val
+							end,
+							get = function(info)
+								return SkuOptions.db.profile[MODULE_NAME].softTargeting.interact.soundfor
+							end
+						},				
+						sound = {
+							order = 5,
+							name = L["sound on interact soft target"] ,
+							desc = "",
+							type = "select",
+							OnAction = function(self, info, val)
+								SkuOptions:UpdateSoftTargetingSettings("all")
+							end,
+							values = SkuCore.SofttargetingSoundsValue,
+							set = function(info,val)
+								SkuOptions.db.profile[MODULE_NAME].softTargeting.interact.sound = val
+							end,
+							get = function(info)
+								return SkuOptions.db.profile[MODULE_NAME].softTargeting.interact.sound
+							end
+						},			
+						soundNoTarget = {
+							order = 5.5,
+							name = L["Sound on empty interact soft target"],
+							desc = "",
+							type = "select",
+							OnAction = function(self, info, val)
+								SkuOptions:UpdateSoftTargetingSettings("all")
+							end,
+							values = SkuCore.SofttargetingSoundsValue,
+							set = function(info,val)
+								SkuOptions.db.profile[MODULE_NAME].softTargeting.interact.soundNoTarget = val
+							end,
+							get = function(info)
+								return SkuOptions.db.profile[MODULE_NAME].softTargeting.interact.soundNoTarget
+							end
+						},																								
+						unitNameFor = {
+							order = 6,
+							name = L["Output name for"] ,
+							desc = "",
+							type = "select",
+							OnAction = function(self, info, val)
+								SkuOptions:UpdateSoftTargetingSettings("all")
+							end,
+							values = SkuCore.SofttargetingInteractNameForValues,
+							set = function(info,val)
+								SkuOptions.db.profile[MODULE_NAME].softTargeting.interact.unitNameFor = val
+							end,
+							get = function(info)
+								return SkuOptions.db.profile[MODULE_NAME].softTargeting.interact.unitNameFor
+							end
+						},							
+
+						outputBTTS = {
+							order = 8,
+							name = L["Name output via Blizzard TTS"] ,
+							desc = "",
+							type = "toggle",
+							OnAction = function(self, info, val)
+								SkuOptions:UpdateSoftTargetingSettings("all")
+							end,
+							set = function(info,val)
+								SkuOptions.db.profile[MODULE_NAME].softTargeting.interact.outputBTTS = val
+							end,
+							get = function(info)
+								return SkuOptions.db.profile[MODULE_NAME].softTargeting.interact.outputBTTS
+							end
+						},									
+					},
+				},
+				force = {
+					order = 5,
+					name = L["Auto set hard target to soft target for"] ,
+					desc = "",
+					type = "select",
+					OnAction = function(self, info, val)
+						SkuOptions:UpdateSoftTargetingSettings("all")
+					end,
+					values = SkuCore.SofttargetingForceValues,
+					set = function(info,val)
+						SkuOptions.db.profile[MODULE_NAME].softTargeting.force = val
+					end,
+					get = function(info)
+						return SkuOptions.db.profile[MODULE_NAME].softTargeting.force
+					end
+				},							
+				matchLocked = {
+					order = 6,
+					name = L["Do interact soft targeting if"],
+					desc = "",
+					type = "select",
+					OnAction = function(self, info, val)
+						SkuOptions:UpdateSoftTargetingSettings("all")
+					end,
+					values = SkuCore.SofttargetingMatchLockedValues,
+					set = function(info,val)
+						SkuOptions.db.profile[MODULE_NAME].softTargeting.matchLocked = val
+					end,
+					get = function(info)
+						return SkuOptions.db.profile[MODULE_NAME].softTargeting.matchLocked
+					end
+				},		
+				enableDisableOutputInChat = {
+					order = 7,
+					name = L["Chat notification on enabling/disabling soft targeting categories"] ,
+					desc = "",
+					type = "toggle",
+					OnAction = function(self, info, val)
+						SkuOptions:UpdateSoftTargetingSettings("all")
+					end,
+					set = function(info,val)
+						SkuOptions.db.profile[MODULE_NAME].softTargeting.enableDisableOutputInChat = val
+					end,
+					get = function(info)
+						return SkuOptions.db.profile[MODULE_NAME].softTargeting.enableDisableOutputInChat
+					end
+				},									
+
+			}
 		},
+
+	},
 }
 ---------------------------------------------------------------------------------------------------------------------------------------
 SkuOptions.defaults = {
@@ -275,70 +976,242 @@ SkuOptions.defaults = {
 		},
 	soundChannels  = {
 		MasterVolume = -1, --this is to check if the profile has sound settings. take the current blizz settings, if not.
-		SFXVolume = 100,
-		MusicVolume = 100,
-		AmbienceVolume = 100,
-		DialogVolume = 100,
+		SFXVolume = 35,
+		MusicVolume = 20,
+		AmbienceVolume = 10,
+		DialogVolume = 18,
 		SkuChannel = "Talking Head",
 		},
+	soundSettings  = {
+		Sound_EnableReverb = false, --this is to check if the profile has sound settings. take the current blizz settings, if not.
+		Sound_EnablePositionalLowPassFilter = false,
+		Sound_EnableDSPEffects = false,
+		Sound_EnableSoundWhenGameIsInBG = false,
+		Sound_ZoneMusicNoDelay = false,
+		},
+	softTargeting = {
+		enemy = {
+			enabled = false,
+			arc = 1,
+			range = 60,
+			forPassive = true,
+			forPlayers = false,
+			forPets = false,
+			sound = "sound-notification26",
+			soundNoTarget = " ",
+			outputName = true,
+			muteInCombat = false,
+		},
+		friend = {
+			enabled = false,
+			arc = 1,
+			range = 60,
+			forPlayers = false,
+			forPets = false,
+			sound = "sound-notification27",
+			soundNoTarget = " ",
+			outputName = true,
+		},
+		interact = {
+			enabled = false,
+			arc = 2,
+			range = 15,
+			soundfor = 4,
+			unitNameFor = 4,
+			sound = "sound-notification25",
+			soundNoTarget = " ",
+			outputBTTS = true,
+		},
+		force = 0, --0 1 2 target wird softtarget 		Auto-set target to match soft target. 1 = for enemies, 2 = for friends
+		matchLocked = 2, --0 1 softtarget immer locked wenn target 2?	Match appropriate soft target to locked target. 1 = hard locked target only, 2 = for targets you attack
+		enableDisableOutputInChat = true,
+	},		
 	debugOptions = {
 		soundOnError = false,
 		showError = L["fehler anzeigen default"],
+		},
+		debugModule = {
+			chatNotification = false,
+			audioNotification = false,
+			bugsackAudioNotificationEnabled = false,
 		},
 	}
 
 --------------------------------------------------------------------------------------------------------------------------------------
 function SkuOptions:MenuBuilder(aParentEntry)
-	--dprint("SkuOptions:MenuBuilder", aParentEntry)
-	local tNewMenuEntry =  SkuOptions:InjectMenuItems(aParentEntry, {L["Options"]}, SkuGenericMenuItem)
+	local tNewMenuEntry =  InjectMenuItemsNew(aParentEntry, {L["Options"]}, SkuGenericMenuItem)
 	tNewMenuEntry.filterable = true
 	SkuOptions:IterateOptionsArgs(SkuOptions.options.args, tNewMenuEntry, SkuOptions.db.profile[MODULE_NAME])
 
-	local tNewMenuParentEntry =  SkuOptions:InjectMenuItems(tNewMenuEntry, {L["Profil"]}, SkuGenericMenuItem)
-	local tNewMenuSubEntry =SkuOptions:InjectMenuItems(tNewMenuParentEntry, {L["Auswählen"]}, SkuGenericMenuItem)
+
+	local tNewMenuParentEntry =  InjectMenuItemsNew(tNewMenuEntry, {L["Overview pages"]}, SkuGenericMenuItem)
+	tNewMenuParentEntry.dynamic = true
+	tNewMenuParentEntry.BuildChildren = function(self)
+		for q = 1, 2 do
+			local tNewMenuParentEntry =  InjectMenuItemsNew(self, {L["Overview page "]..q}, SkuGenericMenuItem)
+			tNewMenuParentEntry.dynamic = true
+			tNewMenuParentEntry.isSelect = true
+			tNewMenuParentEntry.pageId = nil
+			tNewMenuParentEntry.tEntry = nil
+			tNewMenuParentEntry.OnAction = function(self, aValue, aName)
+				local tlName, tPos = string.split(";", self.tEntry)
+				for i, v in pairs(SkuOptions.db.profile[MODULE_NAME].overviewPages[self.pageId].overviewSections) do
+					if v.locName == tlName then
+						if aName == L["Up"] then
+							for i1, v1 in pairs(SkuOptions.db.profile[MODULE_NAME].overviewPages[self.pageId].overviewSections) do
+								if v1.pos == (tonumber(tPos) - 1) then
+									v1.pos = tonumber(tPos)
+									SkuOptions.db.profile[MODULE_NAME].overviewPages[self.pageId].overviewSections[i].pos = tonumber(tPos) - 1
+									break
+								end
+							end
+						elseif aName == L["Down"] then
+							for i1, v1 in pairs(SkuOptions.db.profile[MODULE_NAME].overviewPages[self.pageId].overviewSections) do
+								if v1.pos == (tonumber(tPos) + 1) then
+									v1.pos = tonumber(tPos)
+									SkuOptions.db.profile[MODULE_NAME].overviewPages[self.pageId].overviewSections[i].pos = tonumber(tPos) + 1
+									break
+								end
+							end
+						elseif aName == L["Show"] then
+							local tMax = 0
+							for i1, v1 in pairs(SkuOptions.db.profile[MODULE_NAME].overviewPages[self.pageId].overviewSections) do
+								if tonumber(v1.pos) > tMax and tonumber(v1.pos) ~= 999 then
+									tMax = v1.pos
+								end
+							end
+							v.pos = tMax + 1
+						elseif aName == L["Hide"] then
+							local tFrom = tonumber(v.pos)
+							for i1, v1 in pairs(SkuOptions.db.profile[MODULE_NAME].overviewPages[self.pageId].overviewSections) do
+								if v1.pos >= tFrom and v1.pos ~= 999 then
+									v1.pos = v1.pos - 1
+								end
+							end
+							v.pos = 999
+						end
+
+						return
+					end
+				end
+			end
+			tNewMenuParentEntry.BuildChildren = function(self)
+				local tSorted = {}
+				for k, v in SkuSpairs(SkuOptions.db.profile[MODULE_NAME].overviewPages[q].overviewSections, function(t,a,b) return t[b].pos > t[a].pos end) do
+					table.insert(tSorted, k)
+				end
+				local tNumberItems = #tSorted
+				for x = 1, #tSorted do
+					local tPos = SkuOptions.db.profile[MODULE_NAME].overviewPages[q].overviewSections[tSorted[x]].pos
+					local tPosName = tPos
+					if tPosName == 999 then
+						tPosName = L["hidden"]
+						tNumberItems = tNumberItems - 1
+					end
+					local tNewMenuSubEntry = InjectMenuItemsNew(self, {SkuOptions.db.profile[MODULE_NAME].overviewPages[q].overviewSections[tSorted[x]].locName..";"..tPosName}, SkuGenericMenuItem)
+					tNewMenuSubEntry.dynamic = true
+					tNewMenuSubEntry.OnEnter = function(self, aValue, aName)
+						self.selectTarget.pageId = q
+						self.selectTarget.tEntry = SkuOptions.db.profile[MODULE_NAME].overviewPages[q].overviewSections[tSorted[x]].locName..";"..tPosName
+					end
+
+					tNewMenuSubEntry.BuildChildren = function(self)
+						if tPos > 1 and tPos < 999 then
+							local tNewMenuSubSubEntry = InjectMenuItemsNew(self, {L["Up"]}, SkuGenericMenuItem)
+						end
+						if tPos < tNumberItems then
+							local tNewMenuSubSubEntry = InjectMenuItemsNew(self, {L["Down"]}, SkuGenericMenuItem)
+						end
+						if tPos == 999 then
+							local tNewMenuSubSubEntry = InjectMenuItemsNew(self, {L["Show"]}, SkuGenericMenuItem)
+						else
+							local tNewMenuSubSubEntry = InjectMenuItemsNew(self, {L["Hide"]}, SkuGenericMenuItem)
+						end
+
+					end
+				end
+			end
+		end
+	end
+
+	local tNewMenuParentEntry =  InjectMenuItemsNew(tNewMenuEntry, {L["Profil"]}, SkuGenericMenuItem)
+	local tNewMenuSubEntry =InjectMenuItemsNew(tNewMenuParentEntry, {L["Auswählen"]}, SkuGenericMenuItem)
 	tNewMenuSubEntry.dynamic = true
 	tNewMenuSubEntry.isSelect = true
 	tNewMenuSubEntry.OnAction = function(self, aValue, aName)
 		SkuOptions.db:SetProfile(aName)
+		SkuCore:UpdateCurrentTalentSet()
 	end
 	tNewMenuSubEntry.BuildChildren = function(self)
 		local tList = SkuOptions.db:GetProfiles()
-		local tNewMenuEntry = SkuOptions:InjectMenuItems(self, tList, SkuGenericMenuItem)
+		local tNewMenuEntry = InjectMenuItemsNew(self, tList, SkuGenericMenuItem)
 	end
 	tNewMenuSubEntry.GetCurrentValue = function(self, aValue, aName)
 		return SkuOptions.db:GetCurrentProfile()
 	end
 
-	local tNewMenuSubEntry =SkuOptions:InjectMenuItems(tNewMenuParentEntry, {L["New"]}, SkuGenericMenuItem)
-	tNewMenuSubEntry.dynamic = true
+	local tNewMenuSubEntry =InjectMenuItemsNew(tNewMenuParentEntry, {L["New"]}, SkuGenericMenuItem)
+	tNewMenuSubEntry.dynamic = false
 	tNewMenuSubEntry.isSelect = true
 	tNewMenuSubEntry.OnAction = function(self, aValue, aName)
-		--SkuOptions.db:New(aName)
-		--https://www.wowace.com/projects/ace3/pages/api/ace-db-3-0
+		SkuOptions:EditBoxShow(
+			"",
+			function(self)
+				local tText = SkuOptionsEditBoxEditBox:GetText()
+				if tText and tText ~= "" then
+					for i, v in pairs(SkuOptions.db:GetProfiles()) do
+						if v == tText then
+							C_Timer.After(0.1, function()
+								SkuOptions.Voice:OutputStringBTtts(L["name already taken"], true, true, 1, true)
+							end)
+							return
+						end
+					end
+					SkuOptions.db:SetProfile(tText)
+					SkuCore:UpdateCurrentTalentSet()
+				end
+			end,
+			nil
+		)
+		C_Timer.After(0.1, function()
+			SkuOptions.Voice:OutputStringBTtts(L["enter profile name now"], true, true, 1, true)
+		end)
 	end
 
-	local tNewMenuSubEntry =SkuOptions:InjectMenuItems(tNewMenuParentEntry, {L["Kopieren von"]}, SkuGenericMenuItem)
+	local tNewMenuSubEntry =InjectMenuItemsNew(tNewMenuParentEntry, {L["Kopieren von"]}, SkuGenericMenuItem)
 	tNewMenuSubEntry.dynamic = true
 	tNewMenuSubEntry.isSelect = true
 	tNewMenuSubEntry.OnAction = function(self, aValue, aName)
 		SkuOptions.db:CopyProfile(aName, true)
+		SkuCore:UpdateCurrentTalentSet()
 	end
 	tNewMenuSubEntry.BuildChildren = function(self)
 		local tList = SkuOptions.db:GetProfiles()
-		local tNewMenuEntry = SkuOptions:InjectMenuItems(self, tList, SkuGenericMenuItem)
+		local tNewMenuEntry = InjectMenuItemsNew(self, tList, SkuGenericMenuItem)
 	end
 	tNewMenuSubEntry.GetCurrentValue = function(self, aValue, aName)
 		return SkuOptions.db:GetCurrentProfile()
 	end
 
-	--[[
-	local tNewMenuSubEntry =SkuOptions:InjectMenuItems(tNewMenuParentEntry, {"Löschen"}, SkuGenericMenuItem)
+	local tNewMenuSubEntry =InjectMenuItemsNew(tNewMenuParentEntry, {"Löschen"}, SkuGenericMenuItem)
 	tNewMenuSubEntry.dynamic = true
+	tNewMenuSubEntry.isSelect = true
 	tNewMenuSubEntry.OnAction = function(self, aValue, aName)
-		--SkuOptions.db:DeleteProfile(name, silent)
+		SkuOptions.db:DeleteProfile(aName, silent)
+		SkuCore:UpdateCurrentTalentSet()
 	end
-	]]
-	local tNewMenuSubEntry =SkuOptions:InjectMenuItems(tNewMenuParentEntry, {L["Zurücksetzen"]}, SkuGenericMenuItem)
+	tNewMenuSubEntry.BuildChildren = function(self)
+		local tList = SkuOptions.db:GetProfiles()
+		local tClean = {}
+		for i, v in pairs(tList) do
+			if v ~= SkuOptions.db:GetCurrentProfile() then
+				table.insert(tClean, v)
+			end
+		end
+		local tNewMenuEntry = InjectMenuItemsNew(self, tClean, SkuGenericMenuItem)
+	end
+	
+	local tNewMenuSubEntry =InjectMenuItemsNew(tNewMenuParentEntry, {L["Zurücksetzen"]}, SkuGenericMenuItem)
 	tNewMenuSubEntry.dynamic = true
 	tNewMenuSubEntry.OnAction = function(self, aValue, aName)
 		SkuOptions.db:ResetProfile()
@@ -349,9 +1222,10 @@ function SkuOptions:MenuBuilder(aParentEntry)
 			Misc = {},
 		}
 		SkuOptions:OnProfileReset()
+		SkuCore:UpdateCurrentTalentSet()
 	end
 
-	local tNewMenuSubEntry =SkuOptions:InjectMenuItems(tNewMenuEntry, {L["Fehlende Audio Wörter kopieren"]}, SkuGenericMenuItem)
+	local tNewMenuSubEntry =InjectMenuItemsNew(tNewMenuEntry, {L["Fehlende Audio Wörter kopieren"]}, SkuGenericMenuItem)
 	tNewMenuSubEntry.dynamic = true
 	tNewMenuSubEntry.OnAction = function(self, aValue, aName)
 		if SkuOptions.db.realm then

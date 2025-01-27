@@ -36,7 +36,7 @@ function SkuCore:RangeCheckUpdateRanges()
    if not SkuOptions.db.char[MODULE_NAME] then
       SkuOptions.db.char[MODULE_NAME] = {}
    end
-
+   
    if not SkuOptions.db.char[MODULE_NAME].RangeChecks then
       --[[
       SkuOptions.db.char[MODULE_NAME].RangeChecks = {
@@ -64,9 +64,6 @@ function SkuCore:RangeCheckUpdateRanges()
             [15] = {
                ["sound"] = L["vocalized"],
             },
-            [8] = {
-               ["sound"] = L["vocalized"],
-            },
             [45] = {
                ["sound"] = L["vocalized"],
             },
@@ -88,6 +85,15 @@ function SkuCore:RangeCheckUpdateRanges()
             [60] = {
                ["sound"] = L["vocalized"],
             },
+            [70] = {
+               ["sound"] = L["vocalized"],
+            },
+            [80] = {
+               ["sound"] = L["vocalized"],
+            },
+            [100] = {
+               ["sound"] = L["vocalized"],
+            },            
          },
          ["Hostile"] = {
             [25] = {
@@ -99,9 +105,6 @@ function SkuCore:RangeCheckUpdateRanges()
             [15] = {
                ["sound"] = L["vocalized"],
             },
-            [8] = {
-               ["sound"] = L["vocalized"],
-            },
             [45] = {
                ["sound"] = L["vocalized"],
             },
@@ -123,9 +126,22 @@ function SkuCore:RangeCheckUpdateRanges()
             [60] = {
                ["sound"] = L["vocalized"],
             },
+            [70] = {
+               ["sound"] = L["vocalized"],
+            },
+            [80] = {
+               ["sound"] = L["vocalized"],
+            },
+            [100] = {
+               ["sound"] = L["vocalized"],
+            },
          },
       }      
    end
+   SkuOptions.db.char[MODULE_NAME].RangeChecks.groupChecksRange = SkuOptions.db.char[MODULE_NAME].RangeChecks.groupChecksRange or 10
+   SkuOptions.db.char[MODULE_NAME].RangeChecks["Misc"].rangeCheckOnTargetChange = SkuOptions.db.char[MODULE_NAME].RangeChecks["Misc"].rangeCheckOnTargetChange or false
+   SkuOptions.db.char[MODULE_NAME].RangeChecks["Friendly"].rangeCheckOnTargetChange = SkuOptions.db.char[MODULE_NAME].RangeChecks["Friendly"].rangeCheckOnTargetChange or false
+   SkuOptions.db.char[MODULE_NAME].RangeChecks["Hostile"].rangeCheckOnTargetChange = SkuOptions.db.char[MODULE_NAME].RangeChecks["Hostile"].rangeCheckOnTargetChange or false
 
    if tFirstRangeUpdateSilent then
       tFirstRangeUpdateSilent = nil
@@ -166,17 +182,56 @@ function SkuCore:RangeCheckUpdateRanges()
 end
    
 ---------------------------------------------------------------------------------------------------------------------------------------
+function SkuCore:DoGroupRangeCheck()
+   if not SkuOptions.db.char[MODULE_NAME].RangeChecks.groupChecksRange then
+      return
+   end
+
+   local tCount = 0
+   local tUnitPrefix
+   local tMaxMembers
+
+   if UnitInRaid("player") then
+      tUnitPrefix = "raid"
+      tMaxMembers = 40
+   elseif UnitInParty("player") == true then
+      tUnitPrefix = "party"
+      tMaxMembers = 4
+   end
+
+   if tUnitPrefix ~= nil then
+      for x = 1, tMaxMembers do
+         local tDistance = SkuCore:DoRangeCheck(true, true, tUnitPrefix..x)
+         if tDistance then
+            if tDistance <= SkuOptions.db.char[MODULE_NAME].RangeChecks.groupChecksRange then
+               tCount = tCount + 1
+            end
+         end
+      end
+   end
+   local tResultString = L["No one in range"].." "..SkuOptions.db.char[MODULE_NAME].RangeChecks.groupChecksRange
+   if tCount > 0 then
+      tResultString = tCount.." "..L["in range"].." "..SkuOptions.db.char[MODULE_NAME].RangeChecks.groupChecksRange
+   end
+   SkuOptions.Voice:OutputStringBTtts(tResultString, false, true, 0.2, nil, nil, nil, 2)
+end
+
+---------------------------------------------------------------------------------------------------------------------------------------
 local tRangeCheckLastTarget
 local tRangeCheckLastTargetminRange = 0
-function SkuCore:DoRangeCheck()
+function SkuCore:DoRangeCheck(aForceFlag, aSilent, aUnitId)
    if not SkuOptions.db.char[MODULE_NAME] then
       return
    end
 
+   if not aUnitId then
+      aUnitId = "target"
+   end
+
    local tCheckRequired = false
-   local tMaxRange, tMinRange = SkuOptions.RangeCheck:GetRange("target")
-   if tRangeCheckLastTarget ~= UnitGUID("target") then
-      tRangeCheckLastTarget = UnitGUID("target")
+   local tMaxRange, tMinRange = SkuOptions.RangeCheck:GetRange(aUnitId)
+   if tRangeCheckLastTarget ~= UnitGUID(aUnitId) then
+      tRangeCheckLastTarget = UnitGUID(aUnitId)
       tRangeCheckLastTargetminRange = tMinRange
       tCheckRequired = true
    else
@@ -186,30 +241,39 @@ function SkuCore:DoRangeCheck()
       end
    end
 
+   if aForceFlag == true then
+      tCheckRequired = true
+   end
+
    if tCheckRequired == true then
       local tCheckType = "Misc"
-      if UnitIsDead("target") == false then
-         if UnitCanAttack("player", "target") then
+      if UnitIsDead(aUnitId) == false then
+         if UnitCanAttack("player", aUnitId) then
             tCheckType = "Hostile"
-         elseif UnitCanAssist("player", "target") then
+         elseif UnitCanAssist("player", aUnitId) then
             tCheckType = "Friendly"
          end
       end
 
       if SkuOptions.db.char[MODULE_NAME].RangeChecks then
-         if SkuOptions.db.char[MODULE_NAME].RangeChecks[tCheckType][tRangeCheckLastTargetminRange] then
-            local tSoundChannel = SkuOptions.db.profile.SkuCore.UIErrors.ErrorSoundChannel or "Talking Head"
-            if SkuOptions.db.char[MODULE_NAME].RangeChecks[tCheckType][tRangeCheckLastTargetminRange].sound == L["vocalized"] then
-               --PlaySoundFile("Interface\\AddOns\\Sku\\SkuCore\\assets\\audio\\error\\marlene_de-de\\"..tRangeCheckLastTargetminRange..".mp3", tSoundChannel)
-               if Sku.Loc == "deDE" then
-                  PlaySoundFile("Interface\\AddOns\\Sku\\SkuCore\\assets\\audio\\error\\hans_de-de\\"..tRangeCheckLastTargetminRange..".mp3", tSoundChannel)
-               elseif Sku.Loc == "enUS" or Sku.Loc == "enGB"  or Sku.Loc == "enAU" then
-                  PlaySoundFile("Interface\\AddOns\\Sku\\SkuCore\\assets\\audio\\error\\hans_en-us\\"..tRangeCheckLastTargetminRange..".mp3", tSoundChannel)
+         if aSilent then
+            return tRangeCheckLastTargetminRange
+
+         else
+            if SkuOptions.db.char[MODULE_NAME].RangeChecks[tCheckType][tRangeCheckLastTargetminRange] then
+               local tSoundChannel = SkuOptions.db.profile.SkuCore.UIErrors.ErrorSoundChannel or "Talking Head"
+               if SkuOptions.db.char[MODULE_NAME].RangeChecks[tCheckType][tRangeCheckLastTargetminRange].sound == L["vocalized"] then
+                  --PlaySoundFile("Interface\\AddOns\\Sku\\SkuCore\\assets\\audio\\error\\marlene_de-de\\"..tRangeCheckLastTargetminRange..".mp3", tSoundChannel)
+                  if Sku.Loc == "deDE" then
+                     PlaySoundFile("Interface\\AddOns\\Sku\\SkuCore\\assets\\audio\\error\\hans_de-de\\"..tRangeCheckLastTargetminRange..".mp3", tSoundChannel)
+                  elseif Sku.Loc == "enUS" or Sku.Loc == "enGB"  or Sku.Loc == "enAU" then
+                     PlaySoundFile("Interface\\AddOns\\Sku\\SkuCore\\assets\\audio\\error\\hans_en-us\\"..tRangeCheckLastTargetminRange..".mp3", tSoundChannel)
+                  end
+               else
+                  PlaySoundFile(SkuOptions.db.char[MODULE_NAME].RangeChecks[tCheckType][tRangeCheckLastTargetminRange].sound, tSoundChannel)
                end
-            else
-               PlaySoundFile(SkuOptions.db.char[MODULE_NAME].RangeChecks[tCheckType][tRangeCheckLastTargetminRange].sound, tSoundChannel)
+               
             end
-            
          end
       end
    end

@@ -30,6 +30,74 @@ CLASS_IDS = {
 	["DEMONHUNTER_ID"] = 12,
 }
 
+SkuCore.outputSoundFiles = {
+   ["sound-brass1"] = L["aura;sound"].."#"..L["brass 1"],
+   ["sound-brass2"] = L["aura;sound"].."#"..L["brass 2"],
+   ["sound-brass3"] = L["aura;sound"].."#"..L["brass 3"],
+   ["sound-brass4"] = L["aura;sound"].."#"..L["brass 4"],
+   ["sound-brass5"] = L["aura;sound"].."#"..L["brass 5"],
+   ["sound-error_brang"] = L["aura;sound"].."#"..L["brang"],
+   ["sound-error_bring"] = L["aura;sound"].."#"..L["bring"],
+   ["sound-error_dang"] = L["aura;sound"].."#"..L["dang"],
+   ["sound-error_drmm"] = L["aura;sound"].."#"..L["drmm"],
+   ["sound-error_shhhup"] = L["aura;sound"].."#"..L["shhhup"],
+   ["sound-error_spoing"] = L["aura;sound"].."#"..L["spoing"],
+   ["sound-error_swoosh"] = L["aura;sound"].."#"..L["swoosh"],
+   ["sound-error_tsching"] = L["aura;sound"].."#"..L["tsching"],
+   ["sound-glass1"] = L["aura;sound"].."#"..L["glass 1"],
+   ["sound-glass2"] = L["aura;sound"].."#"..L["glass 2"],
+   ["sound-glass3"] = L["aura;sound"].."#"..L["glass 3"],
+   ["sound-glass4"] = L["aura;sound"].."#"..L["glass 4"],
+   ["sound-glass5"] = L["aura;sound"].."#"..L["glass 5"],
+   ["sound-waterdrop1"] = L["aura;sound"].."#"..L["waterdrop 1"],
+   ["sound-waterdrop2"] = L["aura;sound"].."#"..L["waterdrop 2"],
+   ["sound-waterdrop3"] = L["aura;sound"].."#"..L["waterdrop 3"],
+   ["sound-waterdrop4"] = L["aura;sound"].."#"..L["waterdrop 4"],
+   ["sound-waterdrop5"] = L["aura;sound"].."#"..L["waterdrop 5"],
+   ["sound-notification1"] = L["aura;sound"].."#"..L["notification"].." 1",
+   ["sound-notification2"] = L["aura;sound"].."#"..L["notification"].." 2",
+   ["sound-notification3"] = L["aura;sound"].."#"..L["notification"].." 3",
+   ["sound-notification4"] = L["aura;sound"].."#"..L["notification"].." 4",
+   ["sound-notification5"] = L["aura;sound"].."#"..L["notification"].." 5",
+   ["sound-notification6"] = L["aura;sound"].."#"..L["notification"].." 6",
+   ["sound-notification7"] = L["aura;sound"].."#"..L["notification"].." 7",
+   ["sound-notification8"] = L["aura;sound"].."#"..L["notification"].." 8",
+   ["sound-notification9"] = L["aura;sound"].."#"..L["notification"].." 9",
+   ["sound-notification10"] = L["aura;sound"].."#"..L["notification"].." 10",
+   ["sound-notification11"] = L["aura;sound"].."#"..L["notification"].." 11",
+   ["sound-notification12"] = L["aura;sound"].."#"..L["notification"].." 12",
+   ["sound-notification13"] = L["aura;sound"].."#"..L["notification"].." 13",
+   ["sound-notification14"] = L["aura;sound"].."#"..L["notification"].." 14",
+   ["sound-notification15"] = L["aura;sound"].."#"..L["notification"].." 15",
+   ["sound-notification16"] = L["aura;sound"].."#"..L["notification"].." 16",
+   ["sound-notification17"] = L["aura;sound"].."#"..L["notification"].." 17",
+   ["sound-notification18"] = L["aura;sound"].."#"..L["notification"].." 18",
+   ["sound-notification19"] = L["aura;sound"].."#"..L["notification"].." 19",
+   ["sound-notification20"] = L["aura;sound"].."#"..L["notification"].." 20",
+   ["sound-notification21"] = L["aura;sound"].."#"..L["notification"].." 21",
+   ["sound-notification22"] = L["aura;sound"].."#"..L["notification"].." 22",
+   ["sound-notification23"] = L["aura;sound"].."#"..L["notification"].." 23",
+   ["sound-notification24"] = L["aura;sound"].."#"..L["notification"].." 24",
+   ["sound-notification25"] = L["aura;sound"].."#"..L["notification"].." 25",
+   ["sound-notification26"] = L["aura;sound"].."#"..L["notification"].." 26",
+   ["sound-notification27"] = L["aura;sound"].."#"..L["notification"].." 27",
+   ["sound-axe01"] = L["aura;sound"].."#axe 01",
+   ["sound-blaze01"] = L["aura;sound"].."#blaze 01",
+   ["sound-interface01"] = L["aura;sound"].."#interface 01",
+   ["sound-interface02"] = L["aura;sound"].."#interface 02",
+   ["sound-interface03"] = L["aura;sound"].."#interface 03",
+   ["sound-interface04"] = L["aura;sound"].."#interface 04",
+   ["sound-interface05"] = L["aura;sound"].."#interface 05",
+   ["sound-interface06"] = L["aura;sound"].."#interface 06",
+   ["sound-shot01"] = L["aura;sound"].."#shot 01",
+   ["sound-sword01"] = L["aura;sound"].."#sword 01",
+   ["sound-sword02"] = L["aura;sound"].."#sword 02",
+   ["sound-sword03"] = L["aura;sound"].."#sword 03",
+   ["sound-TutorialClose01"] = L["aura;sound"].."#Tutorial Close 01",
+   ["sound-TutorialOpen01"] = L["aura;sound"].."#Tutorial Open 01",
+   ["sound-TutorialSuccess01"] = L["aura;sound"].."#Tutorial Success 01",
+}
+
 ---------------------------------------------------------------------------------------------------------------------------------------
 SkuCore.inCombat = false
 SkuCore.openMenuAfterCombat = false
@@ -50,22 +118,22 @@ local EnumItemQuality = {
 	}
 	
 SkuCoreMovement = {
-		["Flags"] = {
-			["MoveForward"] = false,
-			["MoveBackward"] = false,
-			["StrafeLeft"] = false,
-			["StrafeRight"] = false,
-			["Ascend"] = false,
-			["Descend"] = false,
-			["FollowUnit"] = false,
-			["IsTurningOrAutorunningOrStrafing"] = false,
-			},
-		["LastPosition"] = {
-			["x"] = 0,
-			["y"] = 0,
-			},
-		["counter"] = 0,
-	}
+	["Flags"] = {
+		["MoveForward"] = false,
+		["MoveBackward"] = false,
+		["StrafeLeft"] = false,
+		["StrafeRight"] = false,
+		["Ascend"] = false,
+		["Descend"] = false,
+		["FollowUnit"] = false,
+		["IsTurningOrAutorunningOrStrafing"] = false,
+		},
+	["LastPosition"] = {
+		["x"] = 0,
+		["y"] = 0,
+		},
+	["counter"] = 0,
+}
 
 SkuStatus = {
 	["indoor"] = 0,
@@ -106,7 +174,17 @@ SkuCore.interactFramesListManual = {
 	["CharacterFrame"] = function(...) SkuCore:Build_CharacterFrame(...) end,
 	["BarberShopFrame"] = function(...) SkuCore:Build_BarberShopFrame(...) end,
 	["PlayerTalentFrame"] = function(...) SkuCore:Build_TalentFrame(...) end,
+	["RolePollPopup"] = function(...) SkuCore:Build_RolePollPopup(...) end,
+	["GroupFinderFrame"] = function(...) SkuCore:Build_GroupFinderFrame(...) end,
+	["ReforgingFrame"] = function(...) SkuCore:Build_ReforgingFrame(...) end,
+	--["LFGListCreateRoleDialog"] = function(...) SkuCore:LFGListCreateRoleDialogFrame(...) end,
+	--["LFDRoleCheckPopup"] = function(...) SkuCore:LFDRoleCheckPopupFrame(...) end,
 }
+
+if Sku.IsWrathICC ~= true then
+	SkuCore.interactFramesListManual["LFGListingFrame"] = function(...) SkuCore:Build_LfgFrame(...) end
+	SkuCore.interactFramesListManual["LFGBrowseFrame"] = function(...) SkuCore:Build_LfgFrame(...) end
+end
 
 SkuCore.interactFramesList = {
 	"ItemTextFrame",
@@ -119,14 +197,8 @@ SkuCore.interactFramesList = {
 	"StaticPopup3",
 	"PetStableFrame",
 	"ContainerFrame1",
-	--"ContainerFrame2",
-	--"ContainerFrame3",
-	--"ContainerFrame4",
-	--"ContainerFrame5",
-	--"ContainerFrame6",
 	"DropDownList1",
 	"TalentFrame",
-	--"AuctionFrame",
 	"ClassTrainerFrame",
 	"CharacterFrame",
 	"BarberShopFrame",
@@ -134,9 +206,8 @@ SkuCore.interactFramesList = {
 	"SkillFrame",
 	"HonorFrame",
 	"PlayerTalentFrame",
+	"ReforgingFrame",
 	"InspectFrame",
-	--"BagnonInventoryFrame1",
-	--"BagnonBankFrame1",
 	"GuildBankFrame",
 	--"BankFrame",
 	"CraftFrame",
@@ -147,74 +218,91 @@ SkuCore.interactFramesList = {
 	--"FriendsFrame",
 	--"GameMenuFrame",
 	--"SpellBookFrame",
-	--"MultiBarLeft",
-	--"MultiBarRight",
-	--"MultiBarBottomLeft",
-	--"MultiBarBottomRight",
-	--"BagnonGuildFrame1",
-	--"MainMenuBar",
 	"ReadyCheckFrame",
 	"ItemSocketingFrame",
+	"RolePollPopup",
+	"GroupFinderFrame",
+
+	"LFGListCreateRoleDialog",
+	"LFDRoleCheckPopup",
+	"LFGListApplicationDialog",
+	"LFGListInviteDialog",
+	"LFGDungeonReadyDialog",
+	--"LFGDungeonReadyStatus",
+	"QueueStatusFrame",
+	
 }
+
+if Sku.IsWrathICC ~= true then
+	SkuCore.interactFramesList[#SkuCore.interactFramesList + 1] = "LFGListingFrame"
+	SkuCore.interactFramesList[#SkuCore.interactFramesList + 1] = "LFGBrowseFrame"
+end
 
 ---------------------------------------------------------------------------------------------------------------------------------------
 function SkuCore:OnInitialize()
-	SkuCore:RegisterEvent("PLAYER_ENTERING_WORLD")
-	SkuCore:RegisterEvent("PLAYER_LOGIN")
-	SkuCore:RegisterEvent("VARIABLES_LOADED")
-	SkuCore:RegisterEvent("PLAYER_REGEN_DISABLED")
-	SkuCore:RegisterEvent("PLAYER_REGEN_ENABLED")
-	SkuCore:RegisterEvent("QUEST_LOG_UPDATE")
-	SkuCore:RegisterEvent("PLAYER_CONTROL_LOST")
-	SkuCore:RegisterEvent("PLAYER_MOUNT_DISPLAY_CHANGED")
-	SkuCore:RegisterEvent("PLAYER_CONTROL_GAINED")
-	SkuCore:RegisterEvent("PLAYER_DEAD")
-	SkuCore:RegisterEvent("AUTOFOLLOW_BEGIN")
-	SkuCore:RegisterEvent("AUTOFOLLOW_END")
-	SkuCore:RegisterEvent("PLAYER_UPDATE_RESTING")
-	SkuCore:RegisterEvent("UPDATE_STEALTH")
-	SkuCore:RegisterEvent("ITEM_UNLOCKED")
-	SkuCore:RegisterEvent("ITEM_LOCK_CHANGED")
-	SkuCore:RegisterEvent("BAG_UPDATE")
-	SkuCore:RegisterEvent("UNIT_POWER_UPDATE")
-	SkuCore:RegisterEvent("UNIT_HAPPINESS")
+	SkuDispatcher:RegisterEventCallback("UNIT_SPELLCAST_START", SkuCore.UNIT_SPELLCAST_START)
+	SkuDispatcher:RegisterEventCallback("PLAYER_ENTERING_WORLD", SkuCore.PLAYER_ENTERING_WORLD)
+	SkuDispatcher:RegisterEventCallback("PLAYER_LEAVING_WORLD", SkuCore.PLAYER_LEAVING_WORLD)
+	SkuDispatcher:RegisterEventCallback("PLAYER_LOGIN", SkuCore.PLAYER_LOGIN)
+	SkuDispatcher:RegisterEventCallback("VARIABLES_LOADED", SkuCore.VARIABLES_LOADED)
+	SkuDispatcher:RegisterEventCallback("PLAYER_REGEN_DISABLED", SkuCore.PLAYER_REGEN_DISABLED)
+	SkuDispatcher:RegisterEventCallback("PLAYER_REGEN_ENABLED", SkuCore.PLAYER_REGEN_ENABLED)
+	SkuDispatcher:RegisterEventCallback("QUEST_LOG_UPDATE", SkuCore.QUEST_LOG_UPDATE)
+	SkuDispatcher:RegisterEventCallback("PLAYER_CONTROL_LOST", SkuCore.PLAYER_CONTROL_LOST)
+	SkuDispatcher:RegisterEventCallback("PLAYER_MOUNT_DISPLAY_CHANGED", SkuCore.PLAYER_MOUNT_DISPLAY_CHANGED)
+	SkuDispatcher:RegisterEventCallback("PLAYER_CONTROL_GAINED", SkuCore.PLAYER_CONTROL_GAINED)
+	SkuDispatcher:RegisterEventCallback("PLAYER_DEAD", SkuCore.PLAYER_DEAD)
+	SkuDispatcher:RegisterEventCallback("AUTOFOLLOW_BEGIN", SkuCore.AUTOFOLLOW_BEGIN)
+	SkuDispatcher:RegisterEventCallback("AUTOFOLLOW_END", SkuCore.AUTOFOLLOW_END)
+	SkuDispatcher:RegisterEventCallback("PLAYER_UPDATE_RESTING", SkuCore.PLAYER_UPDATE_RESTING)
+	SkuDispatcher:RegisterEventCallback("UPDATE_STEALTH", SkuCore.UPDATE_STEALTH)
+	SkuDispatcher:RegisterEventCallback("ITEM_UNLOCKED", SkuCore.ITEM_UNLOCKED)
+	SkuDispatcher:RegisterEventCallback("ITEM_LOCK_CHANGED", SkuCore.ITEM_LOCK_CHANGED)
+	SkuDispatcher:RegisterEventCallback("BAG_UPDATE", SkuCore.BAG_UPDATE)
+	SkuDispatcher:RegisterEventCallback("UNIT_POWER_UPDATE", SkuCore.UNIT_POWER_UPDATE)
+	SkuDispatcher:RegisterEventCallback("UNIT_HAPPINESS", SkuCore.UNIT_HAPPINESS)
+	SkuDispatcher:RegisterEventCallback("PLAYER_TARGET_CHANGED", SkuCore.PLAYER_TARGET_CHANGED)
+	SkuDispatcher:RegisterEventCallback("CURRENT_SPELL_CAST_CHANGED", SkuCore.CURRENT_SPELL_CAST_CHANGED)
+	SkuDispatcher:RegisterEventCallback("UNIT_SPELLCAST_START", SkuCore.UNIT_SPELLCAST_START)
+	SkuDispatcher:RegisterEventCallback("UNIT_SPELLCAST_CHANNEL_START", SkuCore.UNIT_SPELLCAST_CHANNEL_START)
+	SkuDispatcher:RegisterEventCallback("UNIT_SPELLCAST_CHANNEL_STOP", SkuCore.UNIT_SPELLCAST_CHANNEL_STOP)
+	SkuDispatcher:RegisterEventCallback("UNIT_SPELLCAST_CHANNEL_UPDATE", SkuCore.UNIT_SPELLCAST_CHANNEL_UPDATE)
+	SkuDispatcher:RegisterEventCallback("UNIT_SPELLCAST_DELAYED", SkuCore.UNIT_SPELLCAST_DELAYED)
+	SkuDispatcher:RegisterEventCallback("UNIT_SPELLCAST_FAILED", SkuCore.UNIT_SPELLCAST_FAILED)
+	SkuDispatcher:RegisterEventCallback("UNIT_SPELLCAST_FAILED_QUIET", SkuCore.UNIT_SPELLCAST_FAILED_QUIET)
+	SkuDispatcher:RegisterEventCallback("UNIT_SPELLCAST_INTERRUPTED", SkuCore.UNIT_SPELLCAST_INTERRUPTED)
+	SkuDispatcher:RegisterEventCallback("UNIT_SPELLCAST_STOP", SkuCore.UNIT_SPELLCAST_STOP)
+	SkuDispatcher:RegisterEventCallback("UNIT_SPELLCAST_SUCCEEDED", SkuCore.UNIT_SPELLCAST_SUCCEEDED)
+	SkuDispatcher:RegisterEventCallback("NAME_PLATE_CREATED", SkuCore.NAME_PLATE_CREATED)
+	SkuDispatcher:RegisterEventCallback("NAME_PLATE_UNIT_ADDED", SkuCore.NAME_PLATE_UNIT_ADDED)
+	SkuDispatcher:RegisterEventCallback("NAME_PLATE_UNIT_REMOVED", SkuCore.NAME_PLATE_UNIT_REMOVED)
+	SkuDispatcher:RegisterEventCallback("PLAYER_STARTED_MOVING", SkuCore.PLAYER_STARTED_MOVING)
+	SkuDispatcher:RegisterEventCallback("GOSSIP_SHOW", SkuCore.GOSSIP_SHOW)
+	SkuDispatcher:RegisterEventCallback("ACTIVE_TALENT_GROUP_CHANGED", SkuCore.ACTIVE_TALENT_GROUP_CHANGED)
+	SkuDispatcher:RegisterEventCallback("PLAYER_TALENT_UPDATE", SkuCore.PLAYER_TALENT_UPDATE)
+	SkuDispatcher:RegisterEventCallback("GLYPH_ADDED", SkuCore.GLYPH_ADDED)
+	SkuDispatcher:RegisterEventCallback("GLYPH_REMOVED", SkuCore.GLYPH_REMOVED)
+	SkuDispatcher:RegisterEventCallback("GLYPH_UPDATED", SkuCore.GLYPH_UPDATED)
+	SkuDispatcher:RegisterEventCallback("LFG_LIST_SEARCH_RESULTS_RECEIVED", SkuCore.LFG_LIST_SEARCH_RESULTS_RECEIVED)
+	SkuDispatcher:RegisterEventCallback("LFG_LIST_SEARCH_RESULT_UPDATED", SkuCore.LFG_LIST_SEARCH_RESULT_UPDATED)
+	SkuDispatcher:RegisterEventCallback("TRADE_SHOW", SkuCore.TRADE_SHOW)
+	SkuDispatcher:RegisterEventCallback("TRADE_CLOSED", SkuCore.TRADE_CLOSED)
 
-	SkuCore:RegisterEvent("PLAYER_TARGET_CHANGED")
-
-	SkuCore:RegisterEvent("CURRENT_SPELL_CAST_CHANGED")
-
-	SkuCore:RegisterEvent("UNIT_SPELLCAST_START")
-	SkuCore:RegisterEvent("UNIT_SPELLCAST_CHANNEL_START")
-	SkuCore:RegisterEvent("UNIT_SPELLCAST_CHANNEL_STOP")
-	SkuCore:RegisterEvent("UNIT_SPELLCAST_CHANNEL_UPDATE")
-	SkuCore:RegisterEvent("UNIT_SPELLCAST_DELAYED")
-	SkuCore:RegisterEvent("UNIT_SPELLCAST_FAILED")
-	SkuCore:RegisterEvent("UNIT_SPELLCAST_FAILED_QUIET")
-	SkuCore:RegisterEvent("UNIT_SPELLCAST_INTERRUPTED")
-	SkuCore:RegisterEvent("UNIT_SPELLCAST_STOP")
-	SkuCore:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
-
-	SkuCore:RegisterEvent("NAME_PLATE_CREATED")
-	SkuCore:RegisterEvent("NAME_PLATE_UNIT_ADDED")
-	SkuCore:RegisterEvent("NAME_PLATE_UNIT_REMOVED")
-	SkuCore:RegisterEvent("PLAYER_STARTED_MOVING")
-	--SkuCore:RegisterEvent("CURSOR_CHANGED")
-	--SkuCore:RegisterEvent("PET_STABLE_SHOW")
-	--SkuCore:RegisterEvent("PET_STABLE_CLOSED")
-
-	SkuCore:RegisterEvent("GOSSIP_SHOW")
-	SkuCore:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
-	SkuCore:RegisterEvent("GLYPH_ADDED")
-	SkuCore:RegisterEvent("GLYPH_REMOVED")
-	SkuCore:RegisterEvent("GLYPH_UPDATED")
-	
 	SkuCore:MailOnInitialize()
 	SkuCore:UIErrorsOnInitialize()
 	SkuCore:RangeCheckOnInitialize()
 	SkuCore:AqOnInitialize()
+	SkuCore:aqCombatOnInitialize()
+	SkuCore:DamageMeterOnInitialize()
 	SkuCore:AuctionHouseOnInitialize()
+	SkuCore:FriendsOnInitialize()
+	SkuCore:AchievementsOnInitialize()
 	SkuCore:GameWorldObjectsOnInitialize()
-	SkuCore:TutorialOnInitialize()
+	SkuCore:DialTargetingOnInitialize()
+	SkuCore:TurnToUnitOnInitialize()
+	SkuCore:CalendarOnInitialize()
+	SkuCore.SkuFocus:OnInitialize()
+
 end
 
 ---------------------------------------------------------------------------------------------------------------------------------------
@@ -428,7 +516,7 @@ function SkuCore:PanicModeStart()
 								SkuCorePanicCurrentPoint = x
 								if not SkuOptions.BeaconLib:GetBeaconStatus("SkuOptions", tPanicBeaconName) then
 									local tBeaconType = SkuNav:GetBeaconSoundSetName(1)
-									if not SkuOptions.BeaconLib:CreateBeacon("SkuOptions", tPanicBeaconName, tBeaconType, tPanicData[SkuCorePanicCurrentPoint].x, tPanicData[SkuCorePanicCurrentPoint].y, -3, 0, SkuOptions.db.profile["SkuNav"].beaconVolume, SkuOptions.db.profile[MODULE_NAME].clickClackRange) then
+									if not SkuOptions.BeaconLib:CreateBeacon("SkuOptions", tPanicBeaconName, tBeaconType, tPanicData[SkuCorePanicCurrentPoint].x, tPanicData[SkuCorePanicCurrentPoint].y, -3, 0, SkuOptions.db.profile["SkuNav"].beaconVolume, SkuOptions.db.profile[MODULE_NAME].clickClackRange, nil, nil, nil, nil, SkuOptions.db.profile["SkuNav"].clickClackSoundset) then
 										return
 									end
 									SkuOptions.BeaconLib:StartBeacon("SkuOptions", tPanicBeaconName)
@@ -485,19 +573,26 @@ function SkuCore:Distance(sx, sy, dx, dy)
 end
 
 ---------------------------------------------------------------------------------------------------------------------------------------
-function SkuCore:IsPlayerMoving()
+function SkuCore:IsPlayerMoving(aOnFollow)
 	local rValue = false
+	local tNewX, tNewY
+	if C_Map.GetPlayerMapPosition(WorldMapFrame:GetMapID(), "player") then
+		local _, worldPosition = C_Map.GetWorldPosFromMapPos(WorldMapFrame:GetMapID(), C_Map.GetPlayerMapPosition(WorldMapFrame:GetMapID(), "player"))
+		tNewX, tNewY = worldPosition:GetXY()
+	end
+
 	if SkuCoreMovement.Flags.IsTurningOrAutorunningOrStrafing == true or
 		SkuCoreMovement.Flags.MoveForward == true or
 		SkuCoreMovement.Flags.MoveBackward == true or
 		SkuCoreMovement.Flags.StrafeLeft == true or
-		SkuCoreMovement.Flags.StrafeRight == true --or
-		--SkuCoreMovement.Flags.Ascend == true or
-		--SkuCoreMovement.Flags.Descend == true
+		SkuCoreMovement.Flags.StrafeRight == true or
+		SkuCoreMovement.Flags.Ascend == true or
+		SkuCoreMovement.Flags.Descend == true
+		or (tNewX and aOnFollow and SkuStatus.follow ~= 0 and (SkuCoreMovement.LastPosition.x ~= tNewX and SkuCoreMovement.LastPosition.y ~= tNewY))
 	then
 		rValue = true
 	end
-    return rValue
+   	return rValue
 end
 
 ---------------------------------------------------------------------------------------------------------------------------------------
@@ -556,6 +651,21 @@ function SkuCore:PLAYER_TARGET_CHANGED()
 			end
 		end
 	end
+
+
+	if UnitGUID("target") then
+		local tCheckType = "Misc"
+		if UnitIsDead("target") == false then
+			if UnitCanAttack("player", "target") then
+				tCheckType = "Hostile"
+			elseif UnitCanAssist("player", "target") then
+				tCheckType = "Friendly"
+			end
+		end
+		if SkuOptions.db.char[MODULE_NAME].RangeChecks and SkuOptions.db.char[MODULE_NAME].RangeChecks[tCheckType].rangeCheckOnTargetChange == true then
+			SkuCore:DoRangeCheck(true)
+		end
+	end
 end
 
 ---------------------------------------------------------------------------------------------------------------------------------------
@@ -579,6 +689,7 @@ end
 
 ---------------------------------------------------------------------------------------------------------------------------------------
 function SkuCore:NAME_PLATE_UNIT_ADDED(aEvent, aPlateName) --aPlateName is the unitid; not the same as the plate frame name
+	--print("NAME_PLATE_UNIT_ADDED(", aEvent, aPlateName)
 	-- NAMEPLATE TEST -->
 	if Sku.testMode == true then
 		C_Timer.After(0.01, function()
@@ -588,11 +699,6 @@ function SkuCore:NAME_PLATE_UNIT_ADDED(aEvent, aPlateName) --aPlateName is the u
 			if tName then
 				local tFramePlateFrame = SkuCore:GetNamePlateFrameForUnit(aPlateName)
 				if tFramePlateFrame then
-					--SkuOptions.Voice:OutputString(string.sub(aPlateName, 10, string.len(aPlateName))..";"..tMaxRange, false, true, 0.2)
-					--local tFile = SkuAudioFileIndex[string.sub(aPlateName, 10, string.len(aPlateName))]
-					--local willPlay, soundHandle = PlaySoundFile("Interface\\AddOns\\"..Sku.AudiodataPath.."\\assets\\audio\\"..tFile, SkuOptions.db.profile["SkuOptions"].soundChannels.SkuChannel or "Talking Head")
-					--local willPlay, soundHandle = PlaySoundFile("Interface\\AddOns\\Sku\\SkuCore\\assets\\audio\\plate_in.mp3", SkuOptions.db.profile["SkuOptions"].soundChannels.SkuChannel or "Talking Head")
-
 					if tFramePlateFrame.UnitFrame then
 						if not tFramePlateFrame.UnitFrame.SkuPlate then
 							tFramePlateFrame.UnitFrame.SkuPlate = CreateFrame("Frame", tFramePlateFrame:GetName().."SkuPlate", tFramePlateFrame.UnitFrame)
@@ -662,11 +768,6 @@ function SkuCore:NAME_PLATE_UNIT_REMOVED(aEvent, aPlateName)
 	
 	-- NAMEPLATE TEST -->
 	if Sku.testMode == true then
-		--print("NAME_PLATE_UNIT_REMOVED", aPlateName, UnitName(aPlateName))
-		--local tFile = SkuAudioFileIndex[string.sub(aPlateName, 10, string.len(aPlateName))]
-		--local willPlay, soundHandle = PlaySoundFile("Interface\\AddOns\\"..Sku.AudiodataPath.."\\assets\\audio\\"..tFile, SkuOptions.db.profile["SkuOptions"].soundChannels.SkuChannel or "Talking Head")
-		--local willPlay, soundHandle = PlaySoundFile("Interface\\AddOns\\Sku\\SkuCore\\assets\\audio\\plate_out.mp3", SkuOptions.db.profile["SkuOptions"].soundChannels.SkuChannel or "Talking Head")
-
 		local tName = UnitName(aPlateName)
 		if tName then
 			local tFramePlateFrame = SkuCore:GetNamePlateFrameForUnit(aPlateName)
@@ -767,6 +868,8 @@ function SkuCore:OnEnable()
 
 		SkuCore:UpdateInteractMove()
 
+		SkuCore:CalendarQueryQueueOnQueue()
+
 		SkuCore:DoRangeCheck()
 
 		if SkuCore.inCombat ~= true then
@@ -802,21 +905,32 @@ function SkuCore:OnEnable()
 		tSkuCoreSecureTabButtonTime = 0
 	end)
 
+	local tLastFallSoundNum = 0
+	local tFallSoundStop = 0
 	local ttime = 0
 	local f = _G["SkuCoreControl"] or CreateFrame("Frame", "SkuCoreControl", UIParent)
+	local tClassTrainerFrameHooked = false
 	f:SetScript("OnUpdate", function(self, time)
-
-		if ClassTrainerFrame then
-			if ClassTrainerFrame:IsShown() == true then
-				if SkuOptions.db.profile[MODULE_NAME].trainerSkillsUnavailableDisabled ~= true then
-					ClassTrainerFrameFilterDropDownButton:Click()
-					if DropDownList1Button2.checked == 1 then 
-						DropDownList1Button2:Click()
-					end
-					ClassTrainerFrameFilterDropDownButton:Click()
-					SkuOptions.db.profile[MODULE_NAME].trainerSkillsUnavailableDisabled = true 
-				end
+		if ClassTrainerFrame and tClassTrainerFrameHooked == false then
+			tClassTrainerFrameHooked = true
+			SetTrainerServiceTypeFilter("available", true)
+			SetTrainerServiceTypeFilter("unavailable", false)
+			SetTrainerServiceTypeFilter("used", false)
+			if _G["ClassTrainerSkill2"] then
+				C_Timer.After(0.1, function()
+					_G["ClassTrainerSkill2"]:Click("LeftMouse")
+				end)
 			end
+			ClassTrainerFrame:HookScript("OnShow", function()
+				SetTrainerServiceTypeFilter("available", true)
+				SetTrainerServiceTypeFilter("unavailable", false)
+				SetTrainerServiceTypeFilter("used", false)
+				if _G["ClassTrainerSkill2"] then
+					C_Timer.After(0.1, function()
+						_G["ClassTrainerSkill2"]:Click("LeftMouse")
+					end)
+				end
+			end)
 		end
 
 		if _G["StaticPopup1Button2"] then
@@ -848,6 +962,32 @@ function SkuCore:OnEnable()
 					SkuCoreOldPetHappinessCounter = 0
 				end
 				SkuCoreOldPetHappiness = happiness
+			end
+		end
+
+		if SkuOptions.db.profile[MODULE_NAME].fallSettings.soundOutput == true then
+			if IsFalling() == true and SkuStatus.fallingSoundJump ~= true then
+				SkuStatus.fallingSound = SkuStatus.fallingSound or GetTime()
+				if (GetTime() - SkuStatus.fallingSound) > (SkuOptions.db.profile[MODULE_NAME].fallSettings.delay / 1000) then
+					if math.floor(((GetTime() - SkuStatus.fallingSound) - (SkuOptions.db.profile[MODULE_NAME].fallSettings.delay / 1000)) / 0.05) > tLastFallSoundNum then
+						tLastFallSoundNum = tLastFallSoundNum + 1
+						if tLastFallSoundNum > 99 then
+							tLastFallSoundNum = 99
+							tFallSoundStop = tFallSoundStop + 1
+						else
+							tFallSoundStop = 0
+						end
+						if tLastFallSoundNum == 1 and SkuOptions.db.profile[MODULE_NAME].fallSettings.voiceOutput == true then
+							SkuOptions.Voice:OutputString("male-Fallen", true, true, 0.2)
+						end
+						if tFallSoundStop < 300 then
+							PlaySoundFile("Interface\\AddOns\\Sku\\SkuCore\\assets\\audio\\fall_sound\\1\\fall_sound-"..string.format("%02d", tLastFallSoundNum)..".mp3", "Talking Head")
+						end
+					end
+				end
+			else
+				SkuStatus.fallingSound = GetTime()
+				tLastFallSoundNum = 0
 			end
 		end
 
@@ -885,7 +1025,7 @@ function SkuCore:OnEnable()
 			oitemID = itemID
 			oitemLink = itemLink
 		end
-		if tResult then
+		if tResult and SkuCore.CursorSilent ~= true then
 			SkuOptions.Voice:OutputString(L["Cursor"]..tResult, true, true, 0.2, true)
 		end
 
@@ -906,7 +1046,7 @@ function SkuCore:OnEnable()
 				end
 			end
 		end
-
+--[[
 		if IsFalling() == true then
 			if SkuStatus.falling ~= -1 then
 				if SkuStatus.falling > 0 then
@@ -921,6 +1061,7 @@ function SkuCore:OnEnable()
 		else
 			SkuStatus.falling = 0
 		end
+]]		
 		if UnitIsAFK("player") == true then
 			if SkuStatus.afk == 0 then
 				SkuStatus.afk = GetTime()
@@ -1008,7 +1149,7 @@ function SkuCore:OnEnable()
 		else
 			if SkuStatus.flying > 0 then
 				SkuStatus.flying = 0
-				SkuOptions.Voice:OutputString("Fliegen beendet", false, true, 0.2)
+				SkuOptions.Voice:OutputString(L["Fliegen beendet"], false, true, 0.2)
 				SkuOptions:SendTrackingStatusUpdates()
 			end
 		end
@@ -1117,6 +1258,43 @@ function SkuCore:OnEnable()
 			return
 		end
 
+		for x = 1, 6 do
+			if aKey == SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_TURNTOUNIT"..x].key then
+				local tValues = SkuCore.TurnToUnit.availableTargetsList[SkuCore.TurnToUnit.availableTargetsListNames[SkuOptions.db.profile["SkuCore"].turnToUnit.targetSelection["key"..x]]]
+				SkuCore:TurnToUnitStartTuring(tValues[1], tValues[2], tValues[3])
+			end
+		end
+
+		if aKey == SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_TURNTOUNITTURN180"].key then
+			SkuCore:TurnToUnitTurn180()
+		end
+	
+		if aKey == SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_DOMONITORPARTYHEALTH2CONTI"].key then
+			SkuCore:MonitorPartyHealth2Conti()
+		end
+
+
+		if aKey == SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_TARGETDISTANCE"].key then
+			SkuCore:DoRangeCheck(true)
+		end
+
+		if aKey == SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_GROUPMEMBERSRANGECHECK"].key then
+			SkuCore:DoGroupRangeCheck()
+		end
+
+		if aKey == SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_DOMONITORPARTYHEALTH2CONTI"].key then
+			if UnitInRaid("player") ~= nil then
+				SkuCore:MonitorRaidHealth2Conti(true)
+			elseif UnitInParty("player") == true then
+				SkuCore:MonitorPartyHealth2Conti(true)
+			end
+		end
+
+
+		if aKey == SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_TARGETDISTANCE"].key then
+			SkuCore:DoRangeCheck(true)
+		end
+
 		if aKey == SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_PANICMODE"].key then
 			SkuCore:PanicModeStart()
 		end
@@ -1133,7 +1311,15 @@ function SkuCore:OnEnable()
 				tScanObjects[SkuCore.ScanObjects[v]] = true
 			end
 			local tScanParameters = SkuCore.ScanTypes[SkuOptions.db.char[MODULE_NAME].scanConfigs[aScanNumber].type]
-			SkuCore:GameWorldObjectsScan(false, tScanObjects, tScanParameters.hStepSizeDeg, tScanParameters.hStepsMax, tScanParameters.vMoveSpeed, tScanParameters.vStepsMax, nil, tScanParameters.hStart)
+
+			if SkuCore.MinimapScanFastRunning == true then
+				SkuCore:MinimapScanFastStop()
+				C_Timer.After(2.2, function()
+					SkuCore:GameWorldObjectsScan(false, tScanObjects, tScanParameters.hStepSizeDeg, tScanParameters.hStepsMax, tScanParameters.vMoveSpeed, tScanParameters.vStepsMax, nil, tScanParameters.hStart)
+				end)
+			else
+				SkuCore:GameWorldObjectsScan(false, tScanObjects, tScanParameters.hStepSizeDeg, tScanParameters.hStepsMax, tScanParameters.vMoveSpeed, tScanParameters.vStepsMax, nil, tScanParameters.hStart)
+			end
 		end
 		if aKey == SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_SCAN1"].key then
 			dprint("SKU_KEY_SCAN1", L["SKU_KEY_SCAN1"])
@@ -1168,7 +1354,16 @@ function SkuCore:OnEnable()
 			tStartScan(8)
 		end
 
-
+		if aKey == SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_NOTIFYONRESOURCES"].key then
+			dprint("SKU_KEY_NOTIFYONRESOURCES")
+			if SkuOptions.db.profile[MODULE_NAME].ressourceScanning.notifyOnRessources == true then
+				SkuOptions.db.profile[MODULE_NAME].ressourceScanning.notifyOnRessources = false
+				SkuOptions.Voice:OutputStringBTtts(L["notify On Ressources"].." "..L["Off"], true, true, 0.2, true, nil, nil, 2)
+			else
+				SkuOptions.db.profile[MODULE_NAME].ressourceScanning.notifyOnRessources = true
+				SkuOptions.Voice:OutputStringBTtts(L["notify On Ressources"].." "..L["On"], true, true, 0.2, true, nil, nil, 2)
+			end
+		end
 
 		if SkuCore.inCombat == true then
 			--SkuCore.openMenuAfterCombat = true
@@ -1182,10 +1377,25 @@ function SkuCore:OnEnable()
 
 		if SkuCore.inCombat ~= true and (_G["SkuCoreGameWorldObjectsScanTicker"] == nil or _G["SkuCoreGameWorldObjectsScanTicker"].isScanningActive ~= true or _G["SkuCoreGameWorldObjectsScanTicker"].isScanningPaused == true) then
 			if aKey == SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_MMSCANWIDE"].key then
-				SkuCore:MinimapScan(50) --120
+				if SkuCore.MinimapScanFastRunning == true then
+					SkuCore:MinimapScanFastStop()
+					C_Timer.After(2.2, function()
+						SkuCore:MinimapScan(50) --120
+					end)
+				else
+					SkuCore:MinimapScan(50) --120
+				end
 			end
 			if aKey == SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_MMSCANNARROW"].key then
-				SkuCore:MinimapScan(20) --50
+				--SkuCore:MinimapScan(20) --50
+				if SkuCore.MinimapScanFastRunning == true then
+					SkuCore:MinimapScanFastStop()
+					C_Timer.After(2.2, function()
+						SkuCore:MinimapScan(20) --120
+					end)
+				else
+					SkuCore:MinimapScan(20) --120
+				end
 			end
 		end
 
@@ -1226,10 +1436,21 @@ function SkuCore:OnEnable()
 			return
 		end
 		ClearOverrideBindings(self)
+		if SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_TARGETDISTANCE"].key ~= "" then
+			SetOverrideBindingClick(tFrame, true, SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_TARGETDISTANCE"].key, "SkuCoreControlOption1", SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_TARGETDISTANCE"].key)
+		end
+
+		SetOverrideBindingClick(tFrame, true, SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_DOMONITORPARTYHEALTH2CONTI"].key, "SkuCoreControlOption1", SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_DOMONITORPARTYHEALTH2CONTI"].key)
+
 		SetOverrideBindingClick(tFrame, true, SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_PANICMODE"].key, "SkuCoreControlOption1", SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_PANICMODE"].key)
 		SetOverrideBindingClick(tFrame, true, SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_MMSCANWIDE"].key, "SkuCoreControlOption1", SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_MMSCANWIDE"].key)
 		SetOverrideBindingClick(tFrame, true, SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_MMSCANNARROW"].key, "SkuCoreControlOption1", SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_MMSCANNARROW"].key)
-
+		SetOverrideBindingClick(tFrame, true, SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_GROUPMEMBERSRANGECHECK"].key, "SkuCoreControlOption1", SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_GROUPMEMBERSRANGECHECK"].key)
+		for x = 1, 6 do
+			SetOverrideBindingClick(tFrame, true, SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_TURNTOUNIT"..x].key, "SkuCoreControlOption1", SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_TURNTOUNIT"..x].key)
+		end
+		
+		SetOverrideBindingClick(tFrame, true, SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_TURNTOUNITTURN180"].key, "SkuCoreControlOption1", SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_TURNTOUNITTURN180"].key)
 		SetOverrideBindingClick(tFrame, true, SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_SCANCONTINUE"].key, "SkuCoreControlOption1", SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_SCANCONTINUE"].key)
 		SetOverrideBindingClick(tFrame, true, SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_SCAN1"].key, "SkuCoreControlOption1", SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_SCAN1"].key)
 		SetOverrideBindingClick(tFrame, true, SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_SCAN2"].key, "SkuCoreControlOption1", SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_SCAN2"].key)
@@ -1240,6 +1461,8 @@ function SkuCore:OnEnable()
 		SetOverrideBindingClick(tFrame, true, SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_SCAN7"].key, "SkuCoreControlOption1", SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_SCAN7"].key)
 		SetOverrideBindingClick(tFrame, true, SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_SCAN8"].key, "SkuCoreControlOption1", SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_SCAN8"].key)
 
+		SetOverrideBindingClick(tFrame, true, SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_NOTIFYONRESOURCES"].key, "SkuCoreControlOption1", SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_NOTIFYONRESOURCES"].key)
+
 	end)
 	
 	tFrame:Hide()
@@ -1249,32 +1472,49 @@ function SkuCore:OnEnable()
 	hooksecurefunc("StartAutoRun", function() SkuCoreMovement.Flags.IsTurningOrAutorunningOrStrafing = true end)
 	hooksecurefunc("StrafeLeftStart", function() SkuCoreMovement.Flags.IsTurningOrAutorunningOrStrafing = true end)
 	hooksecurefunc("StrafeRightStart", function() SkuCoreMovement.Flags.IsTurningOrAutorunningOrStrafing = true end)
-	hooksecurefunc("TurnLeftStart", function() SkuCoreMovement.Flags.IsTurningOrAutorunningOrStrafing = true end)
-	hooksecurefunc("TurnRightStart", function() SkuCoreMovement.Flags.IsTurningOrAutorunningOrStrafing = true end)
+	hooksecurefunc("TurnLeftStart", function() SkuCoreMovement.Flags.IsTurningOrAutorunningOrStrafing = true SkuNav:NavigationModeWoCoordinates_ON_MOVEMENT("TurnLeftStart") end)
+	hooksecurefunc("TurnRightStart", function() SkuCoreMovement.Flags.IsTurningOrAutorunningOrStrafing = true SkuNav:NavigationModeWoCoordinates_ON_MOVEMENT("TurnRightStart") end)
 	hooksecurefunc("StopAutoRun", function() SkuCoreMovement.Flags.IsTurningOrAutorunningOrStrafing = false end)
 	hooksecurefunc("StrafeLeftStop", function() SkuCoreMovement.Flags.IsTurningOrAutorunningOrStrafing = false end)
 	hooksecurefunc("StrafeRightStop", function() SkuCoreMovement.Flags.IsTurningOrAutorunningOrStrafing = false end)
-	hooksecurefunc("TurnLeftStop", function() SkuCoreMovement.Flags.IsTurningOrAutorunningOrStrafing = false end)
-	hooksecurefunc("TurnRightStop", function() SkuCoreMovement.Flags.IsTurningOrAutorunningOrStrafing = false end)
+	hooksecurefunc("TurnLeftStop", function() SkuCoreMovement.Flags.IsTurningOrAutorunningOrStrafing = false SkuNav:NavigationModeWoCoordinates_ON_MOVEMENT("TurnLeftStop") end)
+	hooksecurefunc("TurnRightStop", function() SkuCoreMovement.Flags.IsTurningOrAutorunningOrStrafing = false SkuNav:NavigationModeWoCoordinates_ON_MOVEMENT("TurnRightStop") end)
+	hooksecurefunc("JumpOrAscendStart", function()
+		if SkuOptions.db.profile[MODULE_NAME].fallSettings.ignoreJumps == true then
+			SkuStatus.fallingSoundJump = true
+			C_Timer.After(0.8, function()
+				SkuStatus.fallingSoundJump = false	
+			end)
+		else
+			SkuStatus.fallingSoundJump = false	
+		end
+		
+		SkuCoreMovement.Flags.Ascend = true
+		SkuNav:NavigationModeWoCoordinates_ON_MOVEMENT("JumpOrAscendStart")
+	end)
+	hooksecurefunc("AscendStop", function() SkuCoreMovement.Flags.Ascend = false SkuNav:NavigationModeWoCoordinates_ON_MOVEMENT("AscendStop") end)
+	hooksecurefunc("SitStandOrDescendStart", function() SkuCoreMovement.Flags.Descend = true SkuNav:NavigationModeWoCoordinates_ON_MOVEMENT("SitStandOrDescendStart") end)
+	hooksecurefunc("DescendStop", function() SkuCoreMovement.Flags.Descend = false SkuNav:NavigationModeWoCoordinates_ON_MOVEMENT("DescendStop") end)
 
 	--For checking the players state.
 	hooksecurefunc("FollowUnit", function() SkuCoreMovement.Flags.FollowUnit = true end)
-	hooksecurefunc("MoveForwardStart", function() SkuCoreMovement.Flags.MoveForward = true end)
-	hooksecurefunc("MoveForwardStop", function() SkuCoreMovement.Flags.MoveForward = false end)
-	hooksecurefunc("MoveBackwardStart", function() SkuCoreMovement.Flags.MoveBackward = true end)
-	hooksecurefunc("MoveBackwardStop", function() SkuCoreMovement.Flags.MoveBackward = false end)
+	hooksecurefunc("MoveForwardStart", function() SkuCoreMovement.Flags.MoveForward = true SkuNav:NavigationModeWoCoordinates_ON_MOVEMENT("MoveForwardStart") end)
+	hooksecurefunc("MoveForwardStop", function() SkuCoreMovement.Flags.MoveForward = false SkuNav:NavigationModeWoCoordinates_ON_MOVEMENT("MoveForwardStop") end)
+	hooksecurefunc("MoveBackwardStart", function() SkuCoreMovement.Flags.MoveBackward = true SkuNav:NavigationModeWoCoordinates_ON_MOVEMENT("MoveBackwardStart") end)
+	hooksecurefunc("MoveBackwardStop", function() SkuCoreMovement.Flags.MoveBackward = false SkuNav:NavigationModeWoCoordinates_ON_MOVEMENT("MoveBackwardStop") end)
 	hooksecurefunc("StrafeLeftStart", function() SkuCoreMovement.Flags.StrafeLeft = true end)
 	hooksecurefunc("StrafeLeftStop", function() SkuCoreMovement.Flags.StrafeLeft = false end)
 	hooksecurefunc("StrafeRightStart", function() SkuCoreMovement.Flags.StrafeRight = true end)
 	hooksecurefunc("StrafeRightStop", function() SkuCoreMovement.Flags.StrafeRight = false end)
-	hooksecurefunc("JumpOrAscendStart", function() SkuCoreMovement.Flags.Ascend = true end)
-	hooksecurefunc("AscendStop", function() SkuCoreMovement.Flags.Ascend = false end)
-	hooksecurefunc("SitStandOrDescendStart", function() SkuCoreMovement.Flags.Descend = true end)
-	hooksecurefunc("DescendStop", function() SkuCoreMovement.Flags.Descend = false end)
-	--hooksecurefunc("TurnLeftStart", function() dprint("TurnLeftStartf") end)
-	--hooksecurefunc("TurnLeftStop", function() dprint("TurnLeftStopf") end)
-	--hooksecurefunc("TurnRightStart", function() dprint("TurnRightStartf") end)
-	--hooksecurefunc("TurnRightStop", function() dprint("TurnRightStopf") end)
+	hooksecurefunc("JumpOrAscendStart", function() SkuCoreMovement.Flags.Ascend = true SkuNav:NavigationModeWoCoordinates_ON_MOVEMENT("JumpOrAscendStart") end)
+	hooksecurefunc("AscendStop", function() SkuCoreMovement.Flags.Ascend = false SkuNav:NavigationModeWoCoordinates_ON_MOVEMENT("AscendStop") end)
+	hooksecurefunc("SitStandOrDescendStart", function() SkuCoreMovement.Flags.Descend = true SkuNav:NavigationModeWoCoordinates_ON_MOVEMENT("SitStandOrDescendStart") end)
+	hooksecurefunc("DescendStop", function() SkuCoreMovement.Flags.Descend = false SkuNav:NavigationModeWoCoordinates_ON_MOVEMENT("DescendStop") end)
+	hooksecurefunc("PitchDownStart", function() SkuCoreMovement.Flags.PitchDown = true SkuNav:NavigationModeWoCoordinates_ON_MOVEMENT("PitchDownStart") end)
+	hooksecurefunc("PitchDownStop", function() SkuCoreMovement.Flags.PitchDown = false SkuNav:NavigationModeWoCoordinates_ON_MOVEMENT("PitchDownStop") end)
+	hooksecurefunc("PitchUpStart", function() SkuCoreMovement.Flags.PitchUp = true SkuNav:NavigationModeWoCoordinates_ON_MOVEMENT("PitchUpStart") end)
+	hooksecurefunc("PitchUpStop", function() SkuCoreMovement.Flags.PitchUp = false SkuNav:NavigationModeWoCoordinates_ON_MOVEMENT("PitchUpStop") end)
+
 	hooksecurefunc("ToggleRun", function()
 		--dprint("ToggleRun")
 		if SkuStatus.running > 0 then
@@ -1397,10 +1637,12 @@ function SkuCore:PLAYER_MOUNT_DISPLAY_CHANGED(...)--taxi
 	if PLAYER_CONTROL_LOST_flag == 1 then
 		PLAYER_CONTROL_LOST_flag = 0
 		SkuOptions.Voice:OutputString(L["taxi;started"], true, true, nil, true)
+		SkuQuest:UpdateZoneAvailableQuestList(true)
 	end
 	if PLAYER_CONTROL_GAINED_flag == 1 then
 		PLAYER_CONTROL_GAINED_flag = 0
 		SkuOptions.Voice:OutputString(L["taxi;ended"], true, true, nil, true)
+		SkuQuest:UpdateZoneAvailableQuestList(true)
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------
@@ -1517,22 +1759,26 @@ function SkuCore:PLAYER_LOGIN(...)
 	f:AddFontStrings(f:CreateFontString( "$parentTextLeft1", nil, "GameTooltipText" ), f:CreateFontString( "$parentTextRight1", nil, "GameTooltipText" ))
 
 	--we need to do that to have all craftframe elementes available on first use; otherwise it won't be complete on first open, as the data from the server take a few ms
-	UIParentLoadAddOn("Blizzard_CraftUI")
-	CraftFrame:Show()
-	CraftFrame:Hide()
+	--UIParentLoadAddOn("Blizzard_CraftUI")
+	--CraftFrame:Show()
+	--CraftFrame:Hide()
 
+	SkuOptions.db.profile[MODULE_NAME].trainerSkillsUnavailableDisabled = false
 end
 
 ---------------------------------------------------------------------------------------------------------------------------------------
 local unfollowOnCastWasOnFollowUnitName = nil
 function SkuCore:UnfollowOnCast()
+	--[[
 	if SkuOptions.db.profile[MODULE_NAME].endFollowOnCast == true and SkuStatus.followUnitName ~= "" then
 		unfollowOnCastWasOnFollowUnitName = SkuStatus.followUnitName
 		FollowUnit("player")
 	end
+	]]
 end
 ---------------------------------------------------------------------------------------------------------------------------------------
 function SkuCore:FollowOnCast()
+	--[[
 	if SkuOptions.db.profile[MODULE_NAME].endFollowOnCast == true and unfollowOnCastWasOnFollowUnitName then
 		if UnitName("TARGET") == unfollowOnCastWasOnFollowUnitName then
 			FollowUnit("TARGET")
@@ -1551,6 +1797,7 @@ function SkuCore:FollowOnCast()
 		end
 		unfollowOnCastWasOnFollowUnitName = nil
 	end
+	]]
 end
 ---------------------------------------------------------------------------------------------------------------------------------------
 function SkuCore:UNIT_SPELLCAST_START(aEvent, aUnitTarget, aCastGUID, aSpellID)
@@ -1660,7 +1907,18 @@ function SkuCore:CheckInteractObjectShow()
 			end
 		end
 	end
-	C_Timer.After(0.1, function() GameTooltip:Hide() end)
+	if SkuOptions.db.profile[MODULE_NAME].doNotHideTooltip ~= true then
+		C_Timer.After(0.1, function() GameTooltip:Hide() end)
+	end
+end
+
+---------------------------------------------------------------------------------------------------------------------------------------
+function SkuCore:UpdateCurrentTalentSet()
+	if GetActiveTalentGroup then
+		SkuCore.talentSet = GetActiveTalentGroup()
+	else
+		SkuCore.talentSet = GetActiveSpecGroup()
+	end
 end
 
 ---------------------------------------------------------------------------------------------------------------------------------------
@@ -1674,14 +1932,26 @@ function SkuCore:CheckInteractObjectHide()
 end
 
 ---------------------------------------------------------------------------------------------------------------------------------------
+function SkuCore:PLAYER_LEAVING_WORLD(...)
+	local event = ...
+	SkuCore:AuctionHouseOnPLAYER_LEAVING_WORLD()
+end
+
+---------------------------------------------------------------------------------------------------------------------------------------
 local SkuDropdownlistGenericFlag = false
 function SkuCore:PLAYER_ENTERING_WORLD(...)
 	local event, isInitialLogin, isReloadingUi = ...
 	dprint("PLAYER_ENTERING_WORLD", isInitialLogin, isReloadingUi)
 
+	SkuCore:UpdateCurrentTalentSet()
+
 	SkuOptions.db.global[MODULE_NAME] = SkuOptions.db.global[MODULE_NAME] or {}
 	SkuOptions.db.char[MODULE_NAME] = SkuOptions.db.char[MODULE_NAME] or {}
 	SkuOptions.db.char["SkuAuras"] = SkuOptions.db.char["SkuAuras"] or {}
+
+	SetCVar("nameplateShowEnemies", 1)
+	SetCVar("nameplateShowFriends", 1)
+	SetCVar("nameplateShowAll", 1)
 
 	if isInitialLogin == true then
 		--add default profiles if they are not there
@@ -1712,7 +1982,7 @@ function SkuCore:PLAYER_ENTERING_WORLD(...)
 			--this is the first load of wow ever
 			--set up account wide things
 			
-			C_Timer.After(5, function()
+			C_Timer.After(10, function()
 				SkuCore:ResetBindings()
 				--SetBindingClick(SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_CHATOPEN"].key, "OnSkuChatToggle")
 				--SetOverrideBindingClick(_G["OnSkuChatToggle"], true, SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_CHATOPEN"].key, "OnSkuChatToggle", SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_CHATOPEN"].key)
@@ -1738,47 +2008,83 @@ function SkuCore:PLAYER_ENTERING_WORLD(...)
 			end
 
 			C_Timer.After(15, function()
-				TRAINER_FILTER_AVAILABLE = 1 
-				TRAINER_FILTER_UNAVAILABLE = 0 
-				TRAINER_FILTER_USED = 0
-				SetActionBarToggles(1,1,1,1,1) 
-				--[[
-				SHOW_MULTI_ACTIONBAR_1 = 1 
-				SHOW_MULTI_ACTIONBAR_2 = 1 
-				SHOW_MULTI_ACTIONBAR_3 = 1 
-				SHOW_MULTI_ACTIONBAR_4 = 1 
-				]]
-				MultiActionBar_Update() 
-				UIParent_ManageFramePositions() 
+				if InCombatLockdown() ~= true then
+					TRAINER_FILTER_AVAILABLE = 1 
+					TRAINER_FILTER_UNAVAILABLE = 0 
+					TRAINER_FILTER_USED = 0
+					SetActionBarToggles(1,1,1,1,1) 
+					--[[
+					SHOW_MULTI_ACTIONBAR_1 = 1 
+					SHOW_MULTI_ACTIONBAR_2 = 1 
+					SHOW_MULTI_ACTIONBAR_3 = 1 
+					SHOW_MULTI_ACTIONBAR_4 = 1 
+					]]
+					MultiActionBar_Update() 
+					UIParent_ManageFramePositions() 
 
-				C_CVar.SetCVar("instantQuestText", "1")
-				C_CVar.SetCVar("autoLootDefault", "1")
-				dprint("autoLootDefault", C_CVar.GetCVar("autoLootDefault", "1"))
-				C_CVar.SetCVar("alwaysShowActionBars", "1")
-				C_CVar.SetCVar("cameraSmoothStyle", "2")
-				C_CVar.GetCVar("removeChatDelay", "1")
+					C_CVar.SetCVar("instantQuestText", "1")
+					C_CVar.SetCVar("autoLootDefault", "1")
+					dprint("autoLootDefault", C_CVar.GetCVar("autoLootDefault", "1"))
+					C_CVar.SetCVar("alwaysShowActionBars", "1")
+					C_CVar.SetCVar("cameraSmoothStyle", "2")
+					C_CVar.GetCVar("removeChatDelay", "1")
 
-				SetCVar("cameraViewBlendStyle", 2) --Controls if the camera moves from saved positions - 1 smoothly 2 instantly 
-	
-				--SetBindingClick(SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_CHATOPEN"].key, "OnSkuChatToggle")
-				--SetOverrideBindingClick(_G["OnSkuChatToggle"], true, SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_CHATOPEN"].key, "OnSkuChatToggle", SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_CHATOPEN"].key)
+					SetCVar("cameraViewBlendStyle", 2) --Controls if the camera moves from saved positions - 1 smoothly 2 instantly 
+		
+					--SetBindingClick(SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_CHATOPEN"].key, "OnSkuChatToggle")
+					--SetOverrideBindingClick(_G["OnSkuChatToggle"], true, SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_CHATOPEN"].key, "OnSkuChatToggle", SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_CHATOPEN"].key)
 
+					LeaveChannelByName("LookingForGroup")
+					LeaveChannelByName("SucheNachGruppe")			
+				end	
+			end)			
+
+			C_Timer.After(120, function()
+				if BugSackLDBIconDB then
+					BugSackLDBIconDB.minimapPos = 350
+				end
 				LeaveChannelByName("LookingForGroup")
-				LeaveChannelByName("SucheNachGruppe")				
+				LeaveChannelByName("SucheNachGruppe")		
 			end)			
 
 			_G["OnSkuOptionsMain"]:GetScript("OnClick")(_G["OnSkuOptionsMain"], SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_OPENMENU"].key)
 			SkuOptions:CloseMenu()
 			
+			C_Timer.After(10, function()
+				if InCombatLockdown() ~= true then
+					TRAINER_FILTER_AVAILABLE = 1 
+					TRAINER_FILTER_UNAVAILABLE = 0 
+					TRAINER_FILTER_USED = 0
+					SetActionBarToggles(1,1,1,1,1) 
+					
+					
+					SHOW_MULTI_ACTIONBAR_1 = 1 
+					SHOW_MULTI_ACTIONBAR_2 = 1 
+					SHOW_MULTI_ACTIONBAR_3 = 1 
+					SHOW_MULTI_ACTIONBAR_4 = 1 
+					
+					MultiActionBar_Update() 
+					UIParent_ManageFramePositions() 
+					C_CVar.SetCVar("instantQuestText", "1")
+					C_CVar.SetCVar("autoLootDefault", "1")
+					C_CVar.SetCVar("alwaysShowActionBars", "1")
+					C_CVar.SetCVar("cameraSmoothStyle", "2")
+					C_CVar.GetCVar("removeChatDelay", "1")
+				end
+			end)		
+
 			SkuOptions.db.char[MODULE_NAME].IsFirstCharLogin = false
 		end
 		--SetBindingClick(SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_CHATOPEN"].key, "OnSkuChatToggle")
 		--SetOverrideBindingClick(_G["OnSkuChatToggle"], true, SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_CHATOPEN"].key, "OnSkuChatToggle", SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_CHATOPEN"].key)
 	
+		--remove deprecated key binds
+		SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_SKUMMOPEN"] = nil
+		SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_SKURTMMDISPLAY"] = nil
+
 	end
 
 	if isInitialLogin == true or isReloadingUi == true then
-
 		--update profile for sku r28 error output change
 		for i, v in pairs(SkuOptions.db.profile["SkuCore"].UIErrors) do
 			if string.find(v, "marlene_") or string.find(v, "hans_")then
@@ -1845,8 +2151,13 @@ function SkuCore:PLAYER_ENTERING_WORLD(...)
 		end
 
 		SkuCore:ItemRatingOnLogin()
-
 		SkuCore:AuctionHouseOnLogin()
+		SkuCore:AchievementsOnLogin()
+		SkuCore:MinimapScannerOnLogin()
+		SkuCore:DialogKeyLogin()
+		SkuCore:alItegrationLogin()
+		SkuCore:bisLogin()
+
 		if not SkuOptions.db.char[MODULE_NAME] then
 			SkuOptions.db.char[MODULE_NAME] = {}
 		end
@@ -1865,36 +2176,19 @@ function SkuCore:PLAYER_ENTERING_WORLD(...)
 		SkuOptions.db.factionrealm[MODULE_NAME].AuctionDBHistory = SkuOptions.db.factionrealm[MODULE_NAME].AuctionDBHistory or {}
 
 		SkuCore:JunkAndRepairInitialize()
-
 		SkuCore:UpdateInteractMove(true)
-
 		SkuCore:GameWorldObjectsOnLogin()
+		SkuCore:AqOnLogin()
+		SkuCore:aqCombatOnLogin()
+		SkuCore:DialTargetingOnLogin()
+		SkuCore:DamageMeterOnLogin()
+		SkuCore:TurnToUnitOnLogin()
+		SkuCore.SkuFocus:OnLogin()
+		SkuCore:QuestieIntegrationOnLogin()
 
 		--SetBindingClick(SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_CHATOPEN"].key, "OnSkuChatToggle")
 		--SetOverrideBindingClick(_G["OnSkuChatToggle"], true, SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_CHATOPEN"].key, "OnSkuChatToggle", SkuOptions.db.profile["SkuOptions"].SkuKeyBinds["SKU_KEY_CHATOPEN"].key)
 	end
-
-	C_Timer.After(6, function()
-		TRAINER_FILTER_AVAILABLE = 1 
-		TRAINER_FILTER_UNAVAILABLE = 0 
-		TRAINER_FILTER_USED = 0
-		SetActionBarToggles(1,1,1,1,1) 
-		
-		--[[
-		SHOW_MULTI_ACTIONBAR_1 = 1 
-		SHOW_MULTI_ACTIONBAR_2 = 1 
-		SHOW_MULTI_ACTIONBAR_3 = 1 
-		SHOW_MULTI_ACTIONBAR_4 = 1 
-		]]
-		MultiActionBar_Update() 
-		UIParent_ManageFramePositions() 
-		
-		C_CVar.SetCVar("instantQuestText", "1")
-		C_CVar.SetCVar("autoLootDefault", "1")
-		C_CVar.SetCVar("alwaysShowActionBars", "1")
-		C_CVar.SetCVar("cameraSmoothStyle", "2")
-		C_CVar.GetCVar("removeChatDelay", "1")
-	end)			
 
 	--hooksecurefunc(GameTooltip, "Show", SkuCore.CheckInteractObjectShow)
 	GameTooltip:HookScript("OnShow", SkuCore.CheckInteractObjectShow)
@@ -1917,6 +2211,9 @@ function SkuCore:PLAYER_ENTERING_WORLD(...)
 		end
 	end)
 	]]
+
+	SkuCore:CalendarOnLogin(event, isInitialLogin, isReloadingUi)
+
 end
 
 ---------------------------------------------------------------------------------------------------------------------------------------
@@ -1937,7 +2234,7 @@ function SkuCore:PLAYER_REGEN_ENABLED(...)
 	if SkuOptions.db.profile[MODULE_NAME].autoFollow == true then
 		if SkuStatus.followUnitId then
 			if SkuStatus.followUnitId ~= "" then
-				FollowUnit(SkuStatus.followUnitId)
+				--FollowUnit(SkuStatus.followUnitId)
 			end
 		end
 	end
@@ -1958,6 +2255,19 @@ end
 function SkuCore:GOSSIP_SHOW(self, event, ...)
 	dprint("GOSSIP_SHOW", self, event, ...)
 	SkuOptions:StopSounds(5)
+	SkuCore:CheckFrames()
+end
+
+---------------------------------------------------------------------------------------------------------------------------------------
+function SkuCore:TRADE_SHOW(self, event, ...)
+	dprint("TRADE_SHOW", self, event, ...)
+	if _G["ContainerFrame1"] and _G["ContainerFrame1"]:IsVisible() ~= true then
+		_G["MainMenuBarBackpackButton"]:Click()
+	end
+	SkuCore:CheckFrames()
+end---------------------------------------------------------------------------------------------------------------------------------------
+function SkuCore:TRADE_CLOSED(self, event, ...)
+	dprint("TRADE_CLOSED", self, event, ...)
 	SkuCore:CheckFrames()
 end
 
@@ -2089,6 +2399,7 @@ end
 ]]
 ---------------------------------------------------------------------------------------------------------------------------------------
 function SkuCore:GENERIC_OnClose(self)
+	--print("GENERIC_OnClose", _G["AuctionFrame"]:IsShown())
 	SkuCore:CheckFrames()
 	SkuOptions:SendTrackingStatusUpdates()
 end
@@ -2166,6 +2477,7 @@ local tButtonsWoFontstrings = {
 	MoneyFrameCopper = L["Copper"],
 	MoneyFrameSilver = L["Silver"],
 	MoneyFrameGold = L["Gold"],
+	AltCurrencyFrame = L["Badge"],
 	FrameTab = L["Tab"],
 	CollapseAll = L["Collapse all"],
 	NextPageButton = L["Next"],
@@ -2203,16 +2515,12 @@ local friendlyFrameNames = {
 	["PetStableFrame"] = L["Pet Stable"],
 	["MailFrame"] = L["Mail"],
 	["ContainerFrame1"] = L["local Bags"],
-	--["ContainerFrame2"] = L["Bag 2"],
-	--["ContainerFrame3"] = L["Bag 3"],
-	--["ContainerFrame4"] = L["Bag 4"],
-	--["ContainerFrame5"] = L["Bag 5"],
-	--["ContainerFrame6"] = L["Bag 6"],
 	["DropDownList2"] = L["Dropdown List 2"],
 	["DropDownList1"] = L["Dropdown List 1"],
 	["TalentFrame"] = L["Talents"],
 	["SendMailFrame"] = L["Send Mail"],
 	["AuctionFrame"] = L["Auction house"],
+	["AchievementFrame"] = L["Achievements"],
 	["ClassTrainerFrame"] = L["Class Trainer"],
 	["CharacterFrame"] = L["Character"],
 	["BarberShopFrame"] = L["Barber Shop"],
@@ -2222,15 +2530,22 @@ local friendlyFrameNames = {
 	["BagnonInventoryFrame1"] = L["Bagnon Taschen"],
 	["SpellBookFrame"] = L["Spellbook"],
 	["PlayerTalentFrame"] = L["Talents"],
-	["FriendsFrame"] = L["Friends"],
+	["GroupFinderFrame"] = L["Looking for group"],
+	--["LFGListCreateRoleDialog"] = L["role selection"],
+	--["LFDRoleCheckPopup"] = L["role selection"],
+	
+	["LFGListCreateRoleDialog"] = L["role selection"],
+	["LFGDungeonReadyDialog"] = "Ready check",
+	["LFDRoleCheckPopup"] = L["role selection"],
+	["LFGListApplicationDialog"] = "application dialog",
+	["LFGListInviteDialog"] = "invite dialog",
+	--["LFGDungeonReadyStatus"] = "ready status",
+	["QueueStatusFrame"] = "QueueStatusFrame",
+		
+	
+	["RolePollPopup"] = L["Role Poll"],
+	["FriendsFrame"] = L["Social"],
 	["TradeFrame"] = L["Trade"],
-	--["GameMenuFrame"] = L["Game Menu"],
-	--["MainMenuBar"] = "",
-	--["MultiBarLeft"] = "",
-	--["MultiBarRight"] = "",
-	--["MultiBarBottomLeft"] = "",
-	--["MultiBarBottomRight"] = "",
-	--["BagnonGuildFrame1"] = L["Bagnon Guild"],
 	["BagnonBankFrame1"] = L["Bagnon Bank"],
 	["BankFrame"] = L["Bank"],
 	["GuildBankFrame"] = L["Guild Bank"],
@@ -2239,6 +2554,12 @@ local friendlyFrameNames = {
 	["ItemSocketingFrame"] = L["Socketing"],
 	[""] = "",
 }
+
+if Sku.IsWrathICC ~= true then
+	friendlyFrameNames["LFGListingFrame"] = L["Looking for group"]
+	friendlyFrameNames["LFGBrowseFrame"] = L["Looking for group"]
+end
+
 --[[
 local containerFrames = {
 	["BagnonInventoryFrame1"] = "BagnonInventoryFrame1",
@@ -2259,6 +2580,7 @@ local friendlyFrameNamesParts = {
 	["ScrollFrame"] = L["Sub panel"],
 	["RewardsFrame"] = L["Rewards"],
 	["MoneyFrame"] = L["Money"],
+	["AltCurrency"] = L["Badge"],
 	["PaperDollFrame"] = L["Equiment"] ,
 	["CharacterAttributesFrame"] = L["Attributes"],
 	["CharacterResistanceFrame"] = L["Resistance"],
@@ -2301,12 +2623,14 @@ function SkuCore:ItemName_helper(aText)
 
 	tShort = string.gsub(tShort, "\r\n", " ")
 	tShort = string.gsub(tShort, "\n", " ")
+
 	return tShort, tLong
 end
 
 ---------------------------------------------------------------------------------------------------------------------------------------
 function SkuCore:IterateChildren(t, tab)
 	local tResults = {}
+	local inventoryTooltipTextCache = {}
 
 	if t.GetRegions then
 		local dtc = { t:GetRegions() }
@@ -2394,6 +2718,28 @@ function SkuCore:IterateChildren(t, tab)
 								tResults[fName].func = tResults[fName].obj:GetScript("OnClick")
 							end
 							tResults[fName].containerFrameName = fName
+
+
+							--[[
+								ignore containerFrameName for role check dialogs
+							]]
+							local tIgnoredDialogFrames = {
+								["LFGListCreateRoleDialog"] = true,
+								["LFDRoleCheckPopup"] = true,
+								["LFGListApplicationDialog"] = true,
+								["LFGListInviteDialog"] = true,
+								["LFGDungeonReadyDialog"] = true,
+								--["LFGDungeonReadyStatus"] = true,
+							}
+							if tResults[fName].obj.GetParent then
+								local tParentName = tResults[fName].obj:GetParent():GetName() or ""
+								if tIgnoredDialogFrames[tParentName] ~= nil then
+									tResults[fName].containerFrameName = nil
+								end
+							end	
+
+
+
 							tResults[fName].onActionFunc = function(self, aTable, aChildName)
 								--empty
 							end
@@ -2422,7 +2768,7 @@ function SkuCore:IterateChildren(t, tab)
 											if tResults[fName].obj.info.id then
 												tResults[fName].itemId = tResults[fName].obj.info.id
 												tResults[fName].textFirstLine = SkuCore:ItemName_helper(tText)
-												tResults[fName].textFull = SkuCore:AuctionPriceHistoryData(tResults[fName].obj.info.id, true, true)
+												tResults[fName].textFull = SkuCore:AuctionHouseGetAuctionPriceHistoryData(tResults[fName].obj.info.id)
 											end
 										end
 										if not tResults[fName].textFull then
@@ -2455,6 +2801,15 @@ function SkuCore:IterateChildren(t, tab)
 									if TooltipLines_helper(_G["SkuScanningTooltip"]:GetRegions()) ~= "" then
 										local tText = SkuChat:Unescape(TooltipLines_helper(_G["SkuScanningTooltip"]:GetRegions()))
 										tResults[fName].textFirstLine, tResults[fName].textFull = SkuCore:ItemName_helper(tText)
+										if "table" ~= type(tResults[fName].textFull) then
+											tResults[fName].textFull = {tResults[fName].textFull}
+										end
+										if tResults[fName].obj and tResults[fName].obj.link then
+											local itemID = GetItemInfoInstant(tResults[fName].obj.link)
+											if itemID then
+												SkuCore:InsertComparisnSections(itemID, tResults[fName].textFull, inventoryTooltipTextCache)
+											end
+										end
 									end
 								end
 							else
@@ -2466,6 +2821,50 @@ function SkuCore:IterateChildren(t, tab)
 									if TooltipLines_helper(GameTooltip:GetRegions()) ~= "" then
 										local tText = SkuChat:Unescape(TooltipLines_helper(GameTooltip:GetRegions()))
 										tResults[fName].textFirstLine, tResults[fName].textFull = SkuCore:ItemName_helper(tText)
+										local tContainerSlotIDs = {
+											[1]	 = "CharacterHeadSlot",
+											[2]	 = "CharacterNeckSlot",
+											[3]	 = "CharacterShoulderSlot",
+											[4]	 = "CharacterShirtSlot",
+											[5]	 = "CharacterChestSlot",
+											[6]	 = "CharacterWaistSlot",
+											[7]	 = "CharacterLegsSlot",
+											[8]	 = "CharacterFeetSlot",
+											[9]	 = "CharacterWristSlot",
+											[10] = "CharacterHandsSlot",
+											[11] = "CharacterFinger0Slot",
+											[12] = "CharacterFinger1Slot",
+											[13] = "CharacterTrinket0Slot",
+											[14] = "CharacterTrinket1Slot",
+											[15] = "CharacterBackSlot",
+											[16] = "CharacterMainHandSlot",
+											[17] = "CharacterSecondaryHandSlot",
+											[18] = "CharacterRangedSlot",
+										}
+										for z = 1, #tContainerSlotIDs do
+											if tContainerSlotIDs[z] == fName then
+												local itemId = GetInventoryItemID("player", z)
+												if itemId then
+													local tBisText = SkuCore:bisGetBisTooltipInfo(itemId)
+													if tBisText then
+														tResults[fName].textFull = {tResults[fName].textFull}
+														table.insert(tResults[fName].textFull, tBisText)
+													end
+												end
+											end
+										end
+
+										--for role check dialogs
+										if tResults[fName].obj.CheckButton then
+											if tResults[fName].obj.CheckButton:GetChecked() == true then
+												tResults[fName].textFirstLine = L["checked"]..";"..tResults[fName].textFirstLine
+											end
+										end
+										if tResults[fName].obj.checkButton then
+											if tResults[fName].obj.checkButton:GetChecked() == true then
+												tResults[fName].textFirstLine = L["checked"]..";"..tResults[fName].textFirstLine
+											end
+										end
 									end
 								end
 								GameTooltip:SetOwner(UIParent, "Center")
@@ -2596,6 +2995,7 @@ function SkuCore:IterateChildren(t, tab)
 							end							
 
 						end
+
 					end
 				end
 			end
@@ -2636,6 +3036,24 @@ local function CleanUpGossipList(aTable)
 			end
 		end
 
+		--badge prices
+		if value.textFirstLine == L["Badge"] then
+			local tBadgeText = L["Text"]..": "
+			for z = 1, 4 do
+				if _G[value.frameName.."Item"..z] then
+					if _G[value.frameName.."Item"..z]:IsVisible() == true then
+						local titemLink = _G[value.frameName.."Item"..z].itemLink
+						if titemLink then
+							local tItemName = SkuCore:ItemName_helper(titemLink)
+							tBadgeText = tBadgeText..";".. _G[value.frameName.."Item"..z]:GetText().. " "..SkuCore:ItemName_helper(string.sub(tItemName, 2, string.len(tItemName) - 1))
+						end
+					end
+				end
+			end
+			value.textFirstLine = tBadgeText
+		end
+
+
 		if value.type == "FontString" then
 			value.textFirstLine = L["Text"]..": "..value.textFirstLine
 		end
@@ -2655,8 +3073,8 @@ end
 
 -------------------------------------------------------------------------------------------------
 ---@param aForceLocalRoot bool force the audio menu to return to the "Local" root element if there are new childs in Local
-function SkuCore:CheckFrames(aForceLocalRoot)
-	--print("++CheckFrames", aForceLocalRoot)
+function SkuCore:CheckFrames(aForceLocalRoot, aDontClose)
+	dprint("++CheckFrames", aForceLocalRoot)
 
 	if SkuOptions.db.profile["SkuOptions"].localActive == false then
 		return
@@ -2668,10 +3086,9 @@ function SkuCore:CheckFrames(aForceLocalRoot)
 		end)
 		return
 	end
-
+	
 	SkuCore.GossipList = {}
 	C_Timer.After(0.01, function() --This is because the content of some frames is not instantly available on show. We do need to wait a few milliseconds on it.
-		--dprint("CheckFrames", aForceLocalRoot)
 		SkuCore.GossipList = {}
 		local tOpenFrames = {}
 
@@ -2682,10 +3099,9 @@ function SkuCore:CheckFrames(aForceLocalRoot)
 				end
 			end
 		end
-
-		if #tOpenFrames > 0 then
+		
+		if #tOpenFrames > 0 or (_G["AuctionFrame"] and _G["AuctionFrame"]:IsVisible() == true) then
 			local tGossipList = {}
-
 			for x = 1, #tOpenFrames do
 				--dprint(x, tOpenFrames[x])
 				table.insert(tGossipList, tOpenFrames[x])
@@ -2707,8 +3123,6 @@ function SkuCore:CheckFrames(aForceLocalRoot)
 
 			CleanUpGossipList(tGossipList)
 			SkuCore.GossipList = tGossipList
-			--print("SkuOptions.currentMenuPosition", SkuOptions.currentMenuPosition)
-			--print("SkuOptions.currentMenuPosition.name", SkuOptions.currentMenuPosition.name)
 			local tIndex
 			local tBread = nil
 			local tFirstFrame = nil
@@ -2736,11 +3150,8 @@ function SkuCore:CheckFrames(aForceLocalRoot)
 							end
 						end
 					end
-				--dprint("tBread", tBread)
-				--dprint("tFirstFrame", tFirstFrame)
 				end
 			end
-			--dprint("aForceLocalRoot", aForceLocalRoot)
 
 			local tFlag = false
 			if tBread and aForceLocalRoot ~= true and tFlag == false then
@@ -2786,13 +3197,15 @@ function SkuCore:CheckFrames(aForceLocalRoot)
 			end
 
 		else
-			SkuCore.openMenuAfterMoving = false
-			SkuCore.openMenuAfterCombat = false
-			if SkuOptions:IsMenuOpen() == true then
-				SkuCore.GossipList = {}
-				--SkuOptions:SlashFunc("short,lokal")
-				SkuOptions:CloseMenu()
-			end			
+			if not aDontClose then
+				SkuCore.openMenuAfterMoving = false
+				SkuCore.openMenuAfterCombat = false
+				if SkuOptions:IsMenuOpen() == true then
+					SkuCore.GossipList = {}
+					--SkuOptions:SlashFunc("short,lokal")
+					SkuOptions:CloseMenu()
+				end			
+			end
 		end
 	end)
 end
@@ -2822,6 +3235,7 @@ end
 -------------------------------------------------------------------------------------------------
 function SkuCore:GetBinding(aIndex)
 	local aBindingSet = GetCurrentBindingSet()
+	--print(aIndex, aBindingSet)
 	local tCommand, tCategory, tKey1, tKey2 = GetBinding(aIndex, aBindingSet)
 
 	return tCommand, tCategory, tKey1, tKey2

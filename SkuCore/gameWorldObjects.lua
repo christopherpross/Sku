@@ -56,6 +56,7 @@ function SkuCore:CURSOR_CHANGED(aEvent, isDefault, newCursorType, oldCursorType,
       
       SkuCore.lastCursorUpdateFrame = SkuCore.gameWorldObjectsFrameCounter
    end
+   SkuCore:MinimapScannerCURSOR_CHANGED(aEvent, isDefault, newCursorType, oldCursorType, oldCursorVirtualID)
 end
 
 ---------------------------------------------------------------------------------------------------------------------------------------
@@ -137,6 +138,8 @@ function SkuCore:GameWorldObjectsTurnToWp(aWaypointName)
          MoveViewRightStop()
          MoveViewLeftStop()
          SetCVar("cameraYawMoveSpeed", tOldCameraYawMoveSpeed)
+         MouselookStart()
+         MouselookStop() 
       end)
    end
 end
@@ -161,10 +164,7 @@ function SkuCore:GameWorldObjectsCheckResult(aTextLeft1, aTextLeft2, aTextLeft3)
    aTextLeft2 = Unescape(aTextLeft2)
    aTextLeft3 = Unescape(aTextLeft3)
 
-   dprint("GameWorldObjectsCheckResult", aTextLeft1, aTextLeft2, aTextLeft3, tIsUpdateMouseoverUnitFrame, tIsCursorUpdate)
-
    local tFind = SkuCore.gameWorldObjectsScanFrame.findList
-   --local tFound = false
 
    local tSoundFile = "sound-on3_1"
    aTextLeft1 = aTextLeft1 or ""
@@ -306,12 +306,12 @@ function SkuCore:GameWorldObjectsCheckResult(aTextLeft1, aTextLeft2, aTextLeft3)
                local tIsherb
                local tTextLeftLower = slower(aTextLeft1)
                for x = 1, #SkuCore.RessourceTypes.mining do
-                  if slower(SkuCore.RessourceTypes.mining[x][Sku.L["locale"]]) == tTextLeftLower then
+                  if slower(SkuCore.RessourceTypes.mining[x][Sku.LocP]) == tTextLeftLower then
                      tIsMining = true
                   end
                end
                for x = 1, #SkuCore.RessourceTypes.herbs do
-                  if slower(SkuCore.RessourceTypes.herbs[x][Sku.L["locale"]]) == tTextLeftLower then
+                  if slower(SkuCore.RessourceTypes.herbs[x][Sku.LocP]) == tTextLeftLower then
                      tIsherb = true
                   end
                end
@@ -333,16 +333,13 @@ function SkuCore:GameWorldObjectsCheckResult(aTextLeft1, aTextLeft2, aTextLeft3)
             tIsCursorUpdate == true and
             tIsUpdateMouseoverUnitFrame == false
          then
-            taTextLeft1InObjects = taTextLeft1InObjectsCheck()
-            if taTextLeft1InObjects then
-               local tTextLeftLower = slower(aTextLeft1)
-               for x = 1, #SkuCore.RessourceTypes.herbs do
-                  if slower(SkuCore.RessourceTypes.herbs[x][Sku.L["locale"]]) == tTextLeftLower then
-                     if SkuOptions.db.profile[MODULE_NAME].ressourceScanning.herbs[x] == true then
-                        SkuCore.gameWorldObjectsScanFrame.found[aTextLeft1..tId] = true
-                        GameWorldObjectsVoiceOutput(tOutputText, tSoundFile)
-                        return true
-                     end
+            local tTextLeftLower = slower(aTextLeft1)
+            for x = 1, #SkuCore.RessourceTypes.herbs do
+               if slower(SkuCore.RessourceTypes.herbs[x][Sku.LocP]) == tTextLeftLower then
+                  if SkuOptions.db.profile[MODULE_NAME].ressourceScanning.herbs[x] == true then
+                     SkuCore.gameWorldObjectsScanFrame.found[aTextLeft1..tId] = true
+                     GameWorldObjectsVoiceOutput(tOutputText, tSoundFile)
+                     return true
                   end
                end
             end
@@ -355,16 +352,13 @@ function SkuCore:GameWorldObjectsCheckResult(aTextLeft1, aTextLeft2, aTextLeft3)
             tIsCursorUpdate == true and
             tIsUpdateMouseoverUnitFrame == false
          then
-            taTextLeft1InObjects = taTextLeft1InObjectsCheck()
-            if taTextLeft1InObjects then
-               local tTextLeftLower = slower(aTextLeft1)
-               for x = 1, #SkuCore.RessourceTypes.mining do
-                  if slower(SkuCore.RessourceTypes.mining[x][Sku.L["locale"]]) == tTextLeftLower then
-                     if SkuOptions.db.profile[MODULE_NAME].ressourceScanning.miningNodes[x] == true then
-                        SkuCore.gameWorldObjectsScanFrame.found[aTextLeft1..tId] = true
-                        GameWorldObjectsVoiceOutput(tOutputText, tSoundFile)
-                        return true
-                     end
+            local tTextLeftLower = slower(aTextLeft1)
+            for x = 1, #SkuCore.RessourceTypes.mining do
+               if slower(SkuCore.RessourceTypes.mining[x][Sku.LocP]) == tTextLeftLower then
+                  if SkuOptions.db.profile[MODULE_NAME].ressourceScanning.miningNodes[x] == true then
+                     SkuCore.gameWorldObjectsScanFrame.found[aTextLeft1..tId] = true
+                     GameWorldObjectsVoiceOutput(tOutputText, tSoundFile)
+                     return true
                   end
                end
             end
@@ -461,8 +455,17 @@ function SkuCore:GameWorldObjectsScan(aContinue, aFindList, aHStepSizeDeg, aHSte
    
          self.isScanningPaused = true
          local tTextLeft1 = _G["GameTooltipTextLeft1"]:GetText()
+         if tTextLeft1 then
+            tTextLeft1 = SkuChat:Unescape(tTextLeft1)
+         end
          local tTextLeft2 = _G["GameTooltipTextLeft2"]:GetText()
+         if tTextLeft2 then
+            tTextLeft2 = SkuChat:Unescape(tTextLeft2)
+         end
          local tTextLeft3 = _G["GameTooltipTextLeft3"]:GetText()
+         if tTextLeft3 then
+            tTextLeft3 = SkuChat:Unescape(tTextLeft3)
+         end
          GameTooltip:ClearLines()
          --GameTooltip:Hide()
 

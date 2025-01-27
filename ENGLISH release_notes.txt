@@ -3,6 +3,1642 @@
 -------------------------------------------------------------------------------------------------------	
 
 
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r40.4
+	- Fixed taint errors with the glyph menu
+	- Set list of glyphs to show only known glyphs
+	- Added scroll up / scroll down menu entries to the start / end of the known glyphs list if there are more glyphs than the scroll list can show (10)
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r40.3
+	- Limited the default one-time close routes background calculation speed to a value that should have no or very minor effects on the game performance. Will take much longer to complete the process though.
+	- Changed the close routes background calculation to automatically stop while you're in dungeons / raids / other instanced areas
+	- Added options under Navigation > Options > Cache Calculation to enable/disable the close routes background calculation and to set the calculation speed aka performance loss (lower speed means better performance, default is 3)
+	- Added a slash command /sku calc to enable/disable the close routes background calculation
+	- A lot of Spirit Healer waypoints added
+	- Fixed resource notifications (mining notes, herbs)
+	- Added localized names for all resources (mining notes, herbs) for resource notifications if the game language isn't set to English
+	- Fixed the Molten Front area
+	- LFD menu fixed
+	- Debug module added
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r40.2
+	- Map data / routes are still the old ones from Wrath. Maybe they are update with the next update.
+	- The audio menu speed is enhanced a lot.
+	- A lot of meaningless objects are removed. Blizzard has added a load of senseless objects with Cata. Chairs, campfires, lamps, and a lot more. I've removed a lot of those objects. But there are still loads of objects with no use. Like sign posts. I can't remove them. So, a waypoint like "object 50501 hunter rise thunder bluff 2" most likely doesn't mean this is on hunter rise in thunder bluff. It just is a sign post somewhere, showing the direction to the hunter rise.
+	- All default waypoints to creatures and objects are added to the shift + f10 Destinations by Distance list. So, this list now has also routes to waypoints that are not directly linked by mappers, and where you had to use shift + f9 > ... > Close route before. These waypoints are prefix with "Close".
+	- The newly added "Close" routes in the shift + f10 menu are depending on a pre-calculated table of close linked waypoints. This pre-calculated table is build by Sku on the very first time you're logging in and will be saved. The calculation is done in the background and will degrade the frame rate. It shouldn't have much noticable effects (at least if your computer isn't from the last century). It may take up to 2 hours or even more. If it is completed, the pre-calculation won't happen again until a Sku update is adding new map data. If you're logging out or reloading before the pre-calculation is completed, it will be continued on next login / after reload. The shift + f10 menu will list only close routes with already pre-calculation completed for them. Therefore, you won't find a lot of them directly after first login, and their number will grow and grow, until the full pre-calculation is completed.
+	- The Navigation > Waypoint > Select > Current Map by Distance > ... > Close route (shift + f9) menu now has an entry point selection like the routes menu (shift + f10), instead of just silently taking the closest linked waypoint an an entry point. Additionally the menu is listing up to 10 close waypoints to select from, instead of just taking the closest one.
+	- A lot of map issues are fixed. Like with Strangle, Barrens, etc.
+	- Adapted the action button menu to the new flyouts.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r40.1
+	- Broken waypoints in TBC and Lich King zones fixed.
+	- Broken orgimmar waypoints fixed.
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r40.0
+	INITIAL CATA RELEASE
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r35.19
+	- Tried to change the target sku focus x key code to remove lag.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r35.18
+	- Fixed a bug with the route calculation that was sometimes generating incorrect routes leading into walls, etc.
+	- Added a new feature: Sku focus units
+		This is adding 8 extra focus units. Basically they are working like the usual focus slash command, but they are using unit names instead of specific units. 
+		This means, they won't always target a specific unit like the standard /focus command. They will target the next available mob with a specific name (!) or part of a name.
+		Imagine that like you doing /tar with a name. It's exactly the same. If there is only one npc, mob or player with that name around, then it will target that one. If there are multiple units with the name (or part of then name), then it will target a random unit of those.
+		There are 8 new Sku key binds to set focus 1 to 8 to your current target. ("Set focus x to the name of your current target")
+		There are 8 new Sku key binds to target focus 1 to 8. ("Target focus x")
+		There is a new slash command to set focus 1 to 8 to your current target: /focusX (/focus1, /focus2, and so on. Attention for screenreader users: /focus1 is one command. There's space before the number.) 
+		And there is a slash command to target focus 1 to 8: /click focusX (/click focus1, /click focus2, and so on. Again, focus1 without a space before the number! So, /click space focus1.)
+		The /focusX command provides some enhanced options. Using it without any additions will set the focus x to your targets name.
+		Using it with any addition will set the focusx to that name. Example: /focus1 william. This will target every unit with a name starting with "William".
+		And you can use it with fixed game unit ids. Like party1, party2, pet, player, raid1 to raidx, boss1 to bossx, and so on. With a unit id added it will use the name of that unit (if the unit exists). Example: /focus1 party1 will target the name of party member one.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r35.17
+	- Fixed a bug that was breaking the sort feature for the bank.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r35.17
+	- Fixed a bug that was leading to an incomplete default setup (missing chat tabs, etc.) on first login.
+	- Fixed a bug in the priest tutorial, where the tutorial was instructing to go to the next menu entry for action bar slot 2, but did not trigger the next step on doing so.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r35.16
+	- Finally fixed all remaining missing translations.
+	- Added English translation for Flying Stopped notification.
+	- Added two new optional chat tabs: Audio Log and Combat Log.
+		Both are disabled by default. There are options to enable them under Chat > Options > Chat Settings.
+		The Audio Log just contains the sku audio output history like zones, names, etc.
+		The Combat Log contains the same combat log that sighted players have in their chat frame.
+		Combat log entries are filtered. There are 3 pre-definied filters: Everything (default), My Actions, and What happend to me?
+		Go to Chat > Options > Chat Settings > Combat Log > Filters to select a specific filter.
+		You can add additional customized filters via Chat > Options > Chat Settings > Combat Log > Filters > New filter.
+		Under each filter are three categories to specify what the filter is showning: events, source, destination. Enable the appropiate values in those cateogries, to modify a filter.
+	- Fixed a chat bug that was unintentionally deleting the chat tabs history on zone transfers if Delete History On Login was enabled. History will now be deleted on login only, as intended.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r35.15
+	- Fall sound will now stop after a few seconds on max pitch if you're falling endless.
+	- Fixed more words/string without translations that could lead to fatalities.
+	- Fixed a bug with the heirloom menu.
+	- Fixed a bugh with combat monitor that lead to a fatality.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r35.14
+	- Fixed a bunch of words/string without translations that could lead to German words in English clients and/or fatalities.
+	- Fixed a pathing issue in Descolace.
+	- Tried to fix a bug with incoming heal in monitors.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r35.13
+	- More performance updates for combat monitor. Performance in 25 men raids may or may not be better. :)
+	- Fixed a combat monitor bug with number of enemies in combat and enemies entering/leaving combat.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r35.12
+	- More fixes for pathfinding leading to broken routes in specific scenarios.
+	- Added a new sku key bind Output target health. Default: not bound.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r35.11
+	- Fixed a bug with empty target lists for route selection in quest log.
+	- Fixed another bug with the pathfinding algorithm in specific scenarios that lead to the game being locked for 20 seconds followed by a "Script ran to long" error.
+	- Optimized the combat monitor code. That may or may not improve the performance in 25 men raid scenarios.
+	- Added a new setting to Core > Monitor > Combat: Update rate (performance). Default value: 20. This setting is to enhance the performance in 25 men raid scenarios. If you are experiencing bad performance, try to lower the value step for step to do less updates and decreasing the addons workload. High value means timely updates but high workload/bad performance. Lower values are less updates, but better performance.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r35.10
+	- Finally fixed the "Interface action failed because of an Addon" thanks to the help from Mitälie on WoWUIDev Discord. :)
+	- Fixed an error with Incoming Heal in health monitors.
+	- Fixed an aura error with spell cooldowns that are resetted before the regular cooldown end.
+	- Re-added routes to mushrooms in Dalaran.
+	- Fixed a bug with the pathfinding algorithm and waypoints in 0 meters distance.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r35.9
+	- Fixed another bug with the new route calculation algorithm that could lead to script timeout errors in some scenarios.
+	- Removed xd from the list of read out emojis.
+	- Added a new option: Chat > Options > Do not read out emojis. Default: off
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r35.8
+	- Fixed a bug with the new routes algorithm that could lead to unreachable waypoints
+	- Removed routes to auto waypoints from routes list (shift + f10)
+	- Enhanced the performance of the routes menu (shift + f10) by limiting the listed routes to a maximum of 5000 meters distance
+	- New option: Navigation > Options > Maximum distance for destinations in routes list. Default: 5000 meters. Use a lower value to enhance the performance of the routes menu (shift + f10.)
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r35.7
+	- Fixed the route to Zamah in Thunder Bluff
+	
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r35.6
+	- Fixed a bug with auras using spell id instead of spell name conditions.
+	- Completely re-worked the routes pathfinding algorithm. Routes are now always taking the shortest path to the destination. Previously it could happen in specific scenarios that a route was leading you over a path that was longer than the shortest one, but had fewer waypoints. For example in Wetlands. This won't happen anymore. And there are now more routes with distance just showing "far" in waypoint lists. From now own all routes in lists will show correct distance in meters. No matter how far the target is.
+	- Added a waypoint for the warlock summoning circle to the basement of The Slaughtered Lamb in Stormwind.
+	- Added the currently equiped item to auction house tooltips.
+	- Fixed the route to Arcanist Uovril, Emblem of Frost vendor in Dalaran.
+	
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r35.5
+	- Added a bunch of missing creature, quest, item, and object data for Wrath phase 3 & 4 from Questie.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r35.4
+	- Fixed the mount list in action bars. This time for real.
+	- The Turn to beacon hot key (default: I) is not longer fixed and can be set to any key. Starting the wow menu script isn't required anymore to use that feature.
+	- Fixed a bug with aura names that lead to an error
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r35.3
+	- Next try to fix the action bar mount menu. Mount list now should show all mounts?
+	- Fixed the broken main route in Wetlands
+	- Fixed the main route in Winterspring
+	- Fixed chest of nesting waypoint
+	- Added emblems of frost vendor in Dalaran
+	- Linked pvp vendors in Dalaran Sewers
+	- Added waypoint for Vordrassil's Sapling
+	- Added waypoints for portable seismograph
+	- Added a couple of spawn points for Thorim
+	- Added waypoints for quest Putting Olakin Back Together Again
+	- Reworked the waypoint comments for the elevator at Fizzcrank Airstrip
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r35.2
+	- Fixed the action bar mount menu. Should now contain only mounts that are usable by the current character.
+	- Fixed a bug with combat monitor creatures in combat counting. Should now count correct.
+	- New aura attribute: target distance
+		To validate against your targets distance in auras. The Equal operator ("Range equal x") won't be usefull in most cases. This is using the same ranges as Core > Range. Usually steps of 5 meters. Therefore "Range small 40" will work. But "Range Equal 41" won't. Because the ranges steps are 35, 40, 45, 50, etc.
+	- New slash command: /dquit
+		To leave random dungeon finder dungeon groups.
+	- Added unit roles to party and raid overview pages.
+	- New dial targeting option: Core > Dial targeting > Single key action in raids up to 10 players
+		Default: Off
+		If set to On, dial targeting will use a single key press to target raid members if there are 10 or less raid members. 
+		That is 1 to 9 to target raid members 1 to 9 and 0 to target raid member 10. 
+		Dial targeting will auto switch to the usual two button targeting if the raid size is more than 10 players.
+	- New option for monitors: Core > Monitor > Global > Speak number first
+		Default: Off
+		If set to On, the monitor will output debuffs with the unit id followed by the debuff type (like "party 1 poison"), instead of debuff type plus unit id.
+	- New option for monitors: Core > Monitor > Global > Speak numbers only for units
+		Default: Off
+		If set to On, the output will be numbers only. Example: instead of "raid 6 dead" the output will be "6 dead".
+	- Added a "Copy macro text" option to existing macros audio menus.
+	- New option for beacons: Navigation > Options > Output Distance to next waypoint
+		Default: 0 (disabled)
+		If set to higher than 0, the addon will output the distance to the next waypoint every x meters.
+		Example: if set to 10, the addon will output the remaining distance to the next waypoint every 10 meters.
+	- New option: Core > Range > Friendly/Hostile/Other > Output range on target change
+		Default: Off
+		If set to On, the addon will do an instant range output if you're changing your target.
+	- New option for all health monitors (player, pet, party, raid): Factor in incoming heals
+		Default: Off
+		If this is set to On, the health monitors will consider the amount of incoming heals from other healers on outputing a units health.
+		Incoming heals are all healing spells with casting time, that are currently casted by any healer and that are targeting the particular unit.
+		Example: party member 2 is dropping to 50% health and there is an incoming heal for around 20% health from another healer. With this option set to On, the output will be for 70% health (party members 50% actual health plus 20% "virtual" incoming heal), instead of 50%.
+		You own heals won't be considered as "incoming heals" (that wouldn't make any sense). Only heals from other healers are added as incoming.
+		Only direct heals are considered as "Incoming heals". HoTs, shields, etc. are NOT considered.
+		Keep in mind that incoming heals are not guaranteed to happen. Other healers could decide to stop casting the heal before it is completed.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r35.1
+	- Bis lists updated with ICC items and T10. T8 removed.
+	- Added toys to the action bar config menu.
+	- Added waypoints and routes to icc raid/dungeons entrances, summoning stones, and graveyard.
+	- Fixed a bug with missing mounts in action bar config menus (flying mounts in no-fly zones).
+	- Sku is now auto closing the new Questie popup on first login/reload.
+	- Fixed a bug that was leading to "You are not in a party" chat spam in LFD groups.
+	- Fixed a bug with RDF "specific" selection. You now should be able to select specific dungons you would like to queue for.
+	- Fixed a few missing translations in RDF menu
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r35
+	- More fixes and updates for ICC patch (3.4.3). Addon should work with the patch.
+		The RDF/LFG panel generally should work for random dungeon finder. But, due to the feature being broken on the test server for the last two weeks, I had no chance to test that. Please expect issues. The LFG part (organized groups) isn't completed yet.
+		The collections panel still is work in progress and not avalable yet. Pets and mount can still be added to action bars as usual. Toys and herlooms will be added later.
+		There could of course be millions of unrecognized issues and problems, as with every major patch. Please report everything, with /sku errors outputs and screenshots.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r34.28
+	- Fixed a bug with key binds that could have lead to some missing default key binds on first login.
+	- Added price details for vendor items that require badges to the vendor menu.
+	- Fixed a bug that limited the Character > Currencies menu to 10 currencies. Should show all currencies now.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r34.27
+	- Netherstorm and Western Plaguelands mapped and some waypoints added to agent tournament grounds by emily.
+	- Added 3 waypoints for tailoring cloth to Dragonblight (filter for "tailoring" to find them).
+	- Fixed a bug with the ingame calendar. Calendar should work again.
+	- Fixed a questie error on login / reload.
+	- "Auto switch to next waypoint of same type feature" updated:
+		- Pressing the "Select closest unvisited waypoint of same type" key once will switch to the next unvisited waypoint, as before. Pressing the key twice very fast toggles between auto and manual mode. In auto mode sku is automatically selecting the next waypoint on reaching the current waypoint.
+		- There are options under Navigation > Options > Next similar waypoint settings
+			- No voice outputs for waypoints: default On
+			- Range for counting a waypoint as reached and switching to next waypoint: default 3 meters
+	- New menu for upcoming ICC patch: Core > Heirlooms, to create account wide heirloom items for the current char. Menu won't be visible before ICC patch.
+	- Action bar menu fix for upcoming ICC patch, for adding pets and mounts to action buttons.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r34.26
+	- Addon is not longer reading object numbers in waypoint names
+	- Added a new sku key bind: "Select closest unvisited waypoint of same type". Default: not bound 
+		With this key bind you are auto selecting the closest unvisited waypoint of the same type as the last selected waypoint.
+		Can be used for mobs, creature, npcs or resources like ore and herbs.
+		Example: If your last selected waypoint was "Rotting Dead Tirisfal 24", then the key bind will auto select the closest unvisited waypoint for "Rotting Dead" as a new destination.
+		The feature is always selecting a waypoint. It's not starting a route or close route. 
+		It's of course only working if you already had selected at a waypoint or started a route or close route to some waypoint before.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r34.25
+	- Fixed a bug with sub auras and no action/output nothing
+	- Added a new attribute for aura conditions: Spell usable (L)
+		Spell usable (L) checks all spells on your actionbars. You can do checks like "Spell usable (L) contains Revenge".
+		The checks are considering cooldown, range and general stuff like stance, in-/outdoors, etc.
+		Important things to consider with this aura specific attribute:
+		- The attribute is only available for spells that are on any visible(!) actionbar button.
+		- You can't use this aura attribute to check some spell that isn't on some button on your bars.
+		- You can't use this aura attribute to check some spell that is on some bar, but that isn't visible. Example: Your Druid Bear actionbar button 1 is Growl, but you are in Cat form and the cat actionbar is visible, and the Bear actionbar is hidden. Then the check if Growl is usable won't work, unless you're switching to Bear and the bear actionbar is getting visible.
+		- If the spell either isn't on any of your buttons, or the button isn't visible atm, then the condition will always report the spell as NOT usable. No matter if it actually is usable.
+		On building an aura with "Spell usable (L) contains" the list of spells that can be checked contains all spells that are currently (!) on your action bars buttons.
+		If the spell you would like to check isn't in the list, add it to some action bar button first.
+		Caution: If you are removing the spell from the button later on, the aura/condition will start to always evaluate that spell as NOT usable. (See above)
+	
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r34.24
+	- New auras feature
+		Caution: This is a complex feature that needs to be tested carefully. I did tests, but errors are of course possible. In worst case you could lose all your existing auras. 
+		I highly suggest to export and save ALL your existing auras before taking hands on it!
+
+		You now can use other sku auras as regular conditions in auras. So, you can "nest" auras and build much, much more complex and flexible logic in auras.
+		On building a new aura the appropiate (more below) existing auras are available in the attributes list with their aura name (and the prefix "sku aura").
+		If you're adding an existing aura as a condition in a new aura, the addon will evaluate the full existing aura like every other condition in that aura. 
+		That is, if the result of the existing aura is or is not true or false.
+
+		Until now there wasn no control over how aura conditions were evaluated.
+		All conditions in an aura were evaluated using AND in there order of occurence. Like "if condition 1 AND condition 2 AND condition 3".
+		That was restricting use cases and made some scenarios impossible.
+		Example: You would like to build an aura that is notifying you if you have five stacks of some buff named "Explosion" AND if your target is casting Fireball.
+		In pseudo aura code that would be something like "if source equal self and aura stacks equal 5 and and spell name equal Explosion and source equal target and event equal spell cast start and spell name equal Fireball".
+		I guess it is clear why that wasn't possible, as you would have to use two "spell name equal" conditions in one aura, etc.
+		From now on you can build a first aura to test if your target is casting Fireball, and a second aura to test if you have 5 stacks of Explosion AND if the first aura is true.
+
+		Example:
+		First aura, with the custom name "casting fireball": if source (L) contains target AND event equal spell cast start AND spell name equal fireball.
+		Second aura: if source (L) contains self AND aura stack equal 5 AND spell name equal Explosion AND sku aura casting fireball equal true then... some output
+		The first aura "casting fireball" has no own output. It is just there to be used as an additional condition in the second aura.
+
+		Requirements:
+			- You can only use auras with custom names in other auras. Auras with auto generated names from their conditions can't be used. So, if you would like to use an aura in other auras, you need to explicit rename that aura.
+			- You can't delete any auras that are currently used in other auras. Remove them from all other auras first.
+			- You can always rename auras. But you can't set auras back to "auto generate name from conditions" as long as they are used in other auras.
+			- You can't nest auras for more than one level. If you're using aura A in aura B, then you can't use aura B in aura C.
+			- But you can of course use an aura in more than one other auras. A in B and A in C and A in D is ok.
+			- There is a new action type "no action" and a new output "nothing". Use them to avoid that any auras you would nest into other auras later on are triggering unwanted outputs. Example: "then no action nothing".
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r34.23
+	- Fixed and issue with combat monitor outputs that could lead to errors spam
+	- Combat monitor should not longer consider hunter Feign Death as dead friendly unit
+	- Routes for Netherstorm & Shadowmoon Valley mapped by Emily added
+	- Changed the internal map data structur
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r34.22
+	- Added combat monitor voices with higher volume and a new option "Core > Monitor > Combat > Voice volume".
+	- Slightly lowered the volume of high volume combat monitor notifications.
+	- Added a "Ignore dead party pets" to "Core > Monitor > Combat > Friendly > Deaths". Default: yes
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r34.21
+	- Fixed the German "Noch" setting under "Lautstärke von Audiobenachrichtigungen". Should now be "Hoch".
+	- Splitted the "Hostile > Units in combat > Announce enemies entering or leaving combat" setting into two: "Announce enemies entering combat" and "Announce enemies leaving combat". Please be aware that at the moment "Announce enemies leaving combat" is equivalent to enemies killed. There are other ways how enemies could leave combat. For example if you are running away and out of combat. Or in some boss fights, where enemies are disappearing. The addon can't track those scenarios.
+	- Removed the "in combat" suffix from the "Announce relative number of enemies in combat" output. It's now just the number.
+	- Fixed the broken "show tooltip for current loot item" key bind.
+	- Fixed a bug in Core > Damage Meter that was breaking the menu.
+	- Added some missing localizations for combat monitor menu strings.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r34.20
+	- Fixed an issue with the calender leading to errors
+	- Data for Core > Best in Slot updated to Pre Raid, T8, T9
+	- Fixed the "Output current hard target" and "Output current soft target" Sku key binds
+	- Fixed a bug where the first whisper chat message in new whisper tabs was empty.
+	- Each fight under "Core > Damage meter > Reports" now has a submenu with the same entries as in the fights tooltip (DPS by rank). Every submenu entry has a tooltip with the used spells and details on those spells for the specific player.
+	- All monitor settings under Core > Monitor are now saved per character and talent spec. This is to have different monitor settings for classes with different roles. Like, for example, the Druid, who can be tank in spec one and healer in spec two. If you have dual talent specialization, and therefore two talent specs, the monitor settings can be different for both specs. The addon will automatically show and use the monitor settings for your currently active talent spec (1 or 2). If you don't have dual talent specialization yet, you will always use spec 1 and only have one monitor settings set that won't change. All your existing monitor settings will be kept. You don't need to do or configuare anything. On first login the addon will automatically copy all your existing monitor settings to the two new different monitor setting sets for the two specs.
+	- New monitor: Combat (Core > Monitor > Combat)
+		The combat monitor is for all general combat events like threat warning, aggro gained or lost, enemies added to combat, enemies casting, enemies dead, party members dead, etc.
+		The combat monitor is off as default and all options are off as default. You need to enable the Combat monitor itself and all settings you would like to use.
+		There are two main menus: Hostile for everything that is about mobs/enemies and Friendly for everything that is about your party/raid members.
+		The options should be quite self explaining. Just take your time and browse through them, and enable what is usefull for you. Then test and adjust.
+		"Core > Monitor > Combat > Friendly > Distance to party member" is to set an out of range warning for one party or raid member that you are usually following. With that option enabled, and "Set unit for out of range" set to the group member, you will be notified if that group member is getting more than the specified distance away from you.
+		There are new sku key binds specifically for the combat monitor:
+			- There is a new sku key bind "Combat monitor set current target as follow target" for the "Distance to party member" feature. There's also a slash command for that: /sku mon,combat,follow,target
+			- There is a new sku key bind to instantly output the number of creatures in combat: "Combat monitor; output current number of enemies in combat"		
+		Combat monitor settings are for party and raid groups. There is no difference.
+		Combat monitor outputs are always first in our output queue.
+		Combat monitor settings are saved per character and talent spec.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r34.19
+	- New feature: Ingame calendar under Core > Calendar. At the moment you can read calendar events and react to them. You can't create own events. I will add that in a later step.
+		All calendar events are listed under Core > Calendar > Events. Each event has a tooltip with all details. If you can react (sign-up, decline, etc.) on an event then the events submenu has those options.
+		All calendar data is synced from the server. Therefore it may take a few seconds before details are available. In that case the menu will show "Querying" and there is a sound until the data is synced.
+		There are options for notifications on new calendar events under Core > Calendar > Options. Notifications are Off by default. The calendar will be checked for new events every 2 minutes.
+		The Core > Calendar > New events menu has new events only. Events are "New" until you are accessing the event in the calendar menu or logout.
+		There are some options to filter the shown events under Core > Calendar > Options. As default the calendar is showing Player, Guild and Holiday events.
+		Please test and report any issues. Thanks!
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r34.18
+	- Fixed the routes to the zeppelin from Durotar to Undercity/Grom'Gol
+	- Fixed a bunch of broken areas in Uldaman
+	- Re-linked Deputy Willem to the route network
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r34.17
+	- You can now show/read the usual tooltips for all item links in chat lines. To read the first item link in a chat line just press Shift + Down to read the first tooltip from that specific line. If there is more than one link in a chat line, press Control + Enter to open the line context menu. You will find all items as menu entries at the top of that chat line context menu. Use Shift + Down on each menu entry to read the tooltip.
+	- New setting "Chat > Tabs > tabname > Audio notification on chat message" to adjust the sound on new messages for each tab. Default: "default new Chat Line sound". Set to "mute" to disable sound.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r34.16
+	- Map data updated:
+		- Terokkar Forest completed, and parts of Shadowmoon Valley in Outlands mapped by Emilylorange.
+		- A lot of fixes for most bugs/issues reported during the last 2 month
+		- A lot of broken routes fixed all over the world
+		- Added layer information to several locations all over the world
+	- Fixed a bug with sounds in the bag > sort menus
+	- Internal changes to prepare for the upcoming game patch 3.4.3 ToC on June, 20th
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r34.15
+	- Fixed a bug with the Mob > Options > Sound if target is in combat setting. Setting will now be saved as intended.
+	- Fixed issues with auto minimap resource scanning, that was causing the scan to miss some resources.
+	- Fixed a bug where rolling need or greed on loot while dead was releasing your spirit.
+	- Sharing quests via Control + Shift + T isn't available anymore. Instead there is a new menu entry under each quest in you log: "Share quest". The default shortcut Control + Shift + T is only for reading the loot roll tooltips from now on. This should now be possible while you're dead.
+	- Fixed a bug where using item tooltips in the auction house was mixing up all other tooltips, adding nonsense stuff like a quality to flight destinations at the flight master or item levels to buffs.
+	- The bags should now be correctly updated after auto selling junk at vendors.
+	- Fixed a bug with not updated empty guild bank slots on selecting another guild bank box
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r34.14
+	- Added more sorting options to the Sort and Cleanup menus:
+		- Sort items by quality ascending / descending
+		- Sort items by name ascending / descending
+	- The addon now is locking the keyboard while any bag sorting or cleanup process is running
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r34.13
+	- The addon now is auto-enabling the nameplates for all units
+	- Renamed the setting "Don't vocalize reaction and level for players in combat" to "Don't vocalize the reaction (friendly or hostile) and the level for players while in combat"
+	- Added new options to the bags and bank slots: 
+		Every bag has a new "Sort and cleanup" menu after the last bag slot/item in the bag. It is to sort or cleanup the items in the specific bag.
+		In the main bag menu is a "Sort and cleanup" menu entry after the last bag. It applies to ALL open bags. Even the bank, if the bank is open.
+		Under "Sort and cleanup" you will find actions to sort or clean the bag or bags. Right now there is only one action:
+		- "Move all items to the top of the bag (collapse)": That is, if the items are spread all over the bag, and there are empty slots in between, all items will be moved, so that all empty bag slots are at the end of the bag. The items order won't change with this. 
+		I will add more sorting/cleaning options with the next release. At least "Sort items by quality". I am open for suggestions what sorting/cleaning options could be helpful.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r34.12
+	- Added a new option: Mob > Options > Don't vocalize reaction and level for players in combat. Default: on
+	- Addded a new key bind: Sku key binds > Turn 180 degrees. Default: not bound. It is instantly (in 0.1 seconds) turning you around by 180 degrees. Can by used while moving. The feature again depends on your fps / computer performance. Should be quite accurate with high fps and no lags. Will get less accurate otherwise. Please provide feedback if it isn't working correctly for you.
+	- Fixed a bug where using the Turn to Unit key binds while moving was opening the menu on stop moving.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r34.11
+	- Fixed an issue with tutorials where the tutorial could break after starting the route to the first quest target.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r34.10
+	- Added a new feature: turn to unit. 
+		This is auto turning you to units like your target, party members, mobs with game markers like Skull, or mobs with sku markers like Blue.
+		The feature is not 100% accurate. Sometimes it is turning you straight to the unit. Sometimes it ends up left or right of the unit. It gets less accurate the closer the unit is. It gets less accurate the faster the speed setting is (see below). It depends on your machines speed/your fps. Faster is more accurate. Low fps can lead to completely inaccurate results.
+		It works reliably with units up to 41 meters away. If the unit is more than 41 meters away, the success rate will be quite worse. It works everywhere. Open world, dungeons, even battlegrounds. It works for all unit types. However, the unit must by on your physical level. Units above or below you, or units behind walls etc. won't work.
+		There are 6 new keybindings to use this feature: Sku key binds > Turn to unit 1-6. They are are bound to no key by default. Each keybind is turning you to a different unit (see below). 1 is your target, 2 is skull, 3 is cross, 4 is square, and 5 & 6 are nothing
+		There are settings under Core > Options > Turn to target:
+			- Unit selection:  This is where you set the units for the 6 key bindings. The default units for key 1-6 are: target, skull, cross, square, nothing, nothing
+			- Speed: the faster, the less accurate
+			- Enhanced settings: do not touch unless prompted
+	- Fixed a bug with the Human tutorials step "start navigation to class trainer"
+	- Changed "heavy armor" to "chain armor" in tutorial texts
+	- Fixed an issue with missing success sound in tutorials if you are not on the latest SkuAudiodata version
+	- It is now possible to use the "next step" key bind (default: ALT + J) to jump to the next tutorial step even if you haven't completed the current step. You will hear a warning and need to confirm by pressing ALT + J again to actually jump to the next step. This most likely will break the tutorial and is not recommended.
+	- Fixed the missing "dead" output on targeting dead targets
+	- Added a Core > Dungeon and raid settings menu to set the difficulty if you are the party/raid leader
+	- Fixed an issue with missing audio outputs for female creatures in German
+	- Fixed an issue on Mac clients where tts outputs could not be canceled anymore. This will break the tutorials feature on Mac clients, but I can't do anything to avoid that. It's Blizzards fault.
+	- Fixed an issue with "auto" waypoints incorrectly showing up in the waypoint list (shift + f9)
+	- The addon is now outputting generic emojis like in chat messages as text that is correctly read by tts voices.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r34.9
+	- Fixed an issue with outdated audio data versions that lead to missing audio outputs for mobs (like health, name, etc). You nevertheless should update to SkuAudioData en r10 (ENGLISH) or SkuAudioData r38 (GERMAN) via https://duugu.github.io/Sku/ if you not already did that.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r34.8
+	- The newbie tutorials are ready. :)
+	Right now there are tutorials for:
+	- Human: Warriors, Paladins, Rogues, Priests, Mages, and Warlocks
+	- Night Elf: Hunters, and Druids.
+	Other race / class combos may follow.
+	The tutorials are for absolute beginners, with literally zero knowledge on the game, the addon, or mmo games in general.
+	New players will get an audio hint that there are tutorials and how to start them on the very first login with their first character. 
+	Each tutorial will take between 1.5 and 2.5 hours if time to be completed (depending on the players speed).
+	All tutorials need to be tested in English and German. So, if you would like to help, and test a tutorial, you just need to create a new character using one of the available race / class combos listed above. Then login and follow the instructions.
+	Any feedback is appreciated. If you really would like to help with building more tutorials or building your own tutorials, please let me know.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r34.7
+	- Fixed a bug with the Sku target markers. Shoud now assign different colors if Mob > Options > Auto set private Sku raid targets on in combat targets without a raid target is set to On. :)
+	- Sku target markers won't be removed from dead mobs anymore. Instead all Sku target markers are removed if combat ends.
+	- Fixed a bug with some quest panel that was causing the panel to open again and again on escape.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r34.6
+	- Fixed a bug with tutorials and npc id tags
+	- On following a route or waypoint, if the reached waypoint is on a different layer than the previous waypoint, the addon is outputing the layer number. That way you should realize if you are changing layers while on a route (moving a floor up or down, moving ramps up/down, etc.). There's no output if the waypoint has no layer number assigned.
+	- Fixed a bug with missing sound for units that are already in combat. Should now be the beep sound as default.
+	- Added a filter to automatically remove the annoying "Citizens of Dalaran..." outputs that Rhonin is doing if someone has killed Algalon. Removes the chat and audio output.
+	- Added a new chat feature: Chat > Filter. You can add and remove filter terms or phrases to a list. If a chat message contains any filter term, it will be ignored for all chat tabs. Keep that in mind. If you are adding very generic terms, then a lot of messages could be filterd. :) Filter terms are not case-sensitive. Filter terms are stored per Sku profile.
+	- Added a new feature: private Sku target markers
+		Sku target markers are similar to the games target markers (Skull, Cross, Moon, etc.), but they are using colors instead of symbold and they private to you. They are not visible for other players.
+		The colors are: White, Red, Blue, Green, Purple, Yellow, Orange
+		The Sku target markers are to uniquely mark and identify units.
+		Example, if you are fighting three Young Boars, you can privately mark the first one with White, the second with Red, and the third with Blue.
+		The sku target markers are added before the mob name. Similar to the standard raid target markers.
+		So, with the second Young Boar marked with "Blue", you will hear "Blue Young Boar Level..." on targeting that boar.
+		That way you can uniquely identify all mobs, even if they have the same name.
+		As stated, the Sku markers are private and additionally to the games standard target markers. 
+			So, even in a group they won't mix up with the standard target markers, an won't confuse other players.
+		There are two ways to set sku target markers:
+			- There are 8 new key binds for them: Core > Sku key binds > bind key > Set Sku target marker x. (Just filter for "sku target marker")
+			- There is a new option to auto-assign them: Mob > Options > Auto set private Sku raid targets on in combat targets without a raid target. Default: Off. 
+				With this set to On, the addon will auto assign a Sku marker to every unit that is in combat with you and don't have and marker (Sku or Game) yet.
+				Markers will be removed if a unit dies.
+				There is a sku key bind to additionally clear all assigned Sku markers at once.
+		Some more details:
+			- A unit can't have a sku marker and a game marker. Therefore the games target markers are overriding the sku target markers. 
+				If you have privately marked a mob as blue, and you or someone else is marking that mob as the default target marker "Skull", then Blue will just be replaced by Skull.
+			- The default games Remove Target Marker feature is used to remove a sku marker. 
+				That is under Core > Game key binds > Assign key > Target markers > Remove target marker. The default binding is Control + numpad 0.
+			- Good to know: for easier referencing the sku target markers are using the same colors as the games target marker symbols have: 
+				Skull = White, Cross = Red, Square = Blue, Triangle = Green, Diamond = Purple, Star = Yellow, Circle = Orange, Moon = Grey
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r34.5
+	- Re-enabled the instant distance output on hard targeting a unit
+	- Fixed a bug with the tutorial editor and steps that are converted from linked steps to real steps
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r34.4
+	- More routes for Terokkar added by Emily
+	- Layers and waypoint names updated and map issues fixed for Darkshore, Darnassus, Teldrassil, Rut'theran, Moonglade (parts)
+	- Removed an overlooked debug output from the overview page
+	- Final updates of the tutorial FTUE
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r34.3
+	- Fixed a bug that was causing an error on changing actions bar sets (on switching stance, entering vehicles, etc). Thx @Chaosbringer.
+	- Slightly changed the "Toggle player, party, raid health monitor" key bind. If you are solo it is toggleing the player health monitor on/off. If you are in a party, it is switching between party health and player health monitor. If you are in a raid it is switching between player health and raid health.
+	- Added better chat outputs for the "Toggle player, party, raid health monitor" key bind.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r34.2
+	- Added a new option Core > Range > Range for group members in range checks (default: 10), and a new key bind "Do group members in range check" (default: not bound). This is to output the number of party or raid members that a inside the selected range to you.
+	- Added a new option: Mob > Options > Sound if target is in combat, to change the default beep sound on targeting enemies that are already in combat to something else. Default value: "Default beep sound".
+	- Added the spells from patch 3.4.1 to the database (hc+ stuff etc.).
+	- Fixed a bug with adding all steps from an existing tutorial as linked steps.
+	- Fixed an issue with creating multi line macros.
+	- The raid roster on the overview page (default on overview page 2 with shift + up), has been fixed to use the same order as the games standard raid frame.
+	- Several changes in Core > Monitor:
+		- Removed the party health chord style monitor
+		- Added raid health and debuff monitors. There are options for enabling/disabling outputs per subgroup, new roles like MTs, etc. Please adjust them to restrict the number of outputs in raids to a level that is useful for you.
+		- Player Health, Player Power, and Pet Health outputs are slightly changed to announce the expected numbers. Examples: down from 81% hp to 79% hp the monitor is now announcing "8" instead of "7" as before
+		- The player, party, and raid health monitors are now automatically used depending on the group type (if the appropiate monitor is set to On in the settings). If you are solo, its player, if you are in a party, its party, etc.
+		- Added a new sku key bind: "Toggle player, party, raid health monitor". Default set to nothing. It is to toggle the currently active health monitor (player, party, raid) on/off.
+	- Added a new targeting feature for party/raid members. I am calling it "dial targeting", because you are "dialing" the target via the numpad using the raid members number.
+		It is disabled as default. You need to explicit enable the feature via Core > Dial Targeting. Can be set to auto enable in parties, raids, both or never.
+		With Dial Targeting you're using the numpad to target any specific raid member in any raid size (10, 25, 40) by just typing the raid members number.
+		The raid members number is just a running number. Members 1-5 in raid group 1 have the raid member numbers 1 to 5. Members 1-5 in raid group 2 are 6 to 10. Members in raid group 3 are 11 to 15, and so on.
+		Typing the raid members number always uses two digits, with a leading zero for numbers below 10. So, to target raid member 1, you will enter 0 1 (zero one). Two is 0 2 (zero two) and raid member 9 is 0 9 (zero nine). Raid member 10 is 1 0 (one zero), and so on.
+		As stated, Dial Targeting is disabled as default. To enable the feature, go to Core > Dial Targeting. You will also find other self explaining options there.
+		Dial Targeting has three numpad keys with custom actions:
+			- Numpad zero twice (aka raid member number 0 0) is always you.
+			- Numpad decimal separator (English) or Numpad comma (German) is resetting the input and clearing your target. That is, for example, if you started with typing 1, and then, before typing in the second number for the raid member, would like to start over to choose 0 and 1 instead. With resetting the input the addon then will take the next number not as the second, but as the first.
+			- Numpad Enter is to re-target the the last target you've selected via Dial Targeting
+		If Dial Targeting is enabled, all existing key binds on numpad keys will be temporary disabled. The old key binds will be restored after Dial Targeting was disabled.
+		If you are enabling dial targeting, you of course can't use the sku menu script shortcuts for numpad 7-9 (clicking on the ground, turning to beacon). With menu script r3.12 or higher they will be automatically disabled while Dial Targeting is enabled. With older menu script versions you need to manually exit the script (ALT + ESCAPE) to have dial targeting working.
+		In parties (if enabled for parties) Dial Targeting is using one digit party member numbers (1-4 for party member 1 to 4, and 0 for yourself).
+		Any feedback and suggestion to improve the feature is appreciated.
+
+		
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r34.1
+	- Added waypoint layer infos to Stormwind, Elwynn and Westfall
+	- Added a route to DM dungeon entrance, fixed the tower in Elwynn, and a bunch of other things
+	- Fixed an issue that could lead to a "constant table overflow" error and losing all settings on closing the game with Alt + F4
+	- Target outputs now should be in one line (irrelvant if you're not using nvda sapi)
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r34
+	- Fixed the "available/accepted" text in npc greetings dialogs that questie was breaking with its latest release
+	- Auto waypoint names changed
+		All existing Auto waypoints have been renamed to make them distinguishable. The word "Auto" has been appended with the zone name and a sequence number. 
+		New auto waypoint names (created by mappers from this update onwards) can also contain additional information. 
+		Example: "auto inside first floor lions inn goldshire elwyn 83". 
+		However, the naming of the auto waypoints is up to the mapper. 
+		We will try to add more information to new waypoints where this is appropriate. 
+		Not on all waypoints. (That is too much work and it would provide no value).
+	- New: waypoint layers
+		Waypoints can now have layer numbers.
+		Layer numbers need to be manually assigned by the mapper. By default, they are neither there for existing waypoints nor for new waypoints.
+		The layer number or just "layer" of a waypoint indicates its elevation. 
+		"Layer 0" means that this waypoint is at the default level. This usually is the ground level/floor.
+		"Layer 1" is one level above the ground level. And "Layer minus 1" is one level below ground level.
+		So in the inn, the ground floor would be "Layer 0", the basement would be "Layer minus 1" and stairs up would be "Layer 1".
+		The layer numbers are not real height information in the world. They only represent "logical waypoint levels".
+		They are not meant to show you how high up in meters you are. They are meant to show you which waypoints are on the same layer. At places where several waypoints or routes are on top of each other.
+		So, for example, if you are in the basement of the inn, you should find an entry point with "layer -1" upon starting a route in order to get a working route.
+		The layer numbers are pronounced to you at several points:
+		- In route and quest navigation before waypoints as abbreviations: Examples: "L 0" stands for "layer 0", "L minus 1" stands for "layer minus 1", etc.
+		- When you target an NPC or mob, the layer number is appended to the end of the name.
+		Unfortunately, for technical reasons, the addon can only determine the precise layer number for unique names (names that only exist once). This is the case with all navigation lists (route, close route, quest destinations, etc.), but not with NPCs/mobs in the world that you are targeting.
+		If the name of your target is there several times (for example, a guard in Dalaran), the addon tries to find the matching NPC/mob. However, this can be inaccurate.
+		If this is the case, there is a "U" after the layer number. For "uncertain". Example: "L 0 U". This means that you should take the layer number with a certain amount of scepticism. :)
+		We will assign layer numbers only at places where several waypoints/routes can overlap. Examples: Buildings with several floor, mines and caves where there are also routes above on the ground level, towers with several floors, etc.
+		If a waypoint has no layer information, then nothing is pronounced.
+		Therefore, no layer information before a waypoint does _not_ mean that it is on the default layer (0), but that the waypoint simply has no layer information.
+		If the waypoint had layer information and was on the standard layer, then there explicit "L 0" would be pronounced.
+		We will try to add layers to the existing waypoints/routes where this is necessary (buildings, caves, etc.).
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r33.25
+	- There are some important changes for route entry points (see below). They are in preparation for an upcoming update, where I will rename auto points to something more usefull than just "auto". If don't know what an entry point is: it's the first point that is shown on shift + f10. If you still don't know what that means, then I _strongly_ suggest to read https://github.com/Duugu/Sku/wiki/How-To-Navigation#how-do-i-navigate-using-waypoints-routes-and-close-routes
+	- Route navigation (shift + f10) is now showing a list of up to 10 entry points (sorted by range) instead of just a single entry point (the closest). So, on shift + f10, if you are unsure if you could start a route from there, go down and check other entry points in range, that could make a better starting point for your route.
+	- The quest navigation menus (Start, Targets, End) now too have an Entry point list under Routes and Close Routes. (Instead of just silently taking the closest entry point.) Therefore you won't find the destinations directly under Routes/Close Routes anymore, but instead a list of entry points in between. Just like with shift + 10. Choose an appropiate entry point from the list, then go right, and there is the destination waypoints list. 
+	- Available quests will now start announcing 60 seconds after login and not immediately after login
+	- Fixed a bug with filters in Aura > Manage > Active
+	- Made the menu for editing exiting auras outputs filterable
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r33.24
+	- added some new aura output sounds (you need to download the updated audiodata, either SkuAudioData_en r9 ENGLISH or SkuAudioData r38 GERMAN, to use them). New sounds are: axe 01, blaze 01, interface 01 - 06, shot 01, sword 01 - 03, Tutorial Close 01, Tutorial Open 01, Tutorial Success 01
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r33.23
+	- Added an "Audio notification on chat message" settings to every chat tab
+	- Fixed a bunch of errors with the new internal tutorial storage structure
+	- Implemented an internal translation feature for tutorials
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r33.22
+	- Fixed a bug with creating a new step
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r33.21
+	- Available tutorial lists are now sorted by name
+	- Changed the internal tutorial storage to be language independant
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r33.20
+	- More bugfixes for the tutorial editor. Didn't saw that coming? :P
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r33.19
+	- Another bugfix for the tutorial editor
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r33.18
+	- Fixed 3 bugs in the tutorial editor
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r33.17
+	- Some changes in tutorial editor
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r33.16
+	- Added updated map data for Blasted lands, Azshara, Thousand Needles, mapped by Emily
+	- Fixed a bug with unintentionall removing an aura on "Auto generate aura name" and Auras that don't have a custom name.
+	- Removed the "Auto generate aura name" option for auras that don't have a custom name (aka where the name already _is_ auto generated).
+	- Linking of tutorial steps implemented
+	- "There could be tutorials" hint on first login temporary disabled, as there are not tutorials yet. We are still in development for that feature.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r33.15
+	- Fixed an issue with the sku event dispatcher and new sku events
+	- Removed default tutorials ("Sku") from Tutorial Editor > Existing
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r33.14
+	- Fixed the sku game event triggers for tutorials
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r33.13
+	- Added support for the following characters for key binds: caret, backquote, tilde, degree
+	- Added "Continue tutorial" to f1 help menu if player already has started the tutorial
+	- Changed some default sound volume settings for new players
+	- Renamed the "Adventure Guide" menu entry to "Tutorials and Wiki"
+	- Repaired the tutorial trigger "menu item"
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r33.12
+	- Added a new tutorial trigger type: Menu item. 
+		Creating a new trigger with that type will not instantly create the trigger. Instead it will wait for you to choose the required menu item from the real sku menu.
+		To choose the required menu item get to that menu item. Then use /sku menuselect. The addon will create the new trigger and get you back to the Tiggers menu of your tutorial step.
+		The trigger will have a name like "Menu item: 1,2,1,1,6". The the menu item numbers. 1,2,1,1,6 means first item in menu root (Navigation), second item under Navigation (Waypoint), first item under Waypoint (Select), and so on.
+		If you need to check what actual menu path the numbers are, then there is a "Resolve" menu option under each "Menu item" trigger.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r33.11
+	- Added the placeholder %target% for to start texts. Will be replaced by the npc/creature id of the unit you are targeting while editing the start text.
+	- Fixed a bug with tutorial shortcuts not working if ALT + J and ALT + K.
+	- Fixed a bug with tutorial shortcuts and leading to filter inputs in menüs.
+	- Added an tutorial end text that will be played if the last tutorial step is completed.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r33.10
+	- Restricted the "first login hint" to level 1 characters.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r33.9
+	- A lot of internal bug fixes and updates for the tutorial feature. Added a default basic example tutorial for Human Warriors. This is just for testing and has very few steps.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r33.8
+	- Moved the Pre Quests menu option in quest navigation to the end of the list.
+	- (Hopefully) fixed an issue where the addon was not always leaving the LFG channel and hiding the details damagemeter addon setup panel for new characters.
+	- More fixes and changes for the tutorial feature. Still in development.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r33.7
+	- Fixed the falling sound if the player is falling for more than 5 seconds.
+	- More tutorial testing fixes (feature still not ready)
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r33.6
+	- Fixed the voice output setting for fall detection. :)
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r33.5
+	- Changed the fall detection and output. The addon will now default make a rising sound as soon as you start falling. Even if it only is like falling down a step. The sound will start small and get higher fast. There are new settings under Core > Options > Fall detection settings. They are pretty self explaining. To set up the old behavior (voice and delay of 1 sec), set Sound output to off and Delay to 1000.
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r33.4
+	- Fixed a bug with some distance outputs in Close routes reading random zeros.
+	- A bunch of changes and fixes on the tutorial feature. Still in development / testing. Not ready to use yet.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r33.3
+	- Added the first public version of the tutorial editor/player (Adventure Guide > Tutorials). Not available tutorials there yet. More details and instructions/guide to come next week.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r33.2
+	- Fixed the END key feature for menu navigation :)
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r33.1
+	- Added the END key for menu navigation to jump to the last menu item.
+	- Fixed a bug with current quest in range notification, showing the quest giver waypoint instead of the quest end waypoint in chat.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r33
+	- Fixed a bug with the class trainer leading to UI errors.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r32.23
+	- Fixed a bug with the resource notifications
+	- New routes and waypoints added for Thousand Needles, Azshara, Blasted Lands, and Silithus by Emilylorange
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r32.22
+	- Fixed a bug with the soft interact enable/disable key bind and chat notifications. Was not working correctly while targeting a friendly or hostile unit.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r32.21
+	- Tried to fix a bug where the notificaton on resources was breaking Blizzard tts output in instanced zones (like dungeons).
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r32.20
+	- The addon now is notifying you on resources if you are on follow.
+	- Fixed an issue with not working resource notifications for resources with umlauts. ("Lichblüte", "Feuerblüte", etc.)
+	- Fixed a bug where the click/clack sound was going crazy with multiple audio beacons at the same time (quest notifications).
+	- Fixed a bug that was leading to incomplete spec lists in the bis menu.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r32.19
+	- Removed an overlooked debug chat output from Quests > All
+	- Added waypoint names to quest available/current notifications in chat.
+	- Fixed a bug that was showing incorrect monitor "Event steps" parameters
+	- Fixed a bug that was breaking the guild bank menu.
+	- Changed a lot of default settings to more appropiate values. The most important changes are:
+		- The chat has now 3 tabs as default (Default, Communication, and Other) with the appropiate message types enabled.
+		- The default key binds for small scans (SHIFT U/O/P/I) are removed.
+		- The default key bind for Enable/disable Enemy Soft Targeting has been set to SHIFT I.
+		- The default key bind for Enable/disable Interac Soft Targeting has been set to SHIFT O.
+		- The default key bind for Enable/disable Friends Soft Targeting has been set to SHIFT P.
+		- Core > Monitor > Player > Health & Resource and Pet > Health are enabled as default.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r32.18
+	- Fixed a bug with not working quest tooltips in the quest log.
+	- Added an option to enemy/friend/interact soft targeting settings: "Sound on empty soft target" (default: silent).
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r32.17
+	- Emilylorange mapped routes, graveyards, and about 1/2 the existing quests in Azshara, and parts of Blasted Lands.
+	- Fixed some bugs with the dialog-key replacement (space to auto/complete accept quests, etc.). It is now selecting current quests only if the quest objectives are actually completed and ready to finish. Additionally the feature now should work with all quest windows.
+	- Fixed a bug with quest notifications where setting Available Quests > Enabled to Off also was disabling notifications for Current Quests.
+	- Removed "Ignore quests x levels below your level" for option current quests notifications, as that wasn't making much sense.
+	- Added you PvP status to the General section on the overview page.
+	- Fixed a bug where the resource scanning feature Notify on resources was reading not only the found resource, but also names of nearby group members, npcs, etc.
+	- Fixed a bug with the DK start quest "Death comes from above". Special task now should start regardless of the chat settings for Creatures > Whisper.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r32.16
+	- Fixed a bug with quest notification for completed quests that was breaking the feature.
+	- Fixed a bug with the auction house that was leading to an empty Auctions from full scan list.
+	- Fixed a bug with Monitor > Player > Health continous output that was unintentionally outputting 1 if the player was dead.
+	- Added a new soft targeting setting for enemies: Options > Options > Soft Targeting > Enemy > Mute Names in Combat. Default: Off. With On the addon will not output enemy names for soft targets in combat. This setting is to avoid audio clutter in fights with a lot of enemies.
+	- Fixed a bug with the BIS Show your class only setting.
+	- Fixed a bug with BIS details in loot roll tooltips.
+	- Added BIS details to char equipment tooltips.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r32.15
+	- Added best in slot lists for max level chars per class and spec under Core > Best In Slot > Lists. As default the addon only shows lists for your current class. Go to Core > Best In Slot > Options to change that. First item in lists is BIS. Second is second best, etc. The loot roll tooltip has a new section named "BIS info" with BIS details for the item (if that item is on any BIS lists).
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r32.14
+	- Tried to fix the bug with not working "contains" auras. Again.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r32.13
+	- Fixed a bug with the four new "... duration" aura attributes, that was breaking them and all conditions with the Contains operator. The new auras now should work, and existing aura shouldn't be triggered unintentionally anymore.
+	- Fixed a bug with quest notifications that was causing errors.
+	- Fixed a bug with friendlist that was causing errors.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r32.12
+	- Added four new attributes for aura conditions: "Buff list target remaining duration", "Debuff list target remaining duration", "Your buff list remaining duration", "Your debuff list remaining duration". You can use them to evaluate the remaining duration of the buff/debuff from the "buff/debuff list (L) contains" conditions for you/your target. They have no effect if there isn't the appropiate "buff/debuff list (L) contains" condition in your aura.
+	- Added a Core > AtlasLoot > Loot history menu with all blue (rare) or better items you've looted. As the addon explicit needs to record looted items, the list of course only has items that you've looted from now on.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r32.11
+	- Added a "Buy" menu option (additionally to Left click and Right click) for items at vendors to buy stacks. If you're buying more than 20 items the addon needs to buy them in steps of 20 every 0.25 seconds. That may take a while with lager stacks. The addon plays the auction house scan progress sound on every bought stack of 20 items.
+	- Fixed the missing translations for beacon types in quest notifications settings.
+	- Fixed a bug that was still printing available quests to chat if quest notifications were disabled.
+	- Removed "level unknown" output for objects on interact soft targeting with sku tts.
+	- Auction house filters are now working for auctions from full scan too.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r32.10
+	- Disabled quest notifications while you are on taxi via a flight master.
+	- Fixed a bug with quest notifications distance that is printed to the chat.
+	- Fixed a bug with quest notification for some daily quests that don't have a level.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r32.9
+	- New: Quest notifications, under Quests > Options > Quest notifications. (default: off)
+		Quest notifications are auto anouncing quests nearby you that are available to accept or ready for hand in.
+		The idea is, to not only "play the list of available quests", but instead realize that there are available quests around by just walking around and exploring the area.
+		For that there are audio beacons added to the quest givers with available quest / quests to turn in and the addon is printing the quest in chat.
+		I tried to design the beacons as conservative as possible, as in some areas could be several available quests at one place, and therefore serveral simultanous beacons.
+		As default the beacons at 50 volume of usual beacons, and they are only active in 180 degrees in front of you. The maximum range for available quests is 30 meters. The maximum range for quests to hand in is 60 meters.
+		That should keep the audio clutter in areas with many quests low. If you still uncomforable with the beacons, there are a lot of options to change their appearance under Quests > Options > Quest notifications. Separately for available quests and completed quests. The options should be pretty self explaining.
+		So, as stated, for now the feature is disabled for both types as default. Get to Quests > Options > Quest notifications, enable it, adjust the settings if required, and please provide feedback if the feature provides any value and/or what should be changed.
+	- New: AtlasLoot favorites. Added favorites lists for all slot types (head, feet, weapon, etc.) under Core > Atlasloot. Every item in Atlasloot lists has a "Add to favorites" sub menu entry, to add the item to the favorites list. All favorites lists can have a unlimited number of items. They are numbered. The number is the priority for the item. You can move items up and down in the priority lists. The item priority in a list is are just fyi. For organisation. The addon will let you know if you are rolling on an item that is in your favorite list ("item xy, prio x in atlasloot...")
+	- Added the currently worn item to vendor item tooltips.
+	- Fixed a bug with posting auctions in the auction house. The addon was ignoring the duration parameter and posting all auctions with 24 hours. It now should correctly post auctions for 12, 24, or 48 hours.
+	- Fixed a bug with the pet section on the overview pages, that was blocking all sections below the Pet section if there was no pet (for example the Cooldowns section with default settings).
+	- Fixed a bug with sending a new mail that was leading to a fatality sound. Bug had no negative effects, though.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r32.8
+	Next try to fix the Interact Soft targeting:
+	I have fixed some code that sometimes was missing target changes and was outputting incorrect "enabled/disabled" messages to chat in some scenarios. That should have fixed the interact soft targeting issues.
+	Additionally I've renamed the global soft targeting option "Do soft targeting if" to "Do interact soft targeting if" to make clear that it is just about interact and not for enemy and friends. 
+	Important: as it turned out some of you are not aware of the "Do interact soft targeting if" option or its impact, and therefore by mistake assuming that interact soft targeting unintended was disabled.
+	That is not the case. If you have the "Do interact soft targeting if" setting set to "No hard target locked" (that is the default), then interact soft targeting will be paused as long as you are hard targeting something (by pressing tab or control tab).
+	That is intended. You wouldn't be able to use G for enemies without having interact soft targeting paused while hard targeting some unit.
+	Therefore you need to clear your hard target (escape) to continue interact soft targeting.
+	So, interact soft targeting not working while hard targeting something is no error. Interact soft targeting is not disabled in that case. It is just paused. There is no sense in pressing the Enable interact soft targeting key. It is enabled. Just paused. You just need to clear your hard target.
+	As it sometimes is required to have a friendly hard target locked and still to do interact soft targeting (for example if you are /follow a player and still would like to find objects), I have added a third available option to the "Do interact soft targeting if" setting. That is "No attackable hard target locked" (from now on that is the default for new profiles). That one is pausing interact soft targeting only if you are hard targeting an _attackable_ unit.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r32.7
+	- Emilylorange fixed a lot of map bugs in Northrend, mapped Ashenvale, partly mapped Azshara, and added alliance friendly mailboxes to Dalaran.
+	- Tried to fix the issue where the soft targeting settings are sometimes not correctly applied. Unfortunately I have no clear idea when that happens. Apparently on some unkown combination of login/reload/teleport/targeting. But I can't find out, and therefore not test. Please report if it still happens. Thanks!
+	- Editing an aura won't change the name of renamed auras auras anymore.
+	- In editing an existing auras there is a new option "Auto generate aura name" to set renamed auras to the old auto-generated name that is build from the auras conditions.
+	- Fixed bugs with buying items from the auction house.
+	- Fixed a bug with auras containing the conditions Buff List Target, Debuff List Target, or Spell Name On Cooldown. With multiple auras containing those conditions only the first aura was triggered.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r32.6
+	- Tried to enhance the loading times. Initial loading on login and reload is still the same, but changing zones (transition in / out of dungeons, taking portals, ships, etc.) should be a bit faster.
+	- Added a new option "Rename" to each aura under Auras > Manage auras to edit the aura name (that is just build from the auras conditions by default).
+	- Added options to ignore debuffs by name under Core > Monitor > Player and Party > Debuff. The menu with not ignored debuffs is slow. That is expected, as it has a massive list of all spells in the game. Not a bug! :)
+	- Fixed a bug with the class trainer window, where not some not available skill could have been selected as default unless you manually selected any skill to train.
+	- Resource scanning with ruRU locale should work now?
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r32.5
+	- Fixed a typo that prevented the full addon from being loaded. Pardon. :D
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r32.4
+	- Added DialogKey-like keys for quest and dialog windows. Space key in dialog windows (quest list, dialog options, flight master, innkeeper, etc.) will select the first active quest. If there isn't any active it will select the first available quest. If there isn't any available it will select the first gossip/dialog option. Space in quest dialogs will accept/complete/finish the quest (depending on what window is open). Number key 1 to 4 in the quest reward choice window will select the quest reward number x.
+	- Added Russian translations for resource names (herbs, mining nodes, gas)
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r32.3
+	- Fixed an issue with enabling/disabling the soft targeting categories via key binds or changing settings via the menu where settings were not applied correctly on login/reload.
+	- Changed the maximum range for interact soft targeting from 18 to 15 meters, as it turned out that this is the maximum.
+	- Fixed the "Do soft targeting if > No hard target locked" option (that is the default value) to ignore interact soft targets if you are targeting something. This should fix the issue where you could not attack hard targets using G if there was some interactable soft target (corpse, box, etc.) in front of you.
+	- Fixed an issue where the addon was not playing the target sound/name for corpses on interact soft targeting
+	- Added CTRL + SHIFT + N as the default key bind for Enable/disable Interact Soft Targeting. Only applies to new users or users who not already have bound a key for this.
+	- Added the option "Chat notification on enabling/disabling soft targeting categories" to the overall soft targeting settings (default: on).
+	- Fixed (hopefully) an issue with minimap scanning 
+	- Again (hopefully) fixed another bug with minimap scanning and notifications on resources, that was leading to scans not working, resource notification not working, and a load of other strange things.
+	- Removed a bunch of Ulduar maps from the database. Should fix the error spam in Ulduar raid.
+	- Removed the Options > Options > Debug Options > Show error menu item, as there now is /sku errors, and this is the prefered way to show errors.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r32.2
+	- Changed the default setting for "Options > Options > Soft targeting > Interact > Output sound for" from "Objects and lootable/skinnable and units" to "Objects and lootable/skinnable"
+	- Fixed a bug with minimap scanning and notifications on resources	
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r32.1
+	- Added AtlasLoot integration/accessibility. There is a new menu entry Core > Atlas Loot to access AtlasLoot database. You need to have AtlasLootClassic installed for that (https://www.curseforge.com/wow/addons/atlaslootclassic/download/4352422). All data is directly taken from the AtlasLoot addon. The Search submenu has just a long list of all items to filter for any specific item. The Lists submenu has the AtlasLoot categories, etc. Item Sets and Items have the usual Sku tooltips with more info (set item list, set bonus, dropped by, currently equipped, etc.). This is just the first implementation with raw access to the data. I will add more features like favorites, filters, etc. in a later step.
+	- Fixed a bug with Core > Auction house > Sales > New Auction. Menu shouldn't show "Empty" anymore
+	- Fixed a bug with the overview pages and some section that were cutting the page off (raid, pet)
+	- Fixed a bug with hearthstone cooldown on overview page
+	- Fixed a bug with the friends list that was cause a single error on login.
+	- Fixed a bug with trainer windows, that was showing not available skills
+	- Fixed a bug with role check buttons
+	- Added settings to enable and configure soft targeting. Please read the whole description below. I know it is a lot of text. But it is important to understand the feature!
+		Soft Targeting is a new way to automatically target items like enemies, players, NPCs and objects without scanning or pressing a button. With Soft Targeting, the game will automatically target anything that is in a certain area in front of you.
+		Overview:
+		In traditional targeting, you press TAB or CTRL + TAB to target something. This target is locked until you remove it with ESC or switch to another target with TAB. All your activities (spells, attacks, etc.) are performed on this locked target. This traditional target or targeting still exists. From now on, however, we no longer call it „target“ (or „targeting“) but „Hard Target“ or „Hard Targeting“ for better differentiation.
+		Soft Targeting is an additional target or an additional way to target something. With the old Hard Target and the new Soft Target you can have two targets at the same time.
+		You do not actively select the Soft Target via TAB. It is always automatically the next appropiate item in your line of sight. If Soft Targeting is enabled, the game permanently selects the next item in front of you as the Soft Target. The Hard Target, the one you select using TAB, remains unaffected. If you have not selected a Hard Target with TAB, all actions go to the automatically selected Soft Target. If you have explicitly selected a Hard Target, all actions go to this Hard Target as before.
+		If Soft Targeting is activated, you can always make the automatically selected Soft Target become your Hard Target by pressing TAB (or CTRL + TAB for friends).
+		So, there are now two "targets". The previous Hard Target that you select, and a dynamically changing Soft Target that the game automatically selects and changes.
+		How it works:
+		Soft Targeting is performed separately for enemies (mobs, hostile players), friends (NPCs, friendly players) and interaction items (quest items, herbs, mining nodes, portals, quest givers, etc. - simply everything you can interact with) and can be separately enabled and configured for all three categories. So, for example, you can enable it for enemies, disable it for friends and enable it for interaction items. By default, it is disabled for enemies and friends, and enabled for interaction items.
+		You can enable and disable Soft Targeting via three new key bindings. These are not assigned by default. You will find them under Core > Sku key bindings. And you can enable/disable Soft Targeting via the menu under Options > Options > Soft Targeting. In this menu you will also find settings for the Soft Targeting categories (enemy, friend, interaction). The settings are mostly the same for all three. You can set a range in front of you in which the game selects Soft Targets (5, 15 or 180 degrees) and a max distance (enemy and friend up to 60 meters, interact up to 18 meters).
+		Since the Soft Targets are selected automatically by the game without your intervention, the addon announces the Soft Target in the same way as the Hard Targets (that are explicitly selected by you), with name, level, etc., when the Soft Target is changing. In addition, it does play a short sound before each Soft Target output so that you can distinguish between the hard and soft target outputs.
+		The settings in the menu are mostly to control when and how the game plays these outputs on new soft targets. You can disable the sound. Or use only the sound and disable the name. Or change the sound. Or have no announcement at all for certain Soft Targets. (For example, Friend Soft Targets have "Players" and "Pets" disabled by default. Otherwise you would have a lot of spam in crowded places with a lot of Soft Target changes). Just review the settings. 
+		As there can now be two targets with (the Hard Target and the Soft Target), and there could be a lot of Soft Target changes, depending on the amount of items around you, there are also two new key bindings under Core > Sku Key Bindings to provide more overview. One to announce your current Hard Target again, and one to announce the current Soft Target again. Both are unassigned by default.
+		There are also two general settings for Soft Targeting in the menu:
+		- "Auto set hard target to soft target for". By default, the game does not automatically make a new Soft Target your Hard Target. With this option you can activate this for enemies or friends (not for both). Your Hard Target will automatically change with every Soft Target change. Unless you have locked a Hard Target by pressing TAB or CTRL + TAB. In this case, the Hard Target will no longer change automatically.
+		- "No soft targeting if". As mentioned, as long as Soft Targeting is enabled, the game permanently selects the items in front of you as Soft Targets. Even if you have actively selected (locked) a Hard Target. If new/more items enter or leave the field of view, the Soft Target changes automatically. And the new Soft Target is announced. With this setting, this no longer happens as long as you have a locked Hard Target (i.e. you have actively pressed TAB or CTRL + TAB to hard target something).
+		Additional information:
+		- Important: If you exclude specific items (e.g. "units" in interaction, or „players“ in enemies), then Soft Targeting for these items will still be done by the game, and may block other Soft Targets. There is just no announcement of the Soft Target change anymore. That's all. Example: If you have enabled Soft Targeting for Interaction, the game automatically is soft targeting all interactable items. This could be a mailbox or a quest giver. If you are turning towards a mailbox, it becomes the Soft Target (because you can interact with it). However, if there is a quest giver in straight line between you and the mailbox, then the quest giver becomes the Soft Target (because you can interact with it too, and Soft Targeting always selects the closest matching item in line of sight). The quest giver therefore blocks the mailbox as a soft target. This happens _even_ if you have only selected "Objects and lootable/skinnable" for Interact and not "Objects and lootable/skinnable and _units_". This setting only applies to the outputs. Not to the actual selection of targets by the soft targeting feature.
+		- You can interact with Interact Soft Targets as usual with the G key. Without having to take them to the Hard Target with TAB / CTRL+ TAB. However, this is not possible with enemies or friends Soft Targets. You have to take them to your Hard Target using TAB / CTRL + TAB.
+		- As mentioned, Interact Soft Targeting applies not only to objects in the game world, but also to NPCs you can interact with in some way. Vendors, quest givers, guards (they have a dialogue), corpses (can be looted), etc.
+		- When fishing, Interact Soft Targeting immediately will find the bobber (and you can press G without scanning). However, sometimes the the bobber will fly a little further than the maximum range of 18 meters for Interact Soft Targeting. In this case, Soft Targeting will not detect it. Just cast again until the bobber ends up within the 18 meters range.
+		- All old scan features are still available. You usually just should don’t need them anymore.
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r32
+	- Updated the interface version to Ulduar patch.
+	- Added support for resource scanning (mining, herbalism) for Chinese (Simplified).
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r31.41
+	- Changes for Core > Monitor > Party > Health Pitch style:
+		- Renamed "Silent on 100 and 0 percent" to "Continous silent on 100 and 0 percent", as it applies on continous outputs only and not on event outputs.
+		- Added a new setting: Add sound on 100 percent. Default: Yes. Adds a very short pop sound to the number if the party member is at 100 percent health.
+		- Added a new setting: Add Dead on 0 percent. Default: Yes. Adds the word Dead  to the number if the party member is at 0 percent health.
+		- A triggered full output (via the "Trigger monitor party continous output" key bind) now ignores the Prio settings and outputs members ordered from 1-5.
+		- Added a new slash command to enable/disable the party health monitor: /sku mon,party,health
+		- Added a new slash command to print the auto-detected roles to chat: /sku mon,party,roles,print
+		- Added a new slash command to reset the auto-detected roles: /sku mon,party,roles,reset
+
+
+-------------------------------------------------------------------------------------------------------
+Changes in Sku r31.40
+	- Added a new slash command: /sku errors. It is printing the last 5 errors as single lines to chat. (If Buggrabber and Bugsack are installed.)
+	- Fixed an issue with Core > Action Bars > Totem Set 1-3 > Key Binding. Should work now.
+	- Map updates
+		- Added waypoints for Ulduar flight master and repair
+		- Added a lot of Argent Tournament Grounds waypoints
+		- Added a waypoint for ulduar meeting stone
+	- Added the raid members list to the overview page(s) (see next bullet)
+	- Added a second overview page. The second overview page is exactly working as the first one, except that you need to press SHIFT + UP instead of SHIFT + DOWN to open it. The idea is to split information on to pages, instead of having a long and growing list on a single page. As default the second page only shows the raid members, if you are in a raid. Get to Options > Options > Overview pages, to show/hide contents on the second or first page.
+	- Jus, Kim and Kev got their overall voice volume raised by ~20%.
+	- Renamed the "Blizzard whisper" chat type to "Battle net whisper"
+	- Fixed a bug with auction house full scan data where the lowest buyout price was 0 copper
+	- Added a aura log recorder to debug lag issues. Don't use it without being requested to do so. Enable with /sku record,start and disable with /sku record,stop. All data is cleared on login/reload.
+	- Fixed a bug with missing outputs for some debuffs in Core > Monitor > Party > Debuffs. Should now work with all debuffs and debuff types.
+	- Renamed "Core > Monitor > Party > Health" to "Health Chord Style"
+	- Added a second experimental style to monitor the health of party members: "Core > Monitor > Party > Health Pitch style".
+		This concept again is to lower the clutter and output spam to a level where you would be able to use it to monitor and heal even in raids of 10, 15 or even more members without being overloaded by the audio outputs. At the moment it is just for partys with 5 players. I will extend it to 10 player raids in the next step, if the concept turns out to be usefull.
+		This party health output style is outputting numbers (1, 2, 3, 4, 5) in different pitch levels for party members.
+		However, is it not speed up on low health like Audio QS. Instead it is outputting the party members number once on every event (damage or healing). Example: if party member 2 is taking damage (or is healed) it doing a single "2" output.
+		Each number is recorded in 15 different pitch levels. There is a very, very low pitched "2" and a very high pitched "2" (and 13 pitch levels in between). Very low means very high health. Very high means very low heals.
+		So, the output for party member 2 starts with a very low "2" at 100% and gets higher and higher every time the party member 2 is taking damage. 
+		That way there is less audio spam, as the addon has not to constantly repeat the unit number, but you are still able to get the current health from the outputs pitch level if something happens.
+		To conclude: The outputs are not continously, as with Audio QS. Instead they are event based. There is (or can be, depending on your setting) a single output on every event (unit is getting damage or is being healed). If nothing happens, a unit taking damage or heal, there is no output for that unit.
+		There are several settings to control/restrict the output, to minimize the amount of outputs to what you actually need to know, avoiding clutter from stuff that isn't important.
+		Most of those setting are per role (tank, heal, damager). That way are able to set different values per role. Example: Output on every event for tanks, only on +/- 5% health change for healers, and only on +/- 20% heal change for damagers.
+		The addon is auto detecting the role of each party member. It is using a combination of amount of damage taken in all previous fights and overall max health for each member. 
+		As there is no damage if you just joined a party, there will be no role assigned during the first few fights. If the addon "learns" more, it will start to assign roles to party members.
+		The auto role assignment may not be 100% accurate at all times. (For example if there boosting groups and players with much higher levels and therefore much more health than the tank. Or of some non-tank party member is taking massive amounts of damage. Or if there just isn't enough data from fights.) Your can alternatively use the Role assignment option to manually assign fixed roles to the party members.
+		Additionally to the single party member number output on each event (damage or heal) you can set up a continous output starting at a specific health percentage at a specific rate. Example: You can set up the pitched number output starting from 50% or less health every 3 seconds.
+		The "Continuous output start at" setting is role specific, and provides an option to set the percent health value to start the continous output from.
+		The "Continuous output every seconds" settings is for all roles, and just is the amount of seconds between the continuous outputs.
+		The "Event output limitation" setting again is role specific. It is to limit the amount of events (damage/healing) with outputs. It provides two settings per role:
+			- "minimum percent health difference since previous event": This is the minimum percentage of health change since the previous output. Example: if a unit has 100% health, and this is set to 15, then the first output will be at 85%, the second at 70%, and so on.
+			- "minimum pitch steps difference since previous event": As mentioned, there are 15 different pitch levels (roughly every 6% health). This is the minimum pitch level change since the previous output. Example: If a unit has 100% health, and this is set to 2, then the first output will be at 88% (2 x 6 = 12), the next at 76%, and so on.
+			The two event output setting need to be both true to have an output triggered. If percent health is set to 1% and pitch steps is set to 0, there would be an output on every 1% change (percent is >= 1, and step is >= 0). However, if pitch steps is set to 1, then there won't be any output if the pitch hasn't been changing by at least 1 step, no matter if the percent health has been changed by 1% or more.
+			Both setting may sound similar, but they are not. Always consider both values, and what will happen if you are changing them.
+		The "Prio output" setting is role specific. It controls if outputs for roles are priorized. Usually outputs will happen in the order they are occurring. If the damager is hitted first, and then the tank, the addon will ouput the damagers number and than the tanks number. If you set Prio Output for some role to Yes, then those outputs are always placed at the first position of the output queue.
+		The "Percent delay for next output in queue" setting is for all roles. It controls how "fast" the addon is outputting numbers if there is more than one output in the queue (for example if all party members are taking aoe damage at the same time). The addon tries to not overlap the outputs. There is a delay of 0.2 seconds after each output before the next number is outputted. That is 100%. If you lower this setting the next number will be outputted early. The outputs can start overlapping at ~80%. 
+		As usual you are always party member 1. The party leader is always party member 2 (except if your are the leader, of course). Therefore it could be a great idea to make the tank the party leader. That way you always have the tank as party member 2.
+		As stated, the outputs are event based. If nothing happens, there is no output. But sometimes it can be helpful to have a quick overview of the partys health, even if nothing happens. Therefore there is a new Sku key bind for this feature, Trigger monitor party continous output, that is not bound as default. Bind it, to trigger a single full party health output on request at any time.
+
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.39
+	- Removed not longer required map files. Should have reduced the download size and the required time for extracting the .zip file a lot.
+	- Sku now is auto-hiding the Details News window on first login and the default details panel for alts.
+	- Added a dispell / debuff monitor under Core > Monitor > Player / Party > Debuffs. Default: disabled.
+		It is basically working as Health, Mana, etc. and is announcing dispellable debuffs for you and/or group members.
+		No debuffs types are enabled as default. You explicit need to select the debuff types that you would like to monitor. (Magic, Diseases, Poison, Curse)
+		There is only a single output if a debuff of some type is applied, renewed, or if the stack number changes. No continous output as default. Use "Continuous output starts after seconds" to have a continous output started if the debuff type wasn't removed after x seconds.
+		The default output for Player is the full word (Magic, Disease, Poison, Curse).
+		The default output for Party is just the first character (M for Magic, D for Disease, P for Poison, C for Curse) and the party members number. Example: D3 means, party member 3 has some disease debuff. There is on option to switch to full words instead of just the first character.
+		For Party you are always party member 1. Other party members are 2 to 5
+		I did a lot of test for the debuff / dispell monitor feature, but it is of course difficult to test. Even more for parties. Please test and provide feedback / report errors
+	- Added a health monitor for your pet under Core > Monitor > Pet > Health
+	- Added a new voice for monitor outputs: Kevin
+	- Changed monitor voice Kimberly a little bit, to better distinguish from Justin
+	- Changed the output for 100% from "full" to "10"
+	- Added slash commands for monitors to switch them on/off:
+		/sku mon player health
+		/sku mon player power
+		/sku mon player debuffs
+		/sku mon pet health
+		/sku mon party debuffs
+
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.38
+	- Removed empty (silent) lines from tooltips.
+
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.37
+	- Added a new submenu Options > Options > Overview page sections to set up what sections in what order are shown on the overview page (Shift + Down). Get to the sections submenu, there are options to move each section up/down or hide/show.
+	- Removed an overlooked debug output on login
+
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.36
+	- Added basic support for the Details! damage meter addon to Sku. Download the Details! addon here: https://www.curseforge.com/wow/addons/details/download/4175900
+		- The Details! addon has a setup assistent, that is shown on first login and that isn't accessible. The sku addon is auto-completing the assistent for your and is hiding the visual Details! window.
+		- There is a new menu entry: Core > Damage meter. Under Reports are all fights. Each fight has a tooltip with damage data (DPS, damage total, damage taken).
+		- Please test. I will add more stuff later.
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.35
+	- Fixed the broken engineer auction house in Dalaran.
+	- Added a new option to Core > Monitor > Player > Health/Power: "Continuous output start at". Possible values are "Never" and 0-10. The default is never. The continuous output starts if the health/mana is equal/below the value. The old "Continuous output" Yes/No option was removed, as it is not longer required with this change. If you had "Continuous output" enabled, you need to set up that again via the new "Continuous output start at".
+	- Added a new section "Cooldowns" to the bottom of the overview page with all spells from your spellbook that are currently on cooldown and their remaining cooldown.
+
+	
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.34
+	- Added Shaman totem sets to Core > Action bars. There are 3 sets, with 4 totem buttons each.
+	- Added the set number to all totem button key bindings under Core > Game Key Binds, for clearification.
+
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.33
+	- Added Core > Monitor > Player > Power to monitor your power ressource (Mana, Rage, Energy, Runic Power). Works the same way as Player > Health, except there is an option to choose the power/resource type. The default is your main resource. Default voice is Kimberly. To avoid extensive audio clutter the addon tries to speak both, continuous health and power at the same time, if both are enabled. That of course only works if the "Continuous output every seconds" setting for both is the same or a multiple. (hp 3 secs / power 3 secs, 3 / 6, 3 / 9, etc.)
+	- Added an "Event Steps" setting to Core > Monitor > Player > Health and Power. That is the number of steps on from 0 to 100 the addon is announcing values. 10 means every 10 percent, 5 means every 20 percent, 2 means every 50 percent. The default value for Health is 10, the default for Power is 5.
+	- Added a new experimental feature to monitor the health of party members: Core > Monitor > Party > Health
+		This is just a first test on an idea for an audio concept. Not a final feature. I would appreciate feedback if the concept provides any value and if it is worth or not to put more work into it.
+		The feature is constantly outputting the health of all 5 party members by playing 5 fast beep sounds in different pitches. The first beep stands for party member 1, the second beep for party member two, and so on. The last beep (the fifth in a full party) is you. If there are less than 5 party members you are always the last one.
+		The pitch of each beep indicates the health of the specific party member. Very low pitch means 100% health. Very high pitch means very low health. Reverted sound with very high pitch means dead / 0% health. There are 8 different pitch levels from 0 to 100 percent health.
+		Example: low, low, low, high, low means, party member 1, 2, 3 are at 100% health. party member 4 is at low health, party member 5 (you) is at 100% health.
+		As default the monitor starts if at least one party member is below 100% health and stops of everyone is at 100%.
+		The feature is off by default. There are options to enable it and more under Core > Monitor > Party > Health.
+		Remember: This is a test to evaluate different concepts for party (and probably raid) health status. Please provide feedback on the value of this specific concept. Suggestion on enhancements or changes, or even different concepts, are more than welcome.
+		The idea is to have a more constant, less cluttered/annoying, and more intuitive output than the one, one, one, etc. from Audio QS.
+		I would assume that, if one gets used to the output style, the output speed could be much faster (if you would like to try, lower the "Speed" option to 20, the default is 50).
+		I could add more options, like volume settings, and an "event" setting where the output isn't continously but event based (if party health actually changes), as with the player > health outputs, and more.
+
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.32
+	- Removed overlooked debug outputs
+
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.31
+	- Fixed a bug with Core > Action bars in vehicles.
+	- Renamed the incorreclty "share quest" sku keybind to "show tooltip for current loot item"
+	- Added the currently equipped item to the current loot roll tooltip
+
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.30
+	- Fixed the item rating issue with death knights and item tooltips in bags.
+
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.29
+	- Lil Kimberly and Justin are there to monitor your health.
+		- There is a new feature under Core > Monitor to monitor different values. Right now there only is Player > Health. There could be more in future.
+		- Core > Monitor > Player > Health is to output your current health. It is mainly intended for raid scenarios, where AudioQs isn't that useful. It is disabled as default.
+		- There are two output volumes (Continuous, Event) that are adjustable from 10% to 100%.
+		- The feature is continuously outputting your health from 0 to 9 using the "Continuous" volume, where 0 means 0% and 9 means 90% health. 100% health is announced as "full". If you health actually changes it is outputting your new health using the "Event" volume. The default value for "Continuous" is 50%, the default for "Event" is 80%.
+		- There are some more settings, like the voice, only in dungeons/raids, etc.
+		- All settings are saved per character.
+		- The slash command to enable/disable the feature is "/sku mon,health"
+		
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.28
+	- Implemented the equipment manager features under Core > Equipment manager
+	- Bug with equipment sets on action buttons fixed
+	- Added the players gearscore to the overview page (General section)
+	- Appended the buffs and debuffs tooltip text to the buffs/debuffs list on overview page.
+
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.27
+	- Chat context menu "send to channel" now is available for additional channels like guild, party, say etc.
+	- There is a new chat context menu entry: send item link to channel. There is a sub menu with a list of all items in your bags and all currently equiped items. Select an item in that list (as usual with Control + Enter) to open the chat edit box with the channel selected and the item link pasted in the edit box.
+	- There is a new sub menu entry for bag items and equipped items in the character menu: Add Link to chat. It is opening the chat edit box with the last used channel selected and the item link pasted in the edit box. Then add your message text or just send the link via enter.
+	- Fixed a bug with action bars (Core > Action bars) and equipment sets
+	- Added Bloodthistle to the list of resources for scanning
+
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.26
+	- A lot of map fixes for Dragonblight by emilylorange
+	- More fixes for German mining resources names
+	- More big performance fixes for auras
+	- More fixes for upcoming Ulduar patch
+
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.25
+	- Fixed the German names of some mining resources for scanning
+
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.24
+	- Enhanced the aura output code to improve the addon performance in raids with 25 players and/or aoe scenarios with a lot of events/mobs
+	- Fixed an issue with item use events in auras
+	- Updated map data: a lot of fixes for borean tundra, more ashenvale routes, more darkshore routes, Mayor Quimby in DK starting area fixed, inscription trainer darnasus linked, minor corrections Darkshore
+	- Removed an overlooked debug chat output for sending mail
+	- Added more item price values (1k-10k gold in steps of 100 gold) to the auction house sell menu
+
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.23
+	- New menu option Navigation > Waypoints > Set Quick Waypoint to coordinates. To set quick waypoints to x and y coordinates. Coordinates are always for your current zone! It is not possible to set waypoints to coordinates in other zones.
+	- Added the value Your pet to Source (L), Target (L), and Target of yor target (L)
+	- Evaluation of auras for units throttled to 2 times per second (from evaluation on every game tick), to increase performance on slow computers.
+	- Fixed Source (L), Target (L), and Target of yor target (L) sometimes giving false positives when there are multiple units with the same name
+	- Source (L), Target (L), and Target of yor target (L) should now work with all available values
+	- Source unit attackable and Target unit attackable should now be available for all events
+	- New aura attributes: Critical, Overhealing percentage
+	- New aura outputs: Damage amount, Healing amount, Overhealing amount, Overhealing percentage
+	- Lots of fixes in preparation for stuff that will break with the upcoming Ulduar patch changes.
+
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.22
+	- Added weapon buffs (for example from shaman totems) to values for your buff/debuff aura conditions. Example aura to check if the player has shamans Windfury buffed: If your buff list (L) contains Windfury Weapon (Passive) then audio output single and sound brass 5. Weapon buffs are only working for the player. Not for your target.
+	- Added weapon buffs to the buff list on the overview page (shift + down)
+	- Added a new sub menu: Options > Options > Sound Settings. It has 5 different game sound settings. All are Off as default:
+		- Reverb: Enables reverb in certain areas that have reverb zones such as some indoors, underwater, etc.
+		- Positional Low Pass Filter: This cuts off highs from sounds as you get further away from them. It's a subtle change, but neat nonetheless.
+		- DSP Effects: This has to be enabled for the lowpass to work.
+		- Sound When Game Is In Background: This plays sounds while the game is not in focus.
+		- Zone Music No Delay: This immediately plays music when changing zones, and also stops random silence between music tracks when a music track for a zone finishes playing.
+	- Fixed a bug with the minimap resource scanner (control + shift + r) where setting herbs to Off under Core > Options > resource scanning > Herbs were disabling the scans for mining nodes too.
+	- Added gas resources to Core > Options > resource scanning.
+	- There is a new experimental feature: notify on resources (mining nodes, herbs). If you are moving the feature is permanently scanning for resource that are popping up on the minimap. You are notified If there are new resources, and can then to the usual resource scan to get it.
+		- The default setting is Off. Enable it under core > options > resource scanning > notify on resources.
+		- There is a new key bind for this feature: core > sku key binds > bind key > toggle notify on resources
+		- It is scanning for the same resources that are enabled for the usual scans (core > options > resource scanning > mining/herbs).
+		- As stated, it is experimental. I've tested it, but issues with mouseover notifications wouldn't be totally unexpected. Please test and report. Thanks!
+
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.21
+	- Removed some currency icon links in the statistics menu.
+	- Core > Social menu will now auto-open on the wow default key for Open Social Pane (O).
+	- Added 6 more menu quick access key binds (5-10). Default: bound to nothing.
+	- Sorted the list of sku key binds.
+	- Added the description to the selected enchantments tooltip.
+	- Added a "Have materials" filter checkbox to the crafting/profession menus. Default: disabled.
+	- Added a "Filter" option to enter filter terms to the crafting/profession menus. Do a left click on "Filter" and just follow the instructions.
+
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.20
+	- Added a basic social menu under Core > Social. At the moment only Core > Social > Contacts > Friend list is implemented. Every friend has more info in the tooltip and a sub menu with remove, invite, send whisper and take note. Ignore list, who, guild and other sub menus will be added later.
+	- Fixed a bug with Chat context menu "Whisper to sender".
+	- Fixed a bug with the Quest database > Start in Zone menu.
+
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.19
+	- Control + Shift + Alt + F5 to F8 is now updating the quick waypoint with the position of the party member and auto-starting a close route to that waypoint.
+	- Tried to fix some issues with chat line context menu and Battle.net names. No idea if that worked.
+	- Fixed an auction house bug with buying/bidding via Auctions > auctions from full scan
+	- Quests now can be flagged as "blacklisted". Blacklisted quests are impossible to do for blind players or only with sighted help. The blacklisted flag and optional details on the cause are shown in all quest tooltips/details and in accept dialogs.
+	- Quests now can have extra sku comments. Those comments contain information that you should know to complete the quest. The sku extra comments are shown in all quest tooltips/details.
+	- Added the item level to item tooltips
+	- Added a new Sku key binding: stop following route or waypoint. Default: not bound
+	- Added a lot of map fixes for quest in howling fjord
+	- Added blacklist flag for some quest in howling fjord
+	- New aura attributes: Your target's health, Your target's resource, Your target is attackable
+	- New aura outputs: Your target's health, Your target's resource
+
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.18
+	Core
+	- Achievements and Statistics frame added: Core > Achievements
+
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.17
+	Core
+	- Fixed a bug with displayed auction bid prices (some were incorrect) and bidding on auctions (did no work in some scenarios).
+	- Fixed some audio outputs in auction house to use the blizzard tts
+	- Fixed a bug with not working roles assignment in LFG on enlisting without being in a party
+
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.16
+	Chat
+	- Another bug with the chat output fixed: the "addon" chat type will now work with all chat tabs, not only with the first one.
+
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.15
+	Core
+	- Removed two overlooked debug outputs for auction house and actionbars
+	- Fixed a bug with ascend/descend keys and the menu opening
+	- Fixed the Core > Mail > x > Reply option
+	- 7th available scan type named "360+180 3-10 fast" added. That is 360 degrees from top to bottom, 3-10 meters, in 15 seconds. Detection quality is medium to low.
+	- Hearthstone (Scourgestone) for deathknights on overview page fixed
+	- gas resources are added to the resource scan
+
+	Chat
+	- There is a new chat type for addon chat outputs: SYSTEM > ADDONS. The default is "text". "Addon chat outputs" is every chat output from Sku and other addons. (Example: results for resource scans.)
+	- Due to the new chat type "Addons" the settings for all chat types under "Chat types > SYSTEM" are resetted to the default values for all existing tabs.
+	- New option in chat tabs menu: "set all message types and channels to text"
+	- New option: Chat > Options > All voice output via blizzard tts (default: off)
+
+	Auras
+	- New aura attribute: "your buff list"
+	- New aura attribute: "your debuff list (l)"
+
+	Options
+	- Options > Options > Profiles > New fixed
+	- Options > Options > Profiles > Delete fixed
+
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.14
+	- The operators list in aura conditions is now showing only valid operators for the selected attribut
+	- Fix for aura attributes in combat, source unit attackable, and target unit attackable to work with equal false and unequal operators
+	- Option to bind a new key to action buttons re-added to the action bar menu
+	- Tooltips for auction house items are now showing names and stats for items with random enchantments (x of the Whale, Owl, Wolf, etc)
+
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.13
+	- Outlands - Blade's Edge Mountains map data added, mapped by Lironah and Emilylorange
+	- The auction house history data is back. :) There _should_ be no more risk for errors with lost settings/auras/etc. However, it is a complex topic, and I would suggest to backup your WTF folder before using this update. Just to be on the safe side. Even if it shouldn't be required. :)
+	- Fixed a bug that prevented the addon from loading without questie or bugsack installed.
+
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.12
+	Auction house
+		- The auction house history data is disabled for now as it is again leading to issues with lost setting. That means, there are not historic price data in item tooltips for now. 
+
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.11
+	General
+		- Action bar names under Core > Actions bars renamed to be more consistent with the names under Core > Game key bindings.
+
+	Maps
+		- Northrend Icecrown mapped
+		- Slightly changed the waypoints and added a rescue point in the deeprun tram to make riding the tram easier.
+
+	Mail
+		- Quest items and soulbound items in Mail > New letter > Items are filtered out.
+		- Bug with stuck in endless loop with Mail > Open all while bags are full fixed.
+
+	Auction house
+		The full auction house feature was updated. The "processing" sound has been changed. An additional sound for "processing completed" has been added.
+		The general speed has not been changed. That is not possible. Blizzard is throtteling addons on querying the auction house. That throtteling is dynamic. It depends on the number of players on the server, on the auction house workload and more. The same query can take 5 seconds or 25 seconds. That is expected and no error. It is dynamic and depends on the current workload!
+		The required time for queries also depends on the amount of auctions (and therefore on the server population, as high pop servers will have much more auctions than low pop servers).
+		The more auctions a query is returning, the longer the query takes. Querying all auctions from "Trade goods" with tens of thousands of auctions swill of course take much more time than querying the "Shields" category with just a few auctions.
+		To overcome this there are new menus to show, find and filter auctions. Those will speed up the process for most items/queries by just using more specific queries.
+		The auctions menu still has 3 main menus: Auctions, Bids, and Sales. 
+		Bids (auctions that you have bid on) and Sales (auctions you have posted) are unchanged. The are working as before. The Auctions menu has been changed. It now has 5 entries: 
+		- Filter and sort (unchanged): 
+			To filter the queried auctions in the lists below.
+		- Auctions by item: 
+			this menu is to query the auction house for a specific item that you are interested in (faster than querying all items from a category).
+			This contains all auction house categories and a fixed list of all items of each category. 
+			The items list in each category is NOT what is in the auction house. It is just a fixed list of all items in that category from the items database. You need to go into the submenu of an item to see the actual running auctions for that item.
+			The first menu entry "all" is listing all auctions from that category (as before).
+			On selecting an item the addon will output the number of actual auctions for each item in that list. That may take a few seconds.
+		- Auctions by seach string: 
+			this menu is querying the auction house for some search term of your choice. Select "enter search string", type in the search term, and wait. Go down if the search is completed, to see the returned auctions. Repeat to search for something else.
+		- Auctions from full scan: 
+			This menu contains all auction house categories and all auctions in each category from the last full scan (see next bullet point below).
+			As the data is from a full scan, the menu is extremly fast and there are no queries. You don't need to wait.
+			However, as the data is from the last full scan, the auctions in this menu could be quite outdated. That depends on when you did the last full scan. Keep that in mind, if you are using the menu. If you want up to date data, do a full scan first.
+			If you haven't done a full scan since login, the menu is empty. In that case, start a full scan first.
+		- Start full scan: 
+			This is starting a full auction house scan. A full scan is getting all auctions at once. Therefore the full scan can take a few seconds or several minutes. That totally depends on the server population, the number of auctions, the workload, etc. If the full scan is running, just wait for it to be completed. Do not do other stuff or try to check auction house categories.
+			A full scan can be done once once in 15 minutes. If you are trying to do it earlier, it will fail.
+			Logging out to the character selection screen and back in with the character will reset the 15 minutes timer. 
+		Price data in item tooltips:
+			The recent item price data is from the last full scan. If you haven't done a full scan in the current session, then there is no recent price data. The recent item price data is cleared on logout/reload.
+			The history item price data is from all previous full scans. Every full scan data is added to the history data (up to 500 auctions per item). The history data is saved between game sessions/reloads.
+
+	Auras
+		- "dot tick" and "hot tick" events to aura attibutes added.
+		- Aura output "Output audio and chat single" added.
+
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.8
+	- Northrend Storm Peaks is mapped.
+	- There is a new key bind: Core > Sku key binds > Bind key > Announce distance to target. There is no key bound as default.
+	- There is a new menu Core > Macros to create and edit macros. Thanks a lot to Birkentau.
+	- There is a new option: Quest > Options > show colors for difficulty. Default: on. Shows the quest difficulty color in lists (grey, green, yellow, etc.).
+	- Menus under Core > Game key binds > Bind key are now sorted alphabetically.
+	- The option to bind keys under Core > Action bar is removed. The Core > Game key binds > Bind key menu has options to bind keys to all action buttons (categories "Action Bar" for the main bar and "Multi action bar" for additional action bars and side action bars).
+	- Renamed the "Assign nothing" menu entry in the action bar menu to "Assign no action"
+	- Fixed a bug with some specific quest rewards like venture coins.
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.7
+	- Fixed a bug with guild bank tabs that are locked for the player
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.6
+	- Fixed a bug with missing waypoints for corpse
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.5
+	- The auction history database is disabled and empty until the auction house re-work is done.
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.4
+	- grizzly hills and zul'drak are mapped
+	- more map fixes for howling fjord, tundra and dragonblight	
+	- added some fix to remove disconnected waypoints that are causing empty routes lists
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.3
+	- Maps:
+		- Dalaran waypoints and routes added. Dalaran is the most complex zone ever, will lots of layers and overlapping routes and waypoints. You better don't even try to start a route using an auto waypoint there. That won't work. Always use named waypoints for NPCs that you can tab target as an entry point.
+		- A lot of fixes for howling fjord, tundra and dragonblight.
+	- Navigation
+		- Fixed a bug with the deeprun tram. Tram will work again.
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.2
+	- Maps and quests:
+		- vrykul hawk roost waypoint in howling fjord added. quest requires sighted help to get the eggs.
+		- habichtfelsen 1-x added. there are habichte on the ground at those felsen. use them for the quest.
+		- waypoints for eisenrunengravur 1 + 2 added
+		- waypoints for lebronskis teppich added
+		- routes in wyrmskull Village and utgard catacombs in howling fjord alliance starting area fixed
+		- waypoints for ring des richturteils in utgard catacombs added
+		- "Alliance Banner drop waypoint" added. Still not in quests target list. This is intended.
+		- more waypoints for Prisoners of Wormskull added
+		- waypoint named "Wyrmskull Incense Burner use point" for "The Echo of Ymiron" added
+		- waypoint named "nifflevar Incense Burner use point" for "Anguish of Nifflevar" added
+		- waypoints for ship howling fjord in to wetlands renamed
+		- fixed the route to the First Aid Supplies for "A Soldier in Need" in the tundra
+	- Addon:
+		- Item comparison for guns/crossbows added
+		- bank items filtered fom All Bags menu
+		- Item comparison for quest rewards added
+		- Item comparison for"receive" quest rewards added
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31.1
+	- Fixed a bug with the Howling Fjord map.
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r31
+
+	This is the Northrend release update. All kind of bugs, errors, etc. are possible.
+	The databases are still in a bad shape. Missing quests, missing start/target/end lists are possible.
+	All routes and waypoints are 100% untested.
+	There are a lot of phasing, vehicle and other quests. Those are untested too.
+	Most graveyards are not linked with routes. Please report every unlinked graveyard.
+
+	Please report all issues to the specific channels in discord. If you don't report them, they won't be fixed. :)
+
+	Recommendated starting areas in Northrend:
+		- Alliance: Howling Fjord or Borean Tundra
+		- Horde: Borean Tundra (or Howling Fjord if you have sighted help, as there is a silent elevator in the horde start area)
+
+	The item, quest, creature and object databases are updated.
+	
+	Map data for Northrend:
+		Mapped: 
+		- Howling Fjord (68-72)
+		- Borean Tundra (68-72)
+		- Dragonblight (71-74)
+		- Sholazar Basin (75-78)
+		- Crystalsong Forest (77-80)
+		Partly mapped:
+		- Grizzly Hills (73-75)
+		Unmapped:
+		- Dalaran (Sanctuary)
+		- Zul'Drak (74-77)
+		- The Storm Peaks (76-80)
+		- Hrothgar's Landing (77-80)
+		- Icecrown (77-80)
+		- Wintergrasp (77-80) (Outdoor PvP)
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r30.24
+	- Fixed the missing map data.
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r30.23
+	- Removed the Import and Export menu entries under Navigation > Data
+	- Removed the Navigation > Waypoint > Manage menu.
+	- The addon is now auto deleting all customized map data that was manually imported (if there is any) on first login after starting the client. That means, if you do import custom map data, it will only exist for the current game session. If you do exit and restart the game client, you need to re-import that data.
+	- Removed the key binds to open the Sku Minimap for mapping or to show routes on the game minimap.
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r30.22
+	- Fixed a bunch of waypoints and waypoint names in the dk starting area to be more clear.
+	- Fixed another bug with special tasks for players that don't have the pet message set to text or audio.
+	- Fixed more bugs with deathknight quests not showing in the list of available quests.
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r30.21
+	- Fixed a bug with deathknight quests not showing in the list of available quests starting in zone.
+	- Fixed a bug with special tasks for players that don't have the chat set to auto-read.
+	- There is a new option under Auras: Export all auras. It is exporting all auras from the current character in one big chunk.
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r30.20
+	- Added mapping data for death knight starting area.
+	
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r30.19
+	- Removed overlooked debug chat output on login/reload.
+	- Removed a lot of virtual trigger spawn points from Northrend maps.
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r30.18
+	- Fixed an issue with game key bindings, that caused all key bindings to be mixed up on new installs.
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r30.17
+	- Fixed a bug with the overview page. Should work again.
+	- Added Northrend herb and mining resources to lists and waypoints.
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r30.16
+	- Fixed a map id issue for hellfire citadel and other areas.
+	- Re-added the hunter pet infos to the overview page (SHIFT + DOWN).
+	- The bag will again auto open if the trade window opens.
+	- Removed a bug with line feeds in comments of LFG entries.
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r30.15
+	- Added map data for stormwind harbor, ship from menethil to northrend, zeppelin from orgrimmar to thunder bluff, zeppelins from orgrimmar to northrend, and other stuff
+	- Fixed a lot of map ids with issues.
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r30.14
+	- Fixed an issue with the category list in the LFG tool.
+	- Fixed the not working do not hide tooltip feature.
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r30.13
+	- Fixed the issue with closing auction house on posting multiple auctions. Thanks, @samalam.
+	- Fixed the issue with closing menu on changing chat tab configs.
+	- Removed the overlooked debug output on action bar configuration.
+	- The "all bags" menu will not show keys from the keyring anymore.
+	- The auras property "spell name" should again list each spell name only once.
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r30.12
+	- There are new key bindings under Core > Game key bindings:
+		Under the existing category interface:
+		- TOGGLE LFG WINDOW
+		- TOGGLE LFG LISTING TAB
+		- TOGGLE LFG BROWSE TAB
+		- TOGGLE ACHIEVEMENT WINDOW
+		- TOGGLE STATISTICS WINDOW
+		Under the new category: vehicle control
+		- VEHICLE EXIT
+		- VEHICLE PREV SEAT
+		- VEHICLE NEXT SEAT
+		- VEHICLE AIM UP
+		- VEHICLE AIM DOWN
+		- VEHICLE AIM INCREMENT
+		- VEHICLE AIM DECREMENT
+	- New feature: the LFG tool is accessible
+		The LFG tool is a very complex feature. I did a bunch of test, but of course not in every situation.
+		Please carefully test every possible scenario. Solo, in parties, as a leader, as a party member, etc. If possible do that with assistance of a sighted player, to check if everything is working as intended!
+		Usage:
+		The LFG window is bound to the key I as default. As that key is used by the sku addon for the "turn to beacon" feature, you need to bind the LFG windows to a new key to use it. There is a new binding named "TOGGLE LFG WINDOW" (under Core > Game key binds > assign key > interface). 
+		To enlist yourself (if not in a party) or the full party (as a leader):
+			- open the LFG window
+			- go to "Enlist" and select your role(s)
+			- go down and select a category for your post (dungeons, raids, Quest & zones, PvP, Custom)
+			- go down and select actions from that category. Cou can check/uncheck as much categories as you want. You need to select at least one activity.
+			- go down and enter a commen for your post (option, except for category "custom"). Caution: you need to exit the comment enter mode with Escape. Not with Enter!
+			- Go down and select "List self" or "List group" if you are in a party
+			Your LFG request will be listed. There will be a addon error. That seems to be a bug in the Blizzard interface. Please just ignore that.
+		To browse the list of available LFG posts:
+			- go to browse
+			- go down and select a category
+			- (Option) select the activities you are interested in. If you don'T select activities the list will contain all activities from the selected category (for example all dungeons in the world).
+			- go down to "results", go right and down to see the list of found LFG requests. If there is only one entry "Refresh list", then the list is empty. Select another category with more LFG posts (dungeons should be quite busy). Each result entry has a tooltip with more details.
+			- Go right on any result entry and do a left click to open the context menu and select actions for that entry (Request invite, Whisper party leader, etc.)
+	- The Local menu now shows options on the LFG role poll popup.
+	- Added all spells from Wrath to the spell database. That should fix issues with auras using new spells.
+	- Auras using "own resource" are now covering death knights rune power too.
+	- Menu items like bag slots, talents, etc. are dynamically updated on changes like left/right click, split, destroy, etc.
+	- Fixed the role selection in the talent menu.
+	- Added a new option "Chat > Options > Never reset audio queues". Default: Off. Don't enable it if you don't know what it means.
+	- Fixed a bug with item rating for death knights that was blocking item tooltips. Now there are just no ratings for this class. :)
+	- Fixed an issue that was occuring on reload.
+	- Fixed a bug where Core > Action bars failed to show bars/button if the player was controling a pet or vehicle and the main action bar was replaced by the pet/vehicle bar.
+	- New feature: special tasks
+		This feature is guiding you in tasks/quest/scenarios where no coordinates and therefore waypoints and routes available.
+		An example is one of the very first death knight quests, "Death comes from above", in the death knight starting area.
+		The feature automatically detects those scenarios and is starting the correspondant special task. It then is providing instructions via voice. All instructions are added to the chat too, if you need to re-check them.
+		The feature is telling you how much you need to turn left and right and move forward.
+		You need to exactly follow the instructions. If the feature says "do not use any other keys except left, right and forward", then do not use any other keys until the task is completed or canceled. Under no circumstances. The feature will break if you are using other movement keys (like backward, strafe, autorun, etc.).
+		The feature will output your direction and forward movement every time you are stopping turning/movement.
+		For the example quest "Death comes from above" in the death knight starting area, the special task will start if you are entering the orb, and getting control over the orb (will take a few seconds, just wait).
+		The first step will be to turn to 144 degrees. Use left/right to turn exactly (+/- 2 degrees) to turn to 144. DO NOT MOVE. Only turn. On turn steps do not use any other keys than left and right.
+		If you have hit 114 the feature detects that an moves to step 2. That will be to move forward from 3.4 to 0. 3.4 is the overall time you need to press the forward key in seconds. You can do that in small incremental steps. Press forward very short. The number will decrease. Do that again, and again, until the number is 0. Do not move further than 0. Caution! You need to hit 0 EXACTLY, or the feature will break! Do not move further. No even 0.1 seconds. On move forward steps do not use any other keys than Forward. Not backward, not left/right, not strafe... nothing. just forward.
+		If you reach 0 the feature will move to step 3 and will provide the relevant instructions on what to do. Step 3 will be a turning step again. Proceede as above.
+		Just complete all steps, and the quest should be done.
+		Remember: do not use any other keys than the key or keys that are valid for the current step while on a special task. If the step is turning, use turn left/right only. If the step is moving forward, use moving forward only. If you use other keys, the feature will break. You would have to abort the quest and start over.
+
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r30.11
+	- Random enchantments items in bags are shown with the actual enchantment again.
+	- Fixed the auction house sell bug. Selling is working again. But still only one auction per use. Need more time to fix it.
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r30.10
+
+	- Fixed an issue with the The dark Portal area in Blasted lands, winterspring and a bunch of other zones. Please keep reporting broken zones/areas.
+	- Removed "Navigation > Waypoint > New.
+
+-------------------------------------------------------------------------------------------------------	
+Changes in Sku r30.9
+
+	- The character menu shows the Stats tab
+	- The character menu shows Currencies/tokens tab
+	- Added a sixth scan type: "360 10 very fast". It scans 360 degrees 0-10 meters in 2 seconds max. 
+		Because it is faster, it is also more inaccurate. It is good on detecting larger objects that are close to you. Results are getting words the smaller and the more far away object are.
+		Go to "Core > Scan settings > [one of the 8 pre-defined scans] > type" and select the new type "360 10 very fast"" for that scan.
+	- Added a new option "Core > Options > do not hide game tooltip" (default: off)
+		For players with some level of sight. As default the addon is hiding the visual tooltip instantly. That is speeding up the scan feature.
+		If you have some sight and would like to read the visual tooltip, set this to on, to keep the visual tooltip.
+	- The addon now should load a bit faster.
+	- Again tried to fix the "table constants overflow" issue that leads to losing all sku settings.
+	- Core > Options > "Auto following" and "Temporarily stop following upon casting" have been removed and won't work any longer.
+		Blizzard has intentionally removed the option to start/stop following for addons. (https://us.forums.blizzard.com/en/wow/t/re-addons-still-able-to-execute-remote-follow-commands/1298614)
+
 -------------------------------------------------------------------------------------------------------	
 Changes in Sku r28.8b
 

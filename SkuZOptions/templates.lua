@@ -9,7 +9,6 @@ local MENU_DROPDOWN_MULTI = 3
 
 SkuOptions.MenuMT = {
 	__add = function(thisTable, newTable)
-
 		local function TableCopy(t, deep, seen)
 			seen = seen or {}
 			if t == nil then return nil end
@@ -73,7 +72,6 @@ SkuGenericMenuItem = {
 	filterable = false,
 	OnUpdate = function(self, aKey)
 		C_Timer.After(0.01, function()
-
 			dprint("++ OnUpdate generic")
 			local tCurrentItemNumber
 			local tCurrentItemName = self.name
@@ -93,7 +91,10 @@ SkuGenericMenuItem = {
 				end
 			end
 
+			tCurrentItemNumber = tCurrentItemNumber or 1
+			
 			self.parent.children = {}
+			SkuCore:CheckFrames(nil, true)						
 			tParent:BuildChildren(self.parent)
 
 			tParent:OnSelect()
@@ -161,9 +162,15 @@ SkuGenericMenuItem = {
 			PlaySound(681)
 		end
 		SkuOptions.currentMenuPosition:OnEnter()
+
+		C_Timer.After(0.01, function()
+			local tIndexString, tBreadString = SkuOptions:GetMenuIndexAndBreadString(SkuOptions.currentMenuPosition)
+			SkuDispatcher:TriggerSkuEvent("SKU_SLASH_MENU_ITEM_SELECTED", tIndexString, tBreadString)
+		end)
+
 	end,
 	OnNext = function(self)
-		--dprint("OnNext generic", self.name)
+		--print("OnNext generic", self.name)
 		SkuOptions.currentMenuPosition:OnLeave(self, value, aValue)
 
 		if self.next then
@@ -172,6 +179,11 @@ SkuGenericMenuItem = {
 			PlaySound(681)
 		end
 		SkuOptions.currentMenuPosition:OnEnter()
+
+		C_Timer.After(0.01, function()
+			local tIndexString, tBreadString = SkuOptions:GetMenuIndexAndBreadString(SkuOptions.currentMenuPosition)
+			SkuDispatcher:TriggerSkuEvent("SKU_SLASH_MENU_ITEM_SELECTED", tIndexString, tBreadString)
+		end)		
 	end,
 	OnFirst = function(self)
 		--dprint("OnFirst generic", self.name)
@@ -180,6 +192,19 @@ SkuGenericMenuItem = {
 		if self.parent then
 			if self.parent.children then
 				SkuOptions.currentMenuPosition = self.parent.children[1]
+			else 
+				SkuOptions.currentMenuPosition = self.parent[1]
+			end
+		end
+		SkuOptions.currentMenuPosition:OnEnter()
+	end,
+	OnLast = function(self)
+		--dprint("OnLast generic", self.name)
+		SkuOptions.currentMenuPosition:OnLeave(self, value, aValue)
+
+		if self.parent then
+			if self.parent.children then
+				SkuOptions.currentMenuPosition = self.parent.children[#self.parent.children]
 			else 
 				SkuOptions.currentMenuPosition = self.parent[1]
 			end
@@ -247,7 +272,6 @@ SkuGenericMenuItem = {
 
 		if SkuCore.inCombat ~= true then
 			if self.macrotext then
-				--dprint("macrotext", self.macrotext)
 				if _G["SecureOnSkuOptionsMainOption1"] then
 					_G["SecureOnSkuOptionsMainOption1"]:SetAttribute("type","macro")
 					_G["SecureOnSkuOptionsMainOption1"]:SetAttribute("macrotext", self.macrotext)
@@ -307,7 +331,7 @@ SkuGenericMenuItem = {
 		if self.dynamic == true then
 			self.children = {}
 			if self.isMultiselect == true then
-				local tNewMenuEntry = SkuOptions:InjectMenuItems(self, {L["Nothing selected"]}, SkuGenericMenuItem)
+				local tNewMenuEntry = InjectMenuItemsNew(self, {L["Nothing selected"]}, SkuGenericMenuItem)
 				self.selectTarget = tNewMenuEntry
 			end
 			if self.isSelect == true then
@@ -404,7 +428,9 @@ SkuGenericMenuItem = {
 			end			
 		end
 
-		SkuOptions.currentMenuPosition:OnEnter(aEnterFlag)
+		if SkuOptions.currentMenuPosition.OnEnter then
+			SkuOptions.currentMenuPosition:OnEnter(aEnterFlag)
+		end
 		--if self.removeFilter then
 			--SkuOptions.Filterstring = ""
 			--SkuOptions:ApplyFilter(SkuOptions.Filterstring)
@@ -413,9 +439,432 @@ SkuGenericMenuItem = {
 	}
 setmetatable(SkuGenericMenuItem, SkuOptions.MenuMT)
 
+
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
+SkuGenericMenuItemNew = {
+	OnUpdate = function(self, aKey)
+		C_Timer.After(0.01, function()
+			--print("++ OnUpdate generic", self.name)
+			local tCurrentItemNumber
+			local tCurrentItemName = self.name
+			local tParent = self.parent
+
+			if not self.parent then
+				return
+			end
+			if not self.parent.children then
+				return
+			end
+
+			local tMenuItems = self.parent.children
+			for x = 1, #tMenuItems do
+				if tMenuItems[x].name == tCurrentItemName then
+					tCurrentItemNumber = x
+				end
+			end
+
+			tCurrentItemNumber = tCurrentItemNumber or 1
+			
+			self.parent.children = {}
+			SkuCore:CheckFrames(nil, true)						
+			tParent:BuildChildren(self.parent)
+
+			tParent:OnSelect()
+			if self.parent.children[tCurrentItemNumber] then
+				SkuOptions.currentMenuPosition = self.parent.children[tCurrentItemNumber]
+			elseif self.parent.children[tCurrentItemNumber - 1] then
+				SkuOptions.currentMenuPosition = self.parent.children[tCurrentItemNumber - 1]
+			else
+				SkuOptions.currentMenuPosition = self.parent.children[1]
+			end
+
+			SkuOptions.currentMenuPosition:OnEnter()
+
+			if SkuOptions.TTS.MainFrame:IsVisible() ~= true then
+				SkuOptions:VocalizeCurrentMenuName()
+			end
+		end)
+	end,
+	OnKey = function(self, aKey)
+		if SkuOptions.bindingMode == true then
+			return
+		end
+		dprint("OnKey", aKey, SkuOptions.bindingMode)
+		SkuOptions.currentMenuPosition:OnLeave(self, value, aValue)
+
+		local tNewMenuItem = nil
+		local tMenuItems = nil
+		if self.parent.name then
+			tMenuItems = self.parent.children
+		else
+			tMenuItems = self.parent
+		end
+		
+		if SkuOptions.MenuAccessKeysChars[aKey] then
+			for x= 1, #tMenuItems do
+				if not tNewMenuItem then
+					if string.lower(string.sub(tMenuItems[x].name, 1, 1)) == string.lower(aKey) then
+						tNewMenuItem = tMenuItems[x]
+					end
+				end
+			end
+		elseif SkuOptions.MenuAccessKeysNumbers[aKey] then
+			if not tNewMenuItem then
+				aKey = tonumber(aKey)
+				if tMenuItems[aKey] then
+					tNewMenuItem = tMenuItems[aKey]
+				end
+			end
+		end
+		if tNewMenuItem then
+			SkuOptions.currentMenuPosition = tNewMenuItem
+		end
+		SkuOptions.currentMenuPosition:OnEnter()
+	end,
+	BuildChildren = function(self)
+		--dprint("BuildChildren generic", self.name)
+	end,
+	OnPrev = function(self)
+		--dprint("OnPrev generic", self.name)
+		SkuOptions.currentMenuPosition:OnLeave(self, value, aValue)
+
+		if self.prev then
+			SkuOptions.currentMenuPosition = self.prev
+		else
+			PlaySound(681)
+		end
+		SkuOptions.currentMenuPosition:OnEnter()
+
+		C_Timer.After(0.01, function()
+			local tIndexString, tBreadString = SkuOptions:GetMenuIndexAndBreadString(SkuOptions.currentMenuPosition)
+			SkuDispatcher:TriggerSkuEvent("SKU_SLASH_MENU_ITEM_SELECTED", tIndexString, tBreadString)
+		end)
+
+	end,
+	OnNext = function(self)
+		--print("OnNext generic", self.name)
+		SkuOptions.currentMenuPosition:OnLeave(self, value, aValue)
+
+		if self.next then
+			SkuOptions.currentMenuPosition = self.next
+		else
+			PlaySound(681)
+		end
+		SkuOptions.currentMenuPosition:OnEnter()
+
+		C_Timer.After(0.01, function()
+			local tIndexString, tBreadString = SkuOptions:GetMenuIndexAndBreadString(SkuOptions.currentMenuPosition)
+			SkuDispatcher:TriggerSkuEvent("SKU_SLASH_MENU_ITEM_SELECTED", tIndexString, tBreadString)
+		end)		
+	end,
+	OnFirst = function(self)
+		--dprint("OnFirst generic", self.name)
+		SkuOptions.currentMenuPosition:OnLeave(self, value, aValue)
+
+		if self.parent then
+			if self.parent.children then
+				SkuOptions.currentMenuPosition = self.parent.children[1]
+			else 
+				SkuOptions.currentMenuPosition = self.parent[1]
+			end
+		end
+		SkuOptions.currentMenuPosition:OnEnter()
+	end,
+	OnLast = function(self)
+		--dprint("OnLast generic", self.name)
+		SkuOptions.currentMenuPosition:OnLeave(self, value, aValue)
+
+		if self.parent then
+			if self.parent.children then
+				SkuOptions.currentMenuPosition = self.parent.children[#self.parent.children]
+			else 
+				SkuOptions.currentMenuPosition = self.parent[1]
+			end
+		end
+		SkuOptions.currentMenuPosition:OnEnter()
+	end,
+	OnBack = function(self)
+		--dprint("OnBack generic", self.name, self.parent.name)
+		SkuOptions.currentMenuPosition:OnLeave(self, value, aValue)
+
+		if self.parent.name then
+			SkuOptions.currentMenuPosition = self.parent
+		else
+			--dprint("main level > leave nav")
+			_G["OnSkuOptionsMain"]:GetScript("OnClick")(_G["OnSkuOptionsMain"])
+		end
+		SkuOptions.currentMenuPosition:OnEnter()
+	end,
+	OnAction = function(self, value, aValue)
+		--print("OnAction generic", self.name, value.name, value, aValue)
+	end,
+	OnLeave = function(self, value, aValue)
+		--print("OnLeave generic", self.name, value, aValue)
+		if tCurrentErrorUtteranceTimerHandle then
+			tCurrentErrorUtteranceTimerHandle:Cancel()
+		end
+	end,
+	OnEnter = function(self, value, aValue)
+		--print("OnEnter generic", self.name, value, aValue)
+		if string.find(self.name, L["error;sound"].."#") then
+			for i, v in pairs(SkuCore.Errors.Sounds) do
+				if self.name == v then
+					C_Timer.After(1.5, function()
+						if tPrevErrorUtterance then
+							StopSound(tPrevErrorUtterance)
+						end
+						local willPlay, soundHandle = PlaySoundFile(i, SkuOptions.db.profile.SkuCore.UIErrors.ErrorSoundChannel or "Talking Head")
+						if willPlay then
+							tPrevErrorUtterance = soundHandle
+						end
+					end)
+				end
+			end
+		elseif string.find(self.name, L["aura;sound"].."#") then
+			for i, v in pairs(SkuAuras.outputs) do
+				if self.name == v.friendlyName then
+					SkuOptions.Voice:OutputStringBTtts(v.outputString, false, false, 0.3, true)
+				end
+			end
+		elseif string.find(self.name, L["sound"].."#") then
+			for i, v in pairs(SkuCore.RangeCheckSounds) do
+				if self.name == v then
+					C_Timer.After(1.5, function()
+						if tPrevErrorUtterance then
+							StopSound(tPrevErrorUtterance)
+						end
+						local willPlay, soundHandle = PlaySoundFile(i, "Talking Head")
+						if willPlay then
+							tPrevErrorUtterance = soundHandle
+						end
+					end)
+				end
+			end
+		end
+
+		if SkuCore.inCombat ~= true then
+			if self.macrotext then
+				--dprint("macrotext", self.macrotext)
+				if _G["SecureOnSkuOptionsMainOption1"] then
+					_G["SecureOnSkuOptionsMainOption1"]:SetAttribute("type","macro")
+					_G["SecureOnSkuOptionsMainOption1"]:SetAttribute("macrotext", self.macrotext)
+				end
+			else
+				if _G["SecureOnSkuOptionsMainOption1"] then
+					_G["SecureOnSkuOptionsMainOption1"]:SetAttribute("type","")
+					_G["SecureOnSkuOptionsMainOption1"]:SetAttribute("macrotext","")
+				end
+			end
+		end
+	end,
+	OnSelect = function(self, aEnterFlag)
+		--print("OnSelect generic", self.name, aEnterFlag, self.isSelect, self.isMultiselect, self.dynamic)
+		--local beginTime = debugprofilestop()
+		local spellID
+		local itemID
+		local macroID
+
+		local tCollectValuesFrom
+
+		if self.selectTarget then
+			spellID = self.selectTarget.spellID
+			itemID = self.selectTarget.itemID
+			macroID = self.selectTarget.macroID
+
+			tCollectValuesFrom = self.selectTarget.collectValuesFrom
+		end
+
+		SkuOptions.Filterstring = ""
+		SkuOptions:ApplyFilter(SkuOptions.Filterstring)
+
+		if tCollectValuesFrom then
+			self.selectTarget.collectValuesFrom = tCollectValuesFrom
+		end
+
+
+		if self.selectTarget then
+			--dprint("   ", self.selectTarget.name)
+			self.selectTarget.spellID = spellID
+			self.selectTarget.itemID = itemID
+			self.selectTarget.macroID = macroID
+	
+		end
+
+		if string.find(self.name, L["Filter"]..";") then
+			return
+		end
+
+		if self.name == L["Empty;list"] then
+			return
+		end
+		--print(debugprofilestop()  -beginTime)
+		self:OnPostSelect(aEnterFlag)
+	end,
+	OnPostSelect = function(self, aEnterFlag)
+		--print("++ OnPostSelect generic", self.name, self.actionOnEnter, aEnterFlag, self.isSelect, self.isMultiselect, self.dynamic)
+		--local beginTime = debugprofilestop()		
+		if self.dynamic == true then
+			self.children = {}
+			if self.isMultiselect == true then
+				local tNewMenuEntry = InjectMenuItemsNew(self, {L["Nothing selected"]}, SkuGenericMenuItem)
+				self.selectTarget = tNewMenuEntry
+			end
+			if self.isSelect == true then
+				self.selectTarget = self
+			end
+
+			-- we need to free up the memory of the old children before we're re-building; otherwise we'll leak memory on next BuildChildren
+			-- we can't do that for multi select menu items now, as we do need to collect the result from the selected sub items first
+			if self.isMultiselect ~= true then
+				self.children = {}
+				--collectgarbage("collect")
+			end
+
+			self:BuildChildren(self)
+			if self.selectTarget then
+				for x = 1, #self.children do
+					self.children[x].selectTarget = self.selectTarget
+				end
+			end		
+		end
+		if #self.children > 0 and (self.actionOnEnter ~= true or aEnterFlag ~= true) then
+			SkuOptions.currentMenuPosition = self.children[1]
+			if self.GetCurrentValue then
+				local tGetCurrentValue = self:GetCurrentValue()
+				for i, v in pairs(self.children) do
+					if v.name == tGetCurrentValue then
+						SkuOptions.currentMenuPosition = self.children[i]
+					end
+				end
+			end			
+		else
+			if self.selectTarget and self.selectTarget ~= self then
+				if self.selectTarget.parent.isMultiselect == true then
+					if self.selectTarget.name == L["Nothing selected"] and (self.name ~= L["Small"] and self.name ~= L["Large"]) then
+						self.selectTarget.name = L["Selected"]..";"..self.name
+					else
+						if self.name ~= L["Small"] and self.name ~= L["Large"] then
+							self.selectTarget.name = self.selectTarget.name..";"..self.name
+						end
+					end
+					SkuOptions.currentMenuPosition = self.selectTarget
+				end
+				if self.selectTarget.isSelect == true then
+					if not string.find(self.name, L["Filter"]..";") then
+						local rValue = self.name
+						if string.sub(rValue, 1, string.len(L["Selected"]..";")) == L["Selected"]..";" then
+							rValue = string.sub(rValue,  string.len(L["Selected"]..";") + 1)
+						end
+
+						local tUncleanValue = self.name
+						local tCleanValue = self.name
+						local tPos = string.find(tUncleanValue, "#")
+						local tErrorSoundFound = string.find(tUncleanValue, L["error;sound"].."#")
+						if tPos and not tErrorSoundFound then
+							tCleanValue = string.sub(tUncleanValue,  tPos + 1)
+						end
+
+						self.selectTarget:OnAction(self, tCleanValue, self.parent.name)----------------
+						-- we need to free up the memory of the old children before we're re-building on next acces of menu item
+						-- now it's safe to do that, as multi select menu items are handled with the above OnAction
+						self.children = {}
+						--collectgarbage("collect")
+
+						SkuOptions.currentMenuPosition = self.selectTarget
+					else
+						if SkuOptions.TTS.MainFrame:IsVisible() ~= true then
+							SkuOptions:VocalizeCurrentMenuName()
+						end
+				
+					end					
+				end
+			else
+				local rValue = self.name
+				local tUncleanValue = self.name
+				local tCleanValue = self.name
+				local tPos = string.find(tUncleanValue, "#")
+				if tPos then
+					tCleanValue = string.sub(tUncleanValue,  tPos + 1)
+				end
+				
+				if string.sub(rValue, 1, string.len(L["Selected"]..";")) == L["Selected"]..";" then
+					rValue = string.sub(rValue,  string.len(L["Selected"]..";") + 1)
+				end
+				if #self.children > 0 or self.selectTarget == self then
+					self.parent:OnAction(self, tCleanValue, self.parent.name)
+				else
+					self:OnAction(self, tCleanValue, self.parent.name)------------
+				end
+				-- we need to free up the memory of the old children before we're re-building on next acces of menu item
+				-- now it's safe to do that, as multi select menu items are handled with the above OnAction
+				self.children = {}
+				--collectgarbage("collect")
+				SkuOptions.currentMenuPosition = self.parent
+			end			
+		end
+
+		if SkuOptions.currentMenuPosition.OnEnter then
+			SkuOptions.currentMenuPosition:OnEnter(aEnterFlag)
+		end
+		--if self.removeFilter then
+			--SkuOptions.Filterstring = ""
+			--SkuOptions:ApplyFilter(SkuOptions.Filterstring)
+		--end
+		--print(debugprofilestop()  -beginTime)
+	end,
+}
+
+---------------------------------------------------------------------------------------------------------------------------------------
+function InjectMenuItemsNew(aParentMenu, aNewItems)
+	local tParentMenu = aParentMenu.children or aParentMenu
+
+	local tnum = #aNewItems
+	for x = 1, tnum do
+		local tNewIndex = #tParentMenu + 1
+		tParentMenu[tNewIndex] = {
+			type = MENU_MENU,
+			children = {},
+			isSelect = false,
+			isMultiselect = false,
+			selectTarget = nil,
+			dynamic = false,
+			filterable = false,
+		}
+
+		tParentMenu[tNewIndex].name = aNewItems[x]
+		tParentMenu[tNewIndex].index = tNewIndex
+		tParentMenu[tNewIndex].parent = aParentMenu
+		if tParentMenu[tNewIndex - 1] then
+			tParentMenu[tNewIndex].prev = tParentMenu[tNewIndex - 1]
+			tParentMenu[tNewIndex - 1].next = tParentMenu[tNewIndex]
+		end
+
+		tParentMenu[tNewIndex].OnUpdate = SkuGenericMenuItemNew.OnUpdate
+		tParentMenu[tNewIndex].OnKey = SkuGenericMenuItemNew.OnKey
+		tParentMenu[tNewIndex].BuildChildren = SkuGenericMenuItemNew.BuildChildren
+		tParentMenu[tNewIndex].OnPrev = SkuGenericMenuItemNew.OnPrev
+		tParentMenu[tNewIndex].OnNext = SkuGenericMenuItemNew.OnNext
+		tParentMenu[tNewIndex].OnFirst = SkuGenericMenuItemNew.OnFirst
+		tParentMenu[tNewIndex].OnLast = SkuGenericMenuItemNew.OnLast
+		tParentMenu[tNewIndex].OnBack = SkuGenericMenuItemNew.OnBack
+		tParentMenu[tNewIndex].OnAction = SkuGenericMenuItemNew.OnAction
+		tParentMenu[tNewIndex].OnLeave = SkuGenericMenuItemNew.OnLeave
+		tParentMenu[tNewIndex].OnEnter = SkuGenericMenuItemNew.OnEnter
+		tParentMenu[tNewIndex].OnSelect = SkuGenericMenuItemNew.OnSelect
+		tParentMenu[tNewIndex].OnPostSelect = SkuGenericMenuItemNew.OnPostSelect
+	end
+
+	return tParentMenu[#tParentMenu]
+end
+
 ---------------------------------------------------------------------------------------------------------------------------------------
 function SkuOptions:BuildMenuSegment_TitleBuilder(aParent, aEntryName)
-	local tNewMenuEntry = SkuOptions:InjectMenuItems(aParent, {aEntryName}, SkuGenericMenuItem)
+	local tNewMenuEntry = InjectMenuItemsNew(aParent, {aEntryName}, SkuGenericMenuItem)
 	tNewMenuEntry.dynamic = true
 	tNewMenuEntry.isMultiselect = true
 	tNewMenuEntry.filterable = true
@@ -423,32 +872,32 @@ function SkuOptions:BuildMenuSegment_TitleBuilder(aParent, aEntryName)
 	tNewMenuEntry.BuildChildren = function(self)
 		self.parent.oldWpName = SkuOptions.db.profile.SkuNav.selectedWaypoint
 		if GetSubZoneText() ~= "" then
-			SkuOptions:InjectMenuItems(self, {GetSubZoneText()}, SkuGenericMenuItem)
+			InjectMenuItemsNew(self, {GetSubZoneText()}, SkuGenericMenuItem)
 		end
 		if GetSubZoneText() ~= GetZoneText() then
-			SkuOptions:InjectMenuItems(self, {GetZoneText()}, SkuGenericMenuItem)
+			InjectMenuItemsNew(self, {GetZoneText()}, SkuGenericMenuItem)
 		end
 		if UnitName("target") then
 			local name, realm = UnitName("target")
-			SkuOptions:InjectMenuItems(self, {name}, SkuGenericMenuItem)
+			InjectMenuItemsNew(self, {name}, SkuGenericMenuItem)
 		end
 		--[[
 		if UnitPosition("player") then
 			local x, y = UnitPosition("player")
-			SkuOptions:InjectMenuItems(self, {string.format("%d", x)..";"..string.format("%d", y)}, SkuGenericMenuItem)
+			InjectMenuItemsNew(self, {string.format("%d", x)..";"..string.format("%d", y)}, SkuGenericMenuItem)
 		end
 		]]
 
-		local tNewMenuEntry = SkuOptions:InjectMenuItems(self, {L["Size"]}, SkuGenericMenuItem)
+		local tNewMenuEntry = InjectMenuItemsNew(self, {L["Size"]}, SkuGenericMenuItem)
 		tNewMenuEntry.dynamic = true
 		tNewMenuEntry.BuildChildren = function(self)
-			local tNewMenuEntry = SkuOptions:InjectMenuItems(self, {L["Small"]}, SkuGenericMenuItem)
+			local tNewMenuEntry = InjectMenuItemsNew(self, {L["Small"]}, SkuGenericMenuItem)
 			tNewMenuEntry.OnEnter = function(self, aValue, aName)
 				--dprint("OnEnter Klein", self.name, value, aValue, self.selectTarget.name)
 				self.selectTarget.TMPSize = 1
 			end
 
-			local tNewMenuEntry = SkuOptions:InjectMenuItems(self, {L["Large"]}, SkuGenericMenuItem)
+			local tNewMenuEntry = InjectMenuItemsNew(self, {L["Large"]}, SkuGenericMenuItem)
 			tNewMenuEntry.OnEnter = function(self, aValue, aName)
 				--dprint("OnEnter Groß", self.name, value, aValue, self.selectTarget.name)
 				self.selectTarget.TMPSize = 5
@@ -458,16 +907,16 @@ function SkuOptions:BuildMenuSegment_TitleBuilder(aParent, aEntryName)
 		if SkuQuest then
 			if SkuQuest:GetQuestTitlesList()  then
 				if #SkuQuest:GetQuestTitlesList() > 0 then
-					local tNewMenuEntry = SkuOptions:InjectMenuItems(self, {L["Quests"]}, SkuGenericMenuItem)
+					local tNewMenuEntry = InjectMenuItemsNew(self, {L["Quests"]}, SkuGenericMenuItem)
 						tNewMenuEntry.dynamic = true
 						tNewMenuEntry.BuildChildren = function(self)
-							local tNewMenuEntry = SkuOptions:InjectMenuItems(self, SkuQuest:GetQuestTitlesList(), SkuGenericMenuItem)
+							local tNewMenuEntry = InjectMenuItemsNew(self, SkuQuest:GetQuestTitlesList(), SkuGenericMenuItem)
 						end
 				end
 			end
 		end
 
-		local tNewMenuEntry = SkuOptions:InjectMenuItems(self, {L["NPC names"]}, SkuGenericMenuItem)
+		local tNewMenuEntry = InjectMenuItemsNew(self, {L["NPC names"]}, SkuGenericMenuItem)
 		tNewMenuEntry.dynamic = true
 		tNewMenuEntry.filterable = true
 		tNewMenuEntry.BuildChildren = function(self)
@@ -516,31 +965,31 @@ function SkuOptions:BuildMenuSegment_TitleBuilder(aParent, aEntryName)
 					for z = 1, #tSortedWaypointList do
 						--dprint(z, tSortedWaypointList[z])
 						local tMenuName = tSortedWaypointList[z]
-						local tNewMenuEntry = SkuOptions:InjectMenuItems(self, {tMenuName}, SkuGenericMenuItem)
+						local tNewMenuEntry = InjectMenuItemsNew(self, {tMenuName}, SkuGenericMenuItem)
 					end
 				end
 			end
 		end
 
-		local tNewMenuEntry = SkuOptions:InjectMenuItems(self, {L["Zonen names"]}, SkuGenericMenuItem)
+		local tNewMenuEntry = InjectMenuItemsNew(self, {L["Zonen names"]}, SkuGenericMenuItem)
 		tNewMenuEntry.dynamic = true
 		tNewMenuEntry.filterable = true
 		tNewMenuEntry.BuildChildren = function(self)
 			local tWaypointList = {}
 			for q = 1, #SkuDB.DefaultWaypoints[Sku.Loc].Zones do
-				local tNewMenuEntry = SkuOptions:InjectMenuItems(self, {SkuDB.DefaultWaypoints[Sku.Loc].Zones[q]}, SkuGenericMenuItem)
+				local tNewMenuEntry = InjectMenuItemsNew(self, {SkuDB.DefaultWaypoints[Sku.Loc].Zones[q]}, SkuGenericMenuItem)
 				tNewMenuEntry.dynamic = true
 				tNewMenuEntry.filterable = true
 				tNewMenuEntry.BuildChildren = function(self)--continents
 					for q = 1, #SkuDB.DefaultWaypoints[Sku.Loc].Zones[self.name] do
-						local tNewMenuEntry1 = SkuOptions:InjectMenuItems(self, {SkuDB.DefaultWaypoints[Sku.Loc].Zones[self.name][q]}, SkuGenericMenuItem)
+						local tNewMenuEntry1 = InjectMenuItemsNew(self, {SkuDB.DefaultWaypoints[Sku.Loc].Zones[self.name][q]}, SkuGenericMenuItem)
 					end
 				end
 			end
 		end
 
 		--npc namen, quests von oben noch hinzufügen
-		local tNewMenuEntry = SkuOptions:InjectMenuItems(self, {L["All alphabetically"]}, SkuGenericMenuItem)
+		local tNewMenuEntry = InjectMenuItemsNew(self, {L["All alphabetically"]}, SkuGenericMenuItem)
 		tNewMenuEntry.dynamic = true
 		tNewMenuEntry.filterable = true
 		tNewMenuEntry.BuildChildren = function(self)
@@ -564,18 +1013,18 @@ function SkuOptions:BuildMenuSegment_TitleBuilder(aParent, aEntryName)
 				table.insert(tSortedGlossary, k)
 			end
 
-			local tNewMenuEntry = SkuOptions:InjectMenuItems(self, tSortedGlossary, SkuGenericMenuItem)
+			local tNewMenuEntry = InjectMenuItemsNew(self, tSortedGlossary, SkuGenericMenuItem)
 		end
 
 		for i, v in pairs(SkuOptions.Glossary1[Sku.Loc]) do
-			local tNewMenuEntry = SkuOptions:InjectMenuItems(self, {i}, SkuGenericMenuItem)
+			local tNewMenuEntry = InjectMenuItemsNew(self, {i}, SkuGenericMenuItem)
 			tNewMenuEntry.dynamic = true
 			tNewMenuEntry.BuildChildren = function(self)
-				local tNewMenuEntry = SkuOptions:InjectMenuItems(self, v, SkuGenericMenuItem)
+				local tNewMenuEntry = InjectMenuItemsNew(self, v, SkuGenericMenuItem)
 			end
 		end
 
-		--SkuOptions:InjectMenuItems(self, {"Ab hier komplette Wortliste"}, SkuGenericMenuItem)
+		--InjectMenuItemsNew(self, {"Ab hier komplette Wortliste"}, SkuGenericMenuItem)
 		local tFullGlossary = {}
 		local tIndex = 1
 		for i, v in pairs(SkuOptions.Glossary1[Sku.Loc]) do
@@ -595,7 +1044,7 @@ function SkuOptions:BuildMenuSegment_TitleBuilder(aParent, aEntryName)
 		for k,v in SkuSpairs(tFullGlossary) do
 			table.insert(tSortedGlossary, k)
 		end	
-		local tSubMenu = SkuOptions:InjectMenuItems(self, tSortedGlossary, SkuGenericMenuItem)
+		local tSubMenu = InjectMenuItemsNew(self, tSortedGlossary, SkuGenericMenuItem)
 		tSubMenu.removeFilter = true
 		
 	end
